@@ -1,0 +1,189 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <script src="../Scripts/jquery-3.3.1.js"></script>
+    <script src="../Scripts/index.js"></script>
+    <link href="../Content/bootstrap.css" rel="stylesheet" />
+    <link href="../Content/style.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css">
+</head>
+<body>
+    <div id="korisnik">
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav-coll" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a href="Index.html" class="navbar-brand"><i class="fas fa-taxi"></i>&nbsp; Korisnik</a>
+                </div>
+                <div class="collapse navbar-collapse" id="nav-coll">
+                    <ul class="nav navbar-nav">
+                        <li id="home1"><a href="#">Home</a></li>
+                        <li id="profilKorisnik"><a href="#">My Profile</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                    <ul class="navbar-nav nav navbar-right">
+                        <li><a href="CheckLogged.html">Login &nbsp;<i class="fas fa-user"></i></a></li>
+                        <li><a href="Registration.html">Sign Up &nbsp;<i class="fas fa-user-plus"></i></a></li>
+                        <li><a href="CheckLoggedOff.html">Log Out &nbsp;<i class="fas fa-sign-out-alt"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container">
+            <div id="jmbtrn1" class="jumbotron">
+                <h1><i class="fas fa-taxi"></i>&nbsp; E-Taxi</h1>
+            </div>
+        </div>
+
+
+
+        <!--*************************************************************************************************************************-->
+        <!--*************************************************************************************************************************-->
+        <!--Podaci Korisnik-->
+        <div class="container">
+            <div id="korisnikPodaci">
+                <div class="col-md-10 col-md-offset-1" style="padding-top:70px;">
+                        <div class="well">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr class="success">
+                                        <th colspan="2" style="text-align:center">
+                                            User Information
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Username</td>
+                                        <td><input type="text" class="form-control" id="txtUsername" placeholder="Username" disabled/> </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Email</td>
+                                        <td><input type="text" class="form-control" id="txtEmail" placeholder="Email" /> </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Password</td>
+                                        <td><input type="password" class="form-control" id="txtPassword" placeholder="Password" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>First Name</td>
+                                        <td><input type="text" class="form-control" id="txtFirstName" placeholder="First Name" /> </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Last Name</td>
+                                        <td><input type="text" class="form-control" id="txtLastName" placeholder="Last Name" /> </td>
+                                    </tr>
+                                    <tr>
+                                        <td>JMBG</td>
+                                        <td><input type="text" class="form-control" id="txtJmbg" placeholder="JMBG" /> </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Contact Number</td>
+                                        <td><input type="text" class="form-control" id="txtContactNumber" placeholder="Contact Number" /> </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Gender</td>
+                                        <td>
+                                            <input type="radio" name="gender" id="gndrMale" value="Muskarac"> Male &nbsp;&nbsp;&nbsp;&nbsp;
+                                            &nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" id="gndrFemale" name="gender" value="Zena"> Female
+                                        </td>
+                                    </tr>
+                                    <tr class="success">
+                                        <td colspan="2">
+                                            <input id="btnSave" class="form-control btn btn-success" type="button" value="Save Changes" />
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--*************************************************************************************************************************-->
+            <!--*************************************************************************************************************************-->
+
+    </div>
+
+    <div id="dispecer">
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav-coll" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a href="Index.html" class="navbar-brand"><i class="fas fa-taxi"></i>&nbsp; Dispecer</a>
+                </div>
+                <div class="collapse navbar-collapse" id="nav-coll">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="Index.html">Home</a></li>
+                        <li id="profilDispecer"><a href="#">My Profile</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                    <ul class="navbar-nav nav navbar-right">
+                        <li><a href="CheckLogged.html">Login &nbsp;<i class="fas fa-user"></i></a></li>
+                        <li><a href="Registration.html">Sign Up &nbsp;<i class="fas fa-user-plus"></i></a></li>
+                        <li><a href="CheckLoggedOff.html">Log Out &nbsp;<i class="fas fa-sign-out-alt"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container">
+            <div id="jmbtrn2" class="jumbotron">
+                <h1><i class="fas fa-taxi"></i>&nbsp; E-Taxi</h1>
+            </div>
+        </div>
+    </div>
+
+    <div id="vozac">
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav-coll" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a href="Index.html" class="navbar-brand"><i class="fas fa-taxi"></i>&nbsp; Vozac</a>
+                </div>
+                <div class="collapse navbar-collapse" id="nav-coll">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="Index.html">Home</a></li>
+                        <li id="profilVozac"><a href="#">My Profile</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                    <ul class="navbar-nav nav navbar-right">
+                        <li><a href="CheckLogged.html">Login &nbsp;<i class="fas fa-user"></i></a></li>
+                        <li><a href="Registration.html">Sign Up &nbsp;<i class="fas fa-user-plus"></i></a></li>
+                        <li><a href="CheckLoggedOff.html">Log Out &nbsp;<i class="fas fa-sign-out-alt"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container">
+            <div id="jmbtrn3" class="jumbotron">
+                <h1><i class="fas fa-taxi"></i>&nbsp; E-Taxi</h1>
+            </div>
+        </div>
+    </div>
+
+    <div id="footer"><footer><i class="far fa-copyright"></i> Copyright 2018</footer></div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+</html>

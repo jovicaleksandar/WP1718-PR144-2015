@@ -1,0 +1,106 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="../Scripts/jquery-3.3.1.js"></script>
+    <script src="../Scripts/Login.js"></script>
+    <link href="../Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="../Content/style.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css">
+</head>
+<body style="padding-top:20px">
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav-coll" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="Index.html" class="navbar-brand"><i class="fas fa-taxi"></i>&nbsp; E-Taxi</a>
+            </div>
+            <div class="collapse navbar-collapse" id="nav-coll">
+                <ul class="nav navbar-nav">
+                    <li><a href="Index.html">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+                <ul class="navbar-nav nav navbar-right">
+                    <li class="active"><a href="Login.html">Login &nbsp;<i class="fas fa-user"></i></a></li class="active">
+                    <li><a href="Registration.html">Sign Up &nbsp;<i class="fas fa-user-plus"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="col-md-10 col-md-offset-1" style="padding-top:70px;">
+        <div class="well">
+            <table class="table table-bordered">
+                <thead>
+                    <tr class="success">
+                        <th colspan="2" style="text-align:center">
+                            Login
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Username</td>
+                        <td><input type="text" class="form-control" id="txtUsername" placeholder="Username" /> </td>
+                    </tr>
+                    <tr>
+                        <td>Password</td>
+                        <td><input type="password" class="form-control" id="txtPassword" placeholder="Password" /></td>
+                    </tr>
+                    <tr class="success">
+                        <td colspan="2">
+                            <input id="btnLogin" class="form-control btn btn-success" type="button" value="Login" />
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="modal fade" tabindex="-1" id="successModal"
+                 data-keyboard="false" data-backdrop="static">
+                <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">
+                                &times;
+                            </button>
+                            <h4 class="modal-title">Success</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <h2 class="modal-title">Login Successful!</h2>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-success"
+                                    data-dismiss="modal">
+                                Close
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="divError" class="alert alert-danger collapse">
+                <a id="linkClose" href="#" class="close">&times;</a>
+                <div id="divErrorText"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../Scripts/bootstrap.min.js"></script>
+    <script src="../Scripts/jquery-3.3.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</body>
+</html>

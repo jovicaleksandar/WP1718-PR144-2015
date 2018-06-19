@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="../Scripts/jquery-3.3.1.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            let check = localStorage.getItem("logged");
+
+            if (check != "") {
+                window.location.href = "Index.html"
+            } else {
+                window.location.href = "Login.html"
+            }
+        });
+    </script>
+
+</head>
+<body>
+
+    <script src="../Scripts/jquery-3.3.1.min.js"></script>
+</body>
+</html>
