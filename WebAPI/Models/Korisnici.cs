@@ -24,7 +24,7 @@ namespace WebAPI.Models
                     break;
 
                 string[] tokens = line.Split('|');
-                Korisnik k = new Korisnik(korisnici.Count, tokens[0], tokens[1], tokens[2], tokens[3], tokens[4], tokens[5], tokens[6], tokens[7], tokens[8]);
+                Korisnik k = new Korisnik(Int32.Parse(tokens[0]), tokens[1], tokens[2], tokens[3], tokens[4], tokens[5], tokens[6], tokens[7], tokens[8], tokens[9]);
                 korisnici.Add(k);
             }
             sr.Close();

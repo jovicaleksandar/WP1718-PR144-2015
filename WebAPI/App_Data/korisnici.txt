@@ -1,6 +1,1 @@
-﻿user|sifra1314|Aca|Kolarov|Muskarac|12149312654138|0644553298721|kolarov@gmail.com|Korisnik
-acika|acika12345|Aleksandar|Jovic|Muskarac|90123980132|32890121380|acika@gmail.com|Musterija
-test|testic|Test|Testic|Muskarac|91832009213|0983210982189301|test@gmail.com|Musterija
-kdb|kdb|Kevin|De Bruyne|Zena|8930120982189|9321980312980123|kdb@gmail.com|Musterija
-hazard|eden|Edene|Hazard|Muskarac|89032190321908|980321908321908|eden@gmail.com|Musterija
-sms|sms|Sergej|Milinkovic-Savic|Muskarac|093821032198|98021398021|sms@gmail.com|Musterija
+0|acaKolarov|sifra1314|Aleksandar|Kolarov|Muskarac|91203923180|02189713289|acakolarov@gmail.com|Musterija

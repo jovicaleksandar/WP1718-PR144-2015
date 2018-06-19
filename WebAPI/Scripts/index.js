@@ -23,25 +23,37 @@
             if (data.Role == 0) {
                 $('#korisnik').show();
                 $('#korisnikPodaci').hide();
+                $('#korisnikPodaci').hide();
                 $('#dispecer').hide();
                 $('#vozac').hide();
+                $('#home1').addClass("active");
+                $('#home2').removeClass("active");
+                $('#home3').removeClass("active");
             }
             else if (data.Role == 1) {
                 $('#korisnik').hide();
                 $('#korisnikPodaci').hide();
+                $('#dispecerPodaci').hide();
                 $('#dispecer').show();
                 $('#vozac').hide();
+                $('#home2').addClass("active");
+                $('#home1').removeClass("active");
+                $('#home3').removeClass("active");
             }
             else {
                 $('#korisnik').hide();
                 $('#korisnikPodaci').hide();
+                $('#dispecerPodaci').hide();
                 $('#dispecer').hide();
                 $('#vozac').show();
             }
         }
     });
 
-
+    //**********************************************************************************************************************
+    // Profil Korisnik
+    //**********************************************************************************************************************
+    //**********************************************************************************************************************
     $('#profilKorisnik').click(function () {
         let korisnickoIme = localStorage.getItem("logged");
         let Korisnik = {
@@ -55,20 +67,20 @@
         $('#profilKorisnik').addClass("active");
 
 
-        $('#txtUsername').val(profil.KorisnickoIme);
-        $('#txtEmail').val(profil.Email);
-        $('#txtPassword').val(profil.Lozinka);
-        $('#txtFirstName').val(profil.Ime);
-        $('#txtLastName').val(profil.Prezime);
-        $('#txtJmbg').val(profil.JMBG);
-        $('#txtContactNumber').val(profil.Telefon);
+        $('#txtUsernameKorisnik').val(profil.KorisnickoIme);
+        $('#txtEmailKorisnik').val(profil.Email);
+        $('#txtPasswordKorisnik').val(profil.Lozinka);
+        $('#txtFirstNameKorisnik').val(profil.Ime);
+        $('#txtLastNameKorisnik').val(profil.Prezime);
+        $('#txtJmbgKorisnik').val(profil.JMBG);
+        $('#txtContactNumberKorisnik').val(profil.Telefon);
 
         if (profil.Gender == 0) {
-            $("#gndrMale").prop('checked', true)
-            $("#gndrFemale").prop('checked', false)
+            $("#gndrMaleKorisnik").prop('checked', true)
+            $("#gndrFemaleKorisnik").prop('checked', false)
         } else {
-            $("#gndrFemale").prop('checked', true)
-            $("#gndrMale").prop('checked', false)
+            $("#gndrFemaleKorisnik").prop('checked', true)
+            $("#gndrMaleKorisnik").prop('checked', false)
         }
     });
 
@@ -82,24 +94,191 @@
     });
 
 
-    $('#btnSave').click(function () {
+    $('#btnSaveKorisnik').click(function () {
+        var gndr;
+        if ($('#gndrMaleKorisnik').is(':checked')) {
+            gndr = $('#gndrMaleKorisnik').val();
+        }
+        else {
+            gndr = $('#gndrFemaleKorisnik').val();
+        }
+
         $.ajax({
-            url: '/api/Korisnik',
+            url: '/api/korisnik/put',
             method: 'PUT',
             data: {
-                KorisnickoIme: $('#txtUsername').val(),
-                Email: $('#txtEmail').val(),
-                Lozinka: $('#txtPassword').val(),
-                confirmPassword: $('#txtConfirmPassword').val(),
-                Ime: $('#txtFirstName').val(),
-                Prezime: $('#txtLastName').val(),
-                JMBG: $('#txtJmbg').val(),
-                Telefon: $('#txtContactNumber').val(),
+                KorisnickoIme: $('#txtUsernameKorisnik').val(),
+                Email: $('#txtEmailKorisnik').val(),
+                Lozinka: $('#txtPasswordKorisnik').val(),
+                confirmPassword: $('#txtConfirmPasswordKorisnik').val(),
+                Ime: $('#txtFirstNameKorisnik').val(),
+                Prezime: $('#txtLastNameKorisnik').val(),
+                JMBG: $('#txtJmbgKorisnik').val(),
+                Telefon: $('#txtContactNumberKorisnik').val(),
                 Gender: gndr
             },
             success: function (data) {
+                if (data != null) {
+                    $('#txtUsernameKorisnik').val(data.KorisnickoIme);
+                    $('#txtEmailKorisnik').val(data.Email);
+                    $('#txtPasswordKorisnik').val(data.Lozinka);
+                    $('#txtFirstNameKorisnik').val(data.Ime);
+                    $('#txtLastNameKorisnik').val(data.Prezime);
+                    $('#txtJmbgKorisnik').val(data.JMBG);
+                    $('#txtContactNumberKorisnik').val(data.Telefon);
 
+                    if (data.Gender == 0) {
+                        $("#gndrMaleKorisnik").prop('checked', true)
+                        $("#gndrFemaleKorisnik").prop('checked', false)
+                    } else {
+                        $("#gndrFemaleKorisnik").prop('checked', true)
+                        $("#gndrMaleKorisnik").prop('checked', false)
+                    }
+                }
             }
         });
     });
+
+
+    $('#logOutKorisnik').click(function () {
+        localStorage.setItem("logged", "");
+        window.location.href = "Index.html";
+    });
+
+    $('#logInKorisnik').click(function () {
+        let check = localStorage.getItem("logged");
+        let korisnickoIme = localStorage.getItem("logged");
+        let Korisnik = {
+            KorisnickoIme: `${korisnickoIme}`
+        };
+
+        if (check != "") {
+            $('#jmbtrn1').fadeOut(300);
+            $('#footer').fadeOut(300);
+            $('#korisnikPodaci').delay(300).fadeIn(300);
+            $('#home1').removeClass("active");
+            $('#profilKorisnik').addClass("active");
+
+
+            $('#txtUsernameKorisnik').val(profil.KorisnickoIme);
+            $('#txtEmailKorisnik').val(profil.Email);
+            $('#txtPasswordKorisnik').val(profil.Lozinka);
+            $('#txtFirstNameKorisnik').val(profil.Ime);
+            $('#txtLastNameKorisnik').val(profil.Prezime);
+            $('#txtJmbgKorisnik').val(profil.JMBG);
+            $('#txtContactNumberKorisnik').val(profil.Telefon);
+
+            if (profil.Gender == 0) {
+                $("#gndrMaleKorisnik").prop('checked', true)
+                $("#gndrFemaleKorisnik").prop('checked', false)
+            } else {
+                $("#gndrFemaleKorisnik").prop('checked', true)
+                $("#gndrMaleKorisnik").prop('checked', false)
+            }
+        } else {
+            window.location.href = "Login.html"
+        }
+    });
+    //**********************************************************************************************************************
+    //**********************************************************************************************************************
+
+
+
+    //**********************************************************************************************************************
+    //Profil Dispecer
+    //**********************************************************************************************************************
+    //**********************************************************************************************************************
+    $('#profilDispecer').click(function () {
+        let korisnickoIme = localStorage.getItem("logged");
+        let Korisnik = {
+            KorisnickoIme: `${korisnickoIme}`
+        };
+
+        $('#jmbtrn2').fadeOut(300);
+        $('#footer').fadeOut(300);
+        $('#dispecerPodaci').delay(300).fadeIn(300);
+        $('#home2').removeClass("active");
+        $('#profilDispecer').addClass("active");
+
+
+        $('#txtUsernameDispecer').val(profil.KorisnickoIme);
+        $('#txtEmailDispecer').val(profil.Email);
+        $('#txtPasswordDispecer').val(profil.Lozinka);
+        $('#txtFirstNameDispecer').val(profil.Ime);
+        $('#txtLastNameDispecer').val(profil.Prezime);
+        $('#txtJmbgDispecer').val(profil.JMBG);
+        $('#txtContactNumberDispecer').val(profil.Telefon);
+
+        if (profil.Gender == 0) {
+            $("#gndrMaleDispecer").prop('checked', true)
+            $("#gndrFemaleDispecer").prop('checked', false)
+        } else {
+            $("#gndrFemaleDispecer").prop('checked', true)
+            $("#gndrMaleDispecer").prop('checked', false)
+        }
+    });
+
+
+    $('#home2').click(function () {
+        $('#dispecerPodaci').fadeOut(300);
+        $('#jmbtrn2').delay(300).fadeIn(300);
+        $('#footer').delay(300).fadeIn(300);
+        $('#profilDispecer').removeClass("active");
+        $('#home2').addClass("active");
+    });
+
+
+    $('#logOutDispecer').click(function () {
+        localStorage.setItem("logged", "");
+        window.location.href = "Index.html";
+    });
+
+    $('#logInDispecer').click(function () {
+        let check = localStorage.getItem("logged");
+        let korisnickoIme = localStorage.getItem("logged");
+        let Korisnik = {
+            KorisnickoIme: `${korisnickoIme}`
+        };
+
+        if (check != "") {
+            $('#jmbtrn2').fadeOut(300);
+            $('#footer').fadeOut(300);
+            $('#dispecerPodaci').delay(300).fadeIn(300);
+            $('#home2').removeClass("active");
+            $('#profilDispecer').addClass("active");
+
+
+            $('#txtUsernameDispecer').val(profil.KorisnickoIme);
+            $('#txtEmailDispecer').val(profil.Email);
+            $('#txtPasswordDispecer').val(profil.Lozinka);
+            $('#txtFirstNameDispecer').val(profil.Ime);
+            $('#txtLastNameDispecer').val(profil.Prezime);
+            $('#txtJmbgDispecer').val(profil.JMBG);
+            $('#txtContactNumberDispecer').val(profil.Telefon);
+
+            if (profil.Gender == 0) {
+                $("#gndrMaleDispecer").prop('checked', true)
+                $("#gndrFemaleDispecer").prop('checked', false)
+            } else {
+                $("#gndrFemaleDispecer").prop('checked', true)
+                $("#gndrMaleDispecer").prop('checked', false)
+            }
+        } else {
+            window.location.href = "Login.html"
+        }
+    });
+    //**********************************************************************************************************************
+    //**********************************************************************************************************************
+
+
+
+    //**********************************************************************************************************************
+    //Profil Vozac
+    //**********************************************************************************************************************
+    //**********************************************************************************************************************
+
+
+
+    //**********************************************************************************************************************
+    //**********************************************************************************************************************
 });

@@ -29,11 +29,16 @@ namespace WebAPI.Controllers
                 if (k.KorisnickoIme == korisnik.KorisnickoIme)
                     return false;
 
-            string path = @"C:\Users\Coa\Desktop\NovaVerzija\WebAPI\WebAPI\App_Data\korisnici.txt";
+
             korisnici.korisnici.Add(korisnik);
-            string line = Environment.NewLine + korisnik.KorisnickoIme + '|' + korisnik.Lozinka + '|' + korisnik.Ime + '|' +
-            korisnik.Prezime + '|' + korisnik.Gender+ '|' + korisnik.JMBG + '|' + korisnik.Telefon + '|' +
-                    korisnik.Email + '|' + korisnik.Role;
+
+            string path = @"C:\Users\Coa\Desktop\NovaVerzija\WebAPI\WebAPI\App_Data\korisnici.txt";
+
+            string line = String.Empty; 
+            line = korisnik.Id.ToString() + '|' + korisnik.KorisnickoIme + '|' + korisnik.Lozinka + '|' + korisnik.Ime + '|' +
+            korisnik.Prezime + '|' + korisnik.Gender + '|' + korisnik.JMBG + '|' + korisnik.Telefon + '|' +
+                    korisnik.Email + '|' + korisnik.Role + Environment.NewLine;
+
             if (!File.Exists(path))
             {
                 File.WriteAllText(path, line);

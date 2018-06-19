@@ -215,8 +215,6 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Html\CheckLogged.html" />
-    <Content Include="Html\CheckLoggedOff.html" />
     <Content Include="Html\Index.html" />
     <Content Include="Html\Login.html" />
     <Content Include="Html\Registration.html" />
