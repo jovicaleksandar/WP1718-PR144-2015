@@ -1,0 +1,4 @@
+0|driver|sifra|CJ|Driver|Muskarac|9901283890213|021789345|driver@gmail.com|Vozac|1424|2978|Glavna|Beograd|11000|driver|2016|78-Mia|100|Automobil
+1|driver2|sifra|drajver|drajverprezime|Zena|98130209123908|0931890321|driver@g,mail.com|Vozac|21|21|312|Sad|312|drajver drajverprezime|1999|123|21|Automobil
+2|vozac|sifra|vozac|driver|Zena|309821398210|321890312890|vozac@gmail.com|Vozac|10|90|ulica|grad|092|vozac driver|31029|209|1320|Kombi
+3|drajver|sifra|vozac|drajver|Muskarac|809132981|98032189012|drajver@gmail.com|Vozac|100|259|main|ns|398012|vozac drajver|2000|908123|391208|Automobil

@@ -25,6 +25,9 @@ namespace WebAPI
 
             Korisnici korisnici = new Korisnici("~/App_Data/korisnici.txt");
             HttpContext.Current.Application["korisnici"] = korisnici as Korisnici;
+
+            Vozaci vozaci = new Vozaci("~/App_Data/vozaci.txt");
+            HttpContext.Current.Application["vozaci"] = vozaci as Vozaci;
         }
     }
 }

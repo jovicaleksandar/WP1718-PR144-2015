@@ -11,11 +11,11 @@ namespace WebAPI.Models
         public Adresa(string ub, string nm, string pb)
         {
             UlicaBroj = ub;
-            NaseljenoMjesto = nm;
+            NaseljenoMesto = nm;
             PozivniBroj = pb;
         }
         public string UlicaBroj { get; set; }
-        public string NaseljenoMjesto { get; set; }
+        public string NaseljenoMesto { get; set; }
         public string PozivniBroj { get; set; }
     }
 }

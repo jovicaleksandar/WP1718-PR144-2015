@@ -15,8 +15,8 @@ namespace WebAPI.Controllers
         [HttpPut]
         public Korisnik Put([FromBody] Korisnik korisnik)
         {
-            Dispeceri dispeceri = (Dispeceri)HttpContext.Current.Application["dispeceri"];
-            Korisnici users = (Korisnici)HttpContext.Current.Application["korisnici"];
+            Dispeceri dispeceri = HttpContext.Current.Application["dispeceri"] as Dispeceri;
+            Korisnici users = HttpContext.Current.Application["korisnici"] as Korisnici;
 
             foreach (var item in users.korisnici)
             {
@@ -30,7 +30,7 @@ namespace WebAPI.Controllers
                     item.JMBG = korisnik.JMBG;
                     item.Telefon = korisnik.Telefon;
                     item.Gender = korisnik.Gender;
-
+                    item.Role = Uloga.Musterija;
 
                     string path = @"C:\Users\Coa\Desktop\NovaVerzija\WebAPI\WebAPI\App_Data\korisnici.txt";
                     users.korisnici.Add(korisnik);
@@ -61,6 +61,19 @@ namespace WebAPI.Controllers
                     item.JMBG = korisnik.JMBG;
                     item.Telefon = korisnik.Telefon;
                     item.Gender = korisnik.Gender;
+                    item.Role = Uloga.Dispecer;
+
+                    string path = @"C:\Users\Coa\Desktop\NovaVerzija\WebAPI\WebAPI\App_Data\dispeceri.txt";
+                    dispeceri.dispecers.Add(korisnik as Dispecer);
+                    string line = korisnik.Id.ToString() + '|' + korisnik.KorisnickoIme + '|' + korisnik.Lozinka + '|' + korisnik.Ime + '|' +
+                    korisnik.Prezime + '|' + korisnik.Gender + '|' + korisnik.JMBG + '|' + korisnik.Telefon + '|' +
+                            korisnik.Email + '|' + korisnik.Role + Environment.NewLine;
+
+                    string[] arrLine = File.ReadAllLines(path);
+                    arrLine[item.Id] = line;
+                    File.WriteAllLines(path, arrLine);
+                    File.WriteAllLines(path, File.ReadAllLines(path).Where(l => !string.IsNullOrWhiteSpace(l)));
+
 
                     HttpContext.Current.Application["dispeceri"] = dispeceri;
 

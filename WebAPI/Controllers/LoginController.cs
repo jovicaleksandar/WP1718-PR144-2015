@@ -16,7 +16,8 @@ namespace WebAPI.Controllers
         {
             Korisnici users = (Korisnici)HttpContext.Current.Application["korisnici"];
             Dispeceri dispeceri = (Dispeceri)HttpContext.Current.Application["dispeceri"];
-            //Vozaci vozaci = (Vozaci)HttpContext.Current.Application["vozaci"];
+            Vozaci vozaci = (Vozaci)HttpContext.Current.Application["vozaci"];
+
             foreach (var item in users.korisnici)
             {
                 if (item.KorisnickoIme == korisnik.KorisnickoIme && item.Lozinka == korisnik.Lozinka)
@@ -31,11 +32,11 @@ namespace WebAPI.Controllers
                     return true;
             }
 
-            /*foreach (var item in vozaci.vozaci)
+            foreach (var item in vozaci.vozaci)
             {
                 if (item.KorisnickoIme == korisnik.KorisnickoIme && item.Lozinka == korisnik.Lozinka)
                     return true;
-            }*/
+            }
             return false;
         }
     }

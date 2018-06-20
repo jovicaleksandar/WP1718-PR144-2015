@@ -48,7 +48,7 @@ namespace WebAPI.Controllers
                 File.AppendAllText(path, line);
             }
 
-            korisnici = new Korisnici(@"~/App_Data/Korisnici.txt");
+            korisnici = new Korisnici(@"~/App_Data/korisnici.txt");
             HttpContext.Current.Application["korisnici"] = korisnici;
             
             //var request = Request.CreateResponse(HttpStatusCode.Moved);

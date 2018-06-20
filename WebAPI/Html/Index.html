@@ -132,7 +132,7 @@
                     <ul class="nav navbar-nav">
                         <li id="home2"><a href="#">Home</a></li>
                         <li id="profilDispecer"><a href="#">My Profile</a></li>
-                        <li><a href="#">Contact</a></li>
+                        <li id="dodajVozaca"><a href="#">Add Driver</a></li>
                     </ul>
                     <ul class="navbar-nav nav navbar-right">
                         <li id="logInDispecer"><a href="#">Login &nbsp;<i class="fas fa-user"></i></a></li>
@@ -213,12 +213,115 @@
         </div>
         <!--*************************************************************************************************************************-->
         <!--*************************************************************************************************************************-->
+        <!--*************************************************************************************************************************-->
+        <!--*************************************************************************************************************************-->
+        <!--Dodavanje novog vozaca-->
+        <div class="container">
+            <div id="dispecerNoviVozac">
+                <div class="col-md-10 col-md-offset-1" style="padding-top:70px;">
+                    <div class="well">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr class="success">
+                                    <th colspan="2" style="text-align:center">
+                                        Add new driver
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Username</td>
+                                    <td><input type="text" class="form-control" id="txtUsernameNoviVozac" placeholder="Username" /> </td>
+                                </tr>
+                                <tr>
+                                    <td>Email</td>
+                                    <td><input type="text" class="form-control" id="txtEmailNoviVozac" placeholder="Email" /> </td>
+                                </tr>
+                                <tr>
+                                    <td>Password</td>
+                                    <td><input type="password" class="form-control" id="txtPasswordNoviVozac" placeholder="Password" /></td>
+                                </tr>
+                                <tr>
+                                    <td>First Name</td>
+                                    <td><input type="text" class="form-control" id="txtFirstNameNoviVozac" placeholder="First Name" /> </td>
+                                </tr>
+                                <tr>
+                                    <td>Last Name</td>
+                                    <td><input type="text" class="form-control" id="txtLastNameNoviVozac" placeholder="Last Name" /> </td>
+                                </tr>
+                                <tr>
+                                    <td>JMBG</td>
+                                    <td><input type="text" class="form-control" id="txtJmbgNoviVozac" placeholder="JMBG" /> </td>
+                                </tr>
+                                <tr>
+                                    <td>Contact Number</td>
+                                    <td><input type="text" class="form-control" id="txtContactNoviVozac" placeholder="Contact Number" /> </td>
+                                </tr>
+                                <tr>
+                                    <td>Gender</td>
+                                    <td>
+                                        <input type="radio" id="gndrMaleNoviVozac" value="Muskarac"> Male &nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" id="gndrFemaleNoviVozac" value="Zena"> Female
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Coordinate X</td>
+                                    <td><input type="text" class="form-control" id="txtCoordinateXNoviVozac" placeholder="Coordinate X" /> </td>
+                                </tr>
+                                <tr>
+                                    <td>Coordinate Y</td>
+                                    <td><input type="text" class="form-control" id="txtCoordinateYNoviVozac" placeholder="Coordinate Y" /> </td>
+                                </tr>
+                                <tr>
+                                    <td>Street and number</td>
+                                    <td><input type="text" class="form-control" id="txtStreetNumNoviVozac" placeholder="Street and Number" /> </td>
+                                </tr>
+                                <tr>
+                                    <td>City</td>
+                                    <td><input type="text" class="form-control" id="txtCityNoviVozac" placeholder="City" /> </td>
+                                </tr>
+                                <tr>
+                                    <td>Zip Code</td>
+                                    <td><input type="text" class="form-control" id="txtZipCodeNoviVozac" placeholder="Zip Code" /> </td>
+                                </tr>
+                                <tr>
+                                    <td>Year of Manufacture</td>
+                                    <td><input type="text" class="form-control" id="txtYearOfManufactureNoviVozac" placeholder="Year of Manufacture" /> </td>
+                                </tr>
+                                <tr>
+                                    <td>Licence Plate</td>
+                                    <td><input type="text" class="form-control" id="txtLicencePlateNoviVozac" placeholder="Licence Plate" /> </td>
+                                </tr>
+                                <tr>
+                                    <td>Car ID</td>
+                                    <td><input type="text" class="form-control" id="txtCarIDNoviVozac" placeholder="Car ID" /> </td>
+                                </tr>
+                                <tr>
+                                    <td>Type</td>
+                                    <td>
+                                        <input type="radio" id="carTypeNoviVozac" value="Automobil"> Car &nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" id="miniVanTypeNoviVozac" name="Tip" value="Kombi"> MiniVan
+                                    </td>
+                                </tr>
+                                <tr class="success">
+                                    <td colspan="2">
+                                        <input id="btnAddNoviVozac" class="form-control btn btn-success" type="button" value="Add New Driver" />
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--*************************************************************************************************************************-->
+        <!--*************************************************************************************************************************-->
+
 
     </div>
 
 
-    <!--
-    <div id="korisnik">
+    <div id="vozac">
         <nav class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
@@ -228,85 +331,168 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a href="Index.html" class="navbar-brand"><i class="fas fa-taxi"></i>&nbsp; Korisnik</a>
+                    <a href="Index.html" class="navbar-brand"><i class="fas fa-taxi"></i>&nbsp; Vozac</a>
                 </div>
                 <div class="collapse navbar-collapse" id="nav-coll">
                     <ul class="nav navbar-nav">
-                        <li id="home1"><a href="#">Home</a></li>
-                        <li id="profilKorisnik"><a href="#">My Profile</a></li>
-                        <li><a href="#">Contact</a></li>
+                        <li id="home3"><a href="#">Home</a></li>
+                        <li id="profilVozac"><a href="#">My Profile</a></li>
+                        <li id="changeLocationVozac"><a href="#">Change Location</a></li>
                     </ul>
                     <ul class="navbar-nav nav navbar-right">
-                        <li id="logInKorisnik"><a href="#">Login &nbsp;<i class="fas fa-user"></i></a></li>
+                        <li id="logInVozac"><a href="#">Login &nbsp;<i class="fas fa-user"></i></a></li>
                         <li><a href="Registration.html">Sign Up &nbsp;<i class="fas fa-user-plus"></i></a></li>
-                        <li id="logOutKorisnik"><a href="#">Log Out &nbsp;<i class="fas fa-sign-out-alt"></i></a></li>
+                        <li id="logOutVozac"><a href="#">Log Out &nbsp;<i class="fas fa-sign-out-alt"></i></a></li>
                     </ul>
                 </div>
             </div>
         </nav>
 
         <div class="container">
-            <div id="jmbtrn1" class="jumbotron">
+            <div id="jmbtrn3" class="jumbotron">
                 <h1><i class="fas fa-taxi"></i>&nbsp; E-Taxi</h1>
             </div>
         </div>
 
-        -->
-    <!--*************************************************************************************************************************-->
-    <!--*************************************************************************************************************************-->
-    <!--Podaci Korisnik-->
-    <!--
-    <div class="container">
-        <div id="korisnikPodaci">
+        <!--*************************************************************************************************************************-->
+        <!--*************************************************************************************************************************-->
+        <!--Podaci Vozac-->
+        <div class="container">
+            <div id="vozacPodaci">
+                <div class="col-md-10 col-md-offset-1" style="padding-top:70px;">
+                    <div class="well">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr class="success">
+                                    <th colspan="2" style="text-align:center">
+                                        Driver Information
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Username</td>
+                                    <td><input type="text" class="form-control" id="txtUsernameVozac" placeholder="Username" disabled /> </td>
+                                </tr>
+                                <tr>
+                                    <td>Email</td>
+                                    <td><input type="text" class="form-control" id="txtEmailVozac" placeholder="Email" /> </td>
+                                </tr>
+                                <tr>
+                                    <td>Password</td>
+                                    <td><input type="password" class="form-control" id="txtPasswordVozac" placeholder="Password" /></td>
+                                </tr>
+                                <tr>
+                                    <td>First Name</td>
+                                    <td><input type="text" class="form-control" id="txtFirstNameVozac" placeholder="First Name" /> </td>
+                                </tr>
+                                <tr>
+                                    <td>Last Name</td>
+                                    <td><input type="text" class="form-control" id="txtLastNameVozac" placeholder="Last Name" /> </td>
+                                </tr>
+                                <tr>
+                                    <td>JMBG</td>
+                                    <td><input type="text" class="form-control" id="txtJmbgVozac" placeholder="JMBG" /> </td>
+                                </tr>
+                                <tr>
+                                    <td>Contact Number</td>
+                                    <td><input type="text" class="form-control" id="txtContactNumberVozac" placeholder="Contact Number" /> </td>
+                                </tr>
+                                <tr>
+                                    <td>Gender</td>
+                                    <td>
+                                        <input type="radio" id="gndrMaleVozac" value="Muskarac"> Male &nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" id="gndrFemaleVozac" value="Zena"> Female
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Coordinate X</td>
+                                    <td><input type="text" class="form-control" id="txtCoordinateXVozac" placeholder="Coordinate X" /> </td>
+                                </tr>
+                                <tr>
+                                    <td>Coordinate Y</td>
+                                    <td><input type="text" class="form-control" id="txtCoordinateYVozac" placeholder="Coordinate Y" /> </td>
+                                </tr>
+                                <tr>
+                                    <td>Street and number</td>
+                                    <td><input type="text" class="form-control" id="txtStreetNumVozac" placeholder="Street and Number" /> </td>
+                                </tr>
+                                <tr>
+                                    <td>City</td>
+                                    <td><input type="text" class="form-control" id="txtCityVozac" placeholder="City" /> </td>
+                                </tr>
+                                <tr>
+                                    <td>Zip Code</td>
+                                    <td><input type="text" class="form-control" id="txtZipCodeVozac" placeholder="Zip Code" /> </td>
+                                </tr>
+                                <tr>
+                                    <td>Year of Manufacture</td>
+                                    <td><input type="text" class="form-control" id="txtYearOfManufactureVozac" placeholder="Year of Manufacture" /> </td>
+                                </tr>
+                                <tr>
+                                    <td>Licence Plate</td>
+                                    <td><input type="text" class="form-control" id="txtLicencePlateVozac" placeholder="Licence Plate" /> </td>
+                                </tr>
+                                <tr>
+                                    <td>Car ID</td>
+                                    <td><input type="text" class="form-control" id="txtCarIDVozac" placeholder="Car ID" /> </td>
+                                </tr>
+                                <tr>
+                                    <td>Type</td>
+                                    <td>
+                                        <input type="radio" name="gender" id="carTypeVozac" value="Automobil"> Car &nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" id="miniVanTypeVozac" name="Tip" value="Kombi"> MiniVan
+                                    </td>
+                                </tr>
+                                <tr class="success">
+                                    <td colspan="2">
+                                        <input id="btnSaveVozac" class="form-control btn btn-success" type="button" value="Save Changes" />
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+        <div id="vozacLocation">
             <div class="col-md-10 col-md-offset-1" style="padding-top:70px;">
                 <div class="well">
                     <table class="table table-bordered">
                         <thead>
                             <tr class="success">
                                 <th colspan="2" style="text-align:center">
-                                    User Information
+                                    Location
                                 </th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>Username</td>
-                                <td><input type="text" class="form-control" id="txtUsername" placeholder="Username" disabled /> </td>
+                                <td>Coordinate X</td>
+                                <td><input type="text" class="form-control" id="txtCoordinateXVozacLocation" placeholder="Coordinate X" /> </td>
                             </tr>
                             <tr>
-                                <td>Email</td>
-                                <td><input type="text" class="form-control" id="txtEmail" placeholder="Email" /> </td>
+                                <td>Coordinate Y</td>
+                                <td><input type="text" class="form-control" id="txtCoordinateYVozacLocation" placeholder="Coordinate Y" /> </td>
                             </tr>
                             <tr>
-                                <td>Password</td>
-                                <td><input type="password" class="form-control" id="txtPassword" placeholder="Password" /></td>
+                                <td>Street and number</td>
+                                <td><input type="text" class="form-control" id="txtStreetNumVozacLocation" placeholder="Street and Number" /> </td>
                             </tr>
                             <tr>
-                                <td>First Name</td>
-                                <td><input type="text" class="form-control" id="txtFirstName" placeholder="First Name" /> </td>
+                                <td>City</td>
+                                <td><input type="text" class="form-control" id="txtCityVozacLocation" placeholder="City" /> </td>
                             </tr>
                             <tr>
-                                <td>Last Name</td>
-                                <td><input type="text" class="form-control" id="txtLastName" placeholder="Last Name" /> </td>
+                                <td>Zip Code</td>
+                                <td><input type="text" class="form-control" id="txtZipCodeVozacLocation" placeholder="Zip Code" /> </td>
                             </tr>
-                            <tr>
-                                <td>JMBG</td>
-                                <td><input type="text" class="form-control" id="txtJmbg" placeholder="JMBG" /> </td>
-                            </tr>
-                            <tr>
-                                <td>Contact Number</td>
-                                <td><input type="text" class="form-control" id="txtContactNumber" placeholder="Contact Number" /> </td>
-                            </tr>
-                            <tr>
-                                <td>Gender</td>
-                                <td>
-                                    <input type="radio" name="gender" id="gndrMale" value="Muskarac"> Male &nbsp;&nbsp;&nbsp;&nbsp;
-                                    &nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" id="gndrFemale" name="gender" value="Zena"> Female
-                                </td>
-                            </tr>
+                            
                             <tr class="success">
                                 <td colspan="2">
-                                    <input id="btnSave" class="form-control btn btn-success" type="button" value="Save Changes" />
+                                    <input id="btnSaveVozacLocation" class="form-control btn btn-success" type="button" value="Save Changes" />
                                 </td>
                             </tr>
                         </tbody>
@@ -315,10 +501,15 @@
             </div>
         </div>
     </div>
-        -->
-    <!--*************************************************************************************************************************-->
-    <!--*************************************************************************************************************************-->
-    <!--</div>-->
+
+
+        <!--*************************************************************************************************************************-->
+        <!--*************************************************************************************************************************-->
+    </div>
+
+
+
+
     <!--
     <div id="dispecer">
         <nav class="navbar navbar-inverse navbar-fixed-top">
