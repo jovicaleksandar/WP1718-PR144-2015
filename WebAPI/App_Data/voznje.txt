@@ -1,0 +1,5 @@
+﻿0|01-Jan-01 00:00:00|123|456|Groove Street|Los Santos|11000|Automobil|acaKolarov||||||0|0|0||01-Jan-01 00:00:00||0|Kreirana_Na_Cekanju|
+1|01-Jan-01 00:00:00|987|789|Ballars|Los Santos|11000|Automobil|acaKolarov||||||0|0|0||01-Jan-01 00:00:00||0|Kreirana_Na_Cekanju|
+2|01-Jan-01 00:00:00|556|6567|Latinos|Los Santos|11000|Automobil|user||||||0|0|0||01-Jan-01 00:00:00||0|Kreirana_Na_Cekanju|
+3|01-Jan-01 00:00:00|213|312|Glavna|Novi Sad|21000|Automobil|user||||||0|0|0||01-Jan-01 00:00:00||0|Kreirana_Na_Cekanju|
+4|01-Jan-01 00:00:00|213|312|312|312|231|Automobil|user||||||0|0|0||01-Jan-01 00:00:00||0|Kreirana_Na_Cekanju|

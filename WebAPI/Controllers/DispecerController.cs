@@ -7,6 +7,7 @@ using System.Net.Http;
 using System.Web;
 using System.Web.Http;
 using WebAPI.Models;
+using static WebAPI.Models.Enums;
 
 namespace WebAPI.Controllers
 {
@@ -24,41 +25,53 @@ namespace WebAPI.Controllers
         public bool PostVozac([FromBody] Vozac v)
         {
             Vozaci vozaci = HttpContext.Current.Application["vozaci"] as Vozaci;
+            Korisnik user = HttpContext.Current.Session["user"] as Korisnik;
 
-            foreach (Vozac vozac in vozaci.vozaci)
+            if (user == null)
             {
-                if (v.KorisnickoIme == vozac.KorisnickoIme)
-                    return false;
+                user = new Korisnik();
+                HttpContext.Current.Session["user"] = user;
             }
 
-            v.Id = vozaci.vozaci.Count;
-            v.Role = Uloga.Vozac;
-            v.Automobil.Vozac = v.Ime + " " + v.Prezime;
-
-            vozaci.vozaci.Add(v);
-
-            string path = @"C:\Users\Coa\Desktop\NovaVerzija\WebAPI\WebAPI\App_Data\vozaci.txt";
-
-            string line = String.Empty;
-            line = v.Id.ToString() + '|' + v.KorisnickoIme + '|' + v.Lozinka + '|' + v.Ime + '|' +
-            v.Prezime + '|' + v.Gender + '|' + v.JMBG + '|' + v.Telefon + '|' + v.Email + '|' + v.Role + 
-            '|' + v.Lokacija.X + '|' + v.Lokacija.Y + '|' + v.Lokacija.Adresa.UlicaBroj + '|' + v.Lokacija.Adresa.NaseljenoMesto +
-            '|' + v.Lokacija.Adresa.PozivniBroj + '|' + v.Automobil.Vozac + '|' + v.Automobil.GodisteAutomobila + '|' + v.Automobil.BrojRegistarskeOznake +
-            '|' + v.Automobil.BrojTaksiVozila + '|' + v.Automobil.Tip + Environment.NewLine;
-
-            if (!File.Exists(path))
+            if (user.Role == Uloga.Dispecer)
             {
-                File.WriteAllText(path, line);
+                foreach (Vozac vozac in vozaci.vozaci)
+                {
+                    if (v.KorisnickoIme == vozac.KorisnickoIme)
+                        return false;
+                }
+
+                v.Id = vozaci.vozaci.Count;
+                v.Role = Uloga.Vozac;
+                v.Automobil.Vozac = v.Ime + " " + v.Prezime;
+
+                vozaci.vozaci.Add(v);
+
+                string path = @"C:\Users\Coa\Desktop\NovaVerzija\WebAPI\WebAPI\App_Data\vozaci.txt";
+
+                string line = String.Empty;
+                line = v.Id.ToString() + '|' + v.KorisnickoIme + '|' + v.Lozinka + '|' + v.Ime + '|' +
+                v.Prezime + '|' + v.Gender + '|' + v.JMBG + '|' + v.Telefon + '|' + v.Email + '|' + v.Role +
+                '|' + v.Lokacija.X + '|' + v.Lokacija.Y + '|' + v.Lokacija.Adresa.UlicaBroj + '|' + v.Lokacija.Adresa.NaseljenoMesto +
+                '|' + v.Lokacija.Adresa.PozivniBroj + '|' + v.Automobil.Vozac + '|' + v.Automobil.GodisteAutomobila + '|' + v.Automobil.BrojRegistarskeOznake +
+                '|' + v.Automobil.BrojTaksiVozila + '|' + v.Automobil.Tip + Environment.NewLine;
+
+                if (!File.Exists(path))
+                {
+                    File.WriteAllText(path, line);
+                }
+                else
+                {
+                    File.AppendAllText(path, line);
+                }
+
+                vozaci = new Vozaci(@"~/App_Data/vozaci.txt");
+                HttpContext.Current.Application["vozaci"] = vozaci;
+
+                return true;
             }
             else
-            {
-                File.AppendAllText(path, line);
-            }
-
-            vozaci = new Vozaci(@"~/App_Data/vozaci.txt");
-            HttpContext.Current.Application["vozaci"] = vozaci;
-
-            return true;
+                return false;
         }
     }
 }

@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 using WebAPI.Models;
+using static WebAPI.Models.Enums;
 
 namespace WebAPI.Models
 {
@@ -20,7 +21,7 @@ namespace WebAPI.Models
         public string Telefon { get; set; }
         public string Email { get; set; }
         public Uloga Role { get; set; }
-        //public string Voznja { get; set; }
+        public List<Voznja> voznjeKorisnika { get; set; }
 
         public Korisnik(int id, string korisnickoIme, string lozinka, string ime, string prezime, string gender, string jMBG, string telefon, string email, string role)
         {
@@ -45,28 +46,25 @@ namespace WebAPI.Models
                 Role = Uloga.Vozac;
             else
                 Role = Uloga.Musterija;
+
+            voznjeKorisnika = new List<Voznja>();
         }
         //Dodati listu voznji
 
         public Korisnik()
         {
-
+            //this.Id = 0;
+            //this.Email = "";
+            //this.Lozinka = "";
+            //this.Ime = "";
+            //this.Prezime = "";
+            //this.JMBG = "";
+            //this.KorisnickoIme = "";
+            //this.Gender = Pol.Muskarac;
+            //this.Role = Uloga.Musterija;
+            //this.Telefon = "";
+            voznjeKorisnika = new List<Voznja>();
         }
 
     }
-
-
-
-        public enum Uloga
-        {
-            Musterija,
-            Dispecer,
-            Vozac
-        }
-
-        public enum Pol
-        {
-            Muskarac,
-            Zena
-        }
 }

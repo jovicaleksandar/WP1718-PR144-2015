@@ -1,3 +1,3 @@
-0|admin1|sifra1214|Thierry|Henry|Muskarac|121493224138|0643298721|thierryhenry@gmail.com|Dispecer
-5|admin2|sifra1312|Zinedine|Zidane|Muskarac|121493224138|0643298721|zidane@gmail.com|Dispecer
-214|admin3|sifra1243|Jane|Doe|Zena|312980120|0643123128721|jane@gmail.com|Dispecer
+0|admin1|sifra1214|Thierry|Henry|Muskarac|121493224138|0643298721|henry@gmail.com|Musterija
+1|admin2|sifra1312|Zinedine|Zidane|Muskarac|121493224138|0643298721|zidane@gmail.com|Dispecer
+2|admin3|sifra1243|Jane|Doe|Zena|312980120|0643123128721|jane@gmail.com|Dispecer

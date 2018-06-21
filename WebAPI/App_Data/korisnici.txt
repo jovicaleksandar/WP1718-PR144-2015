@@ -1,1 +1,2 @@
 0|acaKolarov|sifra1314|Aleksandar|Kolarov|Muskarac|91203923180|02189713289|acakolarov@gmail.com|Musterija
+0|user|sifra|User|Korisnik|Zena|9013292103012|9203091092310|user@gmail.com|Musterija

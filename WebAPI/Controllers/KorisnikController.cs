@@ -7,6 +7,7 @@ using System.Net.Http;
 using System.Web;
 using System.Web.Http;
 using WebAPI.Models;
+using static WebAPI.Models.Enums;
 
 namespace WebAPI.Controllers
 {
@@ -15,74 +16,98 @@ namespace WebAPI.Controllers
         [HttpPut]
         public Korisnik Put([FromBody] Korisnik korisnik)
         {
+            Korisnik user = (Korisnik)HttpContext.Current.Session["user"];
+
+            if (user == null)
+            {
+                user = new Korisnik();
+                HttpContext.Current.Session["user"] = user;
+            }
+
             Dispeceri dispeceri = HttpContext.Current.Application["dispeceri"] as Dispeceri;
             Korisnici users = HttpContext.Current.Application["korisnici"] as Korisnici;
 
-            foreach (var item in users.korisnici)
+            if (user.Role == Uloga.Musterija && user.KorisnickoIme == korisnik.KorisnickoIme)
             {
-                if (korisnik.KorisnickoIme == item.KorisnickoIme)
+                foreach (var item in users.korisnici)
                 {
-                    item.Id = korisnik.Id;
-                    item.Email = korisnik.Email;
-                    item.Lozinka = korisnik.Lozinka;
-                    item.Ime = korisnik.Ime;
-                    item.Prezime = korisnik.Prezime;
-                    item.JMBG = korisnik.JMBG;
-                    item.Telefon = korisnik.Telefon;
-                    item.Gender = korisnik.Gender;
-                    item.Role = Uloga.Musterija;
+                    if (korisnik.KorisnickoIme == item.KorisnickoIme)
+                    {
+                        item.Email = korisnik.Email;
+                        item.Lozinka = korisnik.Lozinka;
+                        item.Ime = korisnik.Ime;
+                        item.Prezime = korisnik.Prezime;
+                        item.JMBG = korisnik.JMBG;
+                        item.Telefon = korisnik.Telefon;
+                        item.Gender = korisnik.Gender;
+                        item.Role = Uloga.Musterija;
 
-                    string path = @"C:\Users\Coa\Desktop\NovaVerzija\WebAPI\WebAPI\App_Data\korisnici.txt";
-                    users.korisnici.Add(korisnik);
-                    string line = korisnik.Id.ToString() + '|' +  korisnik.KorisnickoIme + '|' + korisnik.Lozinka + '|' + korisnik.Ime + '|' +
-                    korisnik.Prezime + '|' + korisnik.Gender + '|' + korisnik.JMBG + '|' + korisnik.Telefon + '|' +
-                            korisnik.Email + '|' + korisnik.Role + Environment.NewLine;
+                        string path = @"C:\Users\Coa\Desktop\NovaVerzija\WebAPI\WebAPI\App_Data\korisnici.txt";
+                        //users.korisnici.Add(korisnik);
+                        string line = korisnik.Id.ToString() + '|' + korisnik.KorisnickoIme + '|' + korisnik.Lozinka + '|' + korisnik.Ime + '|' +
+                        korisnik.Prezime + '|' + korisnik.Gender + '|' + korisnik.JMBG + '|' + korisnik.Telefon + '|' +
+                                korisnik.Email + '|' + korisnik.Role + Environment.NewLine;
 
-                    string[] arrLine = File.ReadAllLines(path);
-                    arrLine[item.Id] = line;
-                    File.WriteAllLines(path, arrLine);
-                    File.WriteAllLines(path, File.ReadAllLines(path).Where(l => !string.IsNullOrWhiteSpace(l)));
+                        string[] arrLine = File.ReadAllLines(path);
+                        arrLine[item.Id] = line;
+                        File.WriteAllLines(path, arrLine);
+                        File.WriteAllLines(path, File.ReadAllLines(path).Where(l => !string.IsNullOrWhiteSpace(l)));
 
-                    HttpContext.Current.Application["korisnici"] = users;
+                        HttpContext.Current.Application["korisnici"] = users;
 
-                    return korisnik;
+                        return korisnik;
+                    }
                 }
             }
 
-            foreach (var item in dispeceri.dispecers)
+            if (user.Role == Uloga.Dispecer && user.KorisnickoIme == korisnik.KorisnickoIme)
             {
-                if (korisnik.KorisnickoIme == item.KorisnickoIme)
+                foreach (var item in dispeceri.dispecers)
                 {
-                    item.Id = korisnik.Id;
-                    item.Email = korisnik.Email;
-                    item.Lozinka = korisnik.Lozinka;
-                    item.Ime = korisnik.Ime;
-                    item.Prezime = korisnik.Prezime;
-                    item.JMBG = korisnik.JMBG;
-                    item.Telefon = korisnik.Telefon;
-                    item.Gender = korisnik.Gender;
-                    item.Role = Uloga.Dispecer;
+                    if (korisnik.KorisnickoIme == item.KorisnickoIme)
+                    {
+                        item.Email = korisnik.Email;
+                        item.Lozinka = korisnik.Lozinka;
+                        item.Ime = korisnik.Ime;
+                        item.Prezime = korisnik.Prezime;
+                        item.JMBG = korisnik.JMBG;
+                        item.Telefon = korisnik.Telefon;
+                        item.Gender = korisnik.Gender;
+                        item.Role = Uloga.Dispecer;
 
-                    string path = @"C:\Users\Coa\Desktop\NovaVerzija\WebAPI\WebAPI\App_Data\dispeceri.txt";
-                    dispeceri.dispecers.Add(korisnik as Dispecer);
-                    string line = korisnik.Id.ToString() + '|' + korisnik.KorisnickoIme + '|' + korisnik.Lozinka + '|' + korisnik.Ime + '|' +
-                    korisnik.Prezime + '|' + korisnik.Gender + '|' + korisnik.JMBG + '|' + korisnik.Telefon + '|' +
-                            korisnik.Email + '|' + korisnik.Role + Environment.NewLine;
+                        string path = @"C:\Users\Coa\Desktop\NovaVerzija\WebAPI\WebAPI\App_Data\dispeceri.txt";
+                        //dispeceri.dispecers.Add(korisnik as Dispecer);
+                        string line = korisnik.Id.ToString() + '|' + korisnik.KorisnickoIme + '|' + korisnik.Lozinka + '|' + korisnik.Ime + '|' +
+                        korisnik.Prezime + '|' + korisnik.Gender + '|' + korisnik.JMBG + '|' + korisnik.Telefon + '|' +
+                                korisnik.Email + '|' + korisnik.Role + Environment.NewLine;
 
-                    string[] arrLine = File.ReadAllLines(path);
-                    arrLine[item.Id] = line;
-                    File.WriteAllLines(path, arrLine);
-                    File.WriteAllLines(path, File.ReadAllLines(path).Where(l => !string.IsNullOrWhiteSpace(l)));
+                        string[] arrLine = File.ReadAllLines(path);
+                        arrLine[item.Id] = line;
+                        File.WriteAllLines(path, arrLine);
+                        File.WriteAllLines(path, File.ReadAllLines(path).Where(l => !string.IsNullOrWhiteSpace(l)));
 
 
-                    HttpContext.Current.Application["dispeceri"] = dispeceri;
+                        HttpContext.Current.Application["dispeceri"] = dispeceri;
 
-                    return korisnik;
+                        return korisnik;
+                    }
                 }
             }
-
 
             return null;
+        }
+
+        public string Get()
+        {
+            Korisnik user = HttpContext.Current.Session["user"] as Korisnik;
+
+            if (user == null)
+            {
+                user = new Korisnik();
+                HttpContext.Current.Session["user"] = user;
+            }
+
+            return user.KorisnickoIme;
         }
     }
 }

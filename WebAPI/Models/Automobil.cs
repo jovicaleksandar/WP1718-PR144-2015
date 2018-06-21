@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using static WebAPI.Models.Enums;
 
 namespace WebAPI.Models
 {
@@ -31,5 +32,4 @@ namespace WebAPI.Models
         public Tip Tip { get; set; }
     }
 
-    public enum Tip { Automobil, Kombi }
 }

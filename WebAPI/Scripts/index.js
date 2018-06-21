@@ -10,6 +10,7 @@
     $('#dispecer').hide();
     $('#vozac').hide();
     $('#korisnikPodaci').hide();
+    $('#novaVoznjaKorisnik').hide();
     //$('#dispecerPodaci').hide();
     //$('#vozacPodaci').hide();
     //$('#dispecerNoviVozac').hide();
@@ -26,6 +27,7 @@
             if (data.Role == 0) {
                 $('#korisnik').show();
                 $('#korisnikPodaci').hide();
+                $('#novaVoznjaKorisnik').hide();
                 $('#dispecerNoviVozac').hide();
                 $('#dispecer').hide();
                 $('#vozac').hide();
@@ -73,8 +75,10 @@
         $('#jmbtrn1').fadeOut(300);
         $('#footer').fadeOut(300);
         $('#dispecerNoviVozac').fadeOut(300);
+        $('#novaVoznjaKorisnik').fadeOut(300);
         $('#korisnikPodaci').delay(300).fadeIn(300);
         $('#home1').removeClass("active");
+        $('#voznjaKorisnik').removeClass("active");
         $('#profilKorisnik').addClass("active");
 
 
@@ -87,11 +91,11 @@
         $('#txtContactNumberKorisnik').val(profil.Telefon);
 
         if (profil.Gender == 0) {
-            $("#gndrMaleKorisnik").prop('checked', true)
-            $("#gndrFemaleKorisnik").prop('checked', false)
+            $("#gndrMaleKorisnik").prop('checked', true);
+            $("#gndrFemaleKorisnik").prop('checked', false);
         } else {
-            $("#gndrFemaleKorisnik").prop('checked', true)
-            $("#gndrMaleKorisnik").prop('checked', false)
+            $("#gndrFemaleKorisnik").prop('checked', true);
+            $("#gndrMaleKorisnik").prop('checked', false);
         }
     });
 
@@ -101,10 +105,26 @@
         $('#jmbtrn1').delay(300).fadeIn(300);
         $('#footer').delay(300).fadeIn(300);
         $('#profilKorisnik').removeClass("active");
+        $('#voznjaKorisnik').removeClass("active");
         $('#dispecerNoviVozac').removeClass("active");
         $('#home1').addClass("active");
     });
 
+    $('#voznjaKorisnik').click(function () {
+        let korisnickoIme = localStorage.getItem("logged");
+        let Korisnik = {
+            KorisnickoIme: `${korisnickoIme}`
+        };
+
+        $('#jmbtrn1').fadeOut(300);
+        $('#footer').fadeOut(300);
+        $('#dispecerNoviVozac').fadeOut(300);
+        $('#korisnikPodaci').fadeOut(300);
+        $('#novaVoznjaKorisnik').delay(300).fadeIn(300);
+        $('#home1').removeClass("active");
+        $('#profilKorisnik').removeClass("active");
+        $('#voznjaKorisnik').addClass("active");
+    });
 
     $('#btnSaveKorisnik').click(function () {
         var gndr;
@@ -140,21 +160,69 @@
                     $('#txtContactNumberKorisnik').val(data.Telefon);
 
                     if (data.Gender == 0) {
-                        $("#gndrMaleKorisnik").prop('checked', true)
-                        $("#gndrFemaleKorisnik").prop('checked', false)
+                        $("#gndrMaleKorisnik").prop('checked', true);
+                        $("#gndrFemaleKorisnik").prop('checked', false);
                     } else {
-                        $("#gndrFemaleKorisnik").prop('checked', true)
-                        $("#gndrMaleKorisnik").prop('checked', false)
+                        $("#gndrFemaleKorisnik").prop('checked', true);
+                        $("#gndrMaleKorisnik").prop('checked', false);
                     }
                 }
             }
         });
     });
 
+    $('#btnSaveNovaVoznja').click(function () {
+        /*let temp;
+
+        $.ajax({
+            url: '/api/korisnik',
+            method: 'GET',
+            success: function (data) {
+                temp = data;
+            }
+        });*/
+
+        let adresa = {
+            UlicaBroj: $('#txtStreetNumNovaVoznja').val(),
+            NaseljenoMesto: $('#txtCityNovaVoznja').val(),
+            PozivniBroj: $('#txtZipCodeNovaVoznja').val()
+        };
+
+        let lokacija = {
+            X: $('#txtCoordinateXNovaVoznja').val(),
+            Y: $('#txtCoordinateYNovaVoznja').val(),
+            Adresa: adresa
+        };
+
+
+
+        $.ajax({
+            url: '/api/voznja',
+            method: 'POST',
+            data: {
+                LokacijaDolaskaTaksija: lokacija
+            },
+            success: function (data) {
+                $('#txtStreetNumNovaVoznja').val("");
+                $('#txtCityNovaVoznja').val("");
+                $('#txtZipCodeNovaVoznja').val("");
+                $('#txtCoordinateXNovaVoznja').val("");
+                $('#txtCoordinateYNovaVoznja').val("");
+                //Dodaj tip vozila
+            }
+        });
+    });
+
 
     $('#logOutKorisnik').click(function () {
-        localStorage.setItem("logged", "");
-        window.location.href = "Index.html";
+        $.ajax({
+            url: '/api/login',
+            type: 'GET',
+            success: function (data) {
+                localStorage.setItem("logged", "");
+                window.location.href = "Index.html";
+            }
+        });
     });
 
     $('#logInKorisnik').click(function () {
@@ -181,14 +249,14 @@
             $('#txtContactNumberKorisnik').val(profil.Telefon);
 
             if (profil.Gender == 0) {
-                $("#gndrMaleKorisnik").prop('checked', true)
-                $("#gndrFemaleKorisnik").prop('checked', false)
+                $("#gndrMaleKorisnik").prop('checked', true);
+                $("#gndrFemaleKorisnik").prop('checked', false);
             } else {
-                $("#gndrFemaleKorisnik").prop('checked', true)
-                $("#gndrMaleKorisnik").prop('checked', false)
+                $("#gndrFemaleKorisnik").prop('checked', true);
+                $("#gndrMaleKorisnik").prop('checked', false);
             }
         } else {
-            window.location.href = "Login.html"
+            window.location.href = "Login.html";
         }
     });
     //**********************************************************************************************************************
@@ -224,11 +292,11 @@
         $('#txtContactNumberDispecer').val(profil.Telefon);
 
         if (profil.Gender == 0) {
-            $("#gndrMaleDispecer").prop('checked', true)
-            $("#gndrFemaleDispecer").prop('checked', false)
+            $("#gndrMaleDispecer").prop('checked', true);
+            $("#gndrFemaleDispecer").prop('checked', false);
         } else {
-            $("#gndrFemaleDispecer").prop('checked', true)
-            $("#gndrMaleDispecer").prop('checked', false)
+            $("#gndrFemaleDispecer").prop('checked', true);
+            $("#gndrMaleDispecer").prop('checked', false);
         }
     });
 
@@ -245,8 +313,14 @@
 
 
     $('#logOutDispecer').click(function () {
-        localStorage.setItem("logged", "");
-        window.location.href = "Index.html";
+        $.ajax({
+            url: '/api/login',
+            type: 'GET',
+            success: function (data) {
+                localStorage.setItem("logged", "");
+                window.location.href = "Index.html";
+            }
+        });
     });
 
     $('#logInDispecer').click(function () {
@@ -274,14 +348,14 @@
             $('#txtContactNumberDispecer').val(profil.Telefon);
 
             if (profil.Gender == 0) {
-                $("#gndrMaleDispecer").prop('checked', true)
-                $("#gndrFemaleDispecer").prop('checked', false)
+                $("#gndrMaleDispecer").prop('checked', true);
+                $("#gndrFemaleDispecer").prop('checked', false);
             } else {
-                $("#gndrFemaleDispecer").prop('checked', true)
-                $("#gndrMaleDispecer").prop('checked', false)
+                $("#gndrFemaleDispecer").prop('checked', true);
+                $("#gndrMaleDispecer").prop('checked', false);
             }
         } else {
-            window.location.href = "Login.html"
+            window.location.href = "Login.html";
         }
     });
 
@@ -331,11 +405,11 @@
                     $('#txtContactNumberDispecer').val(data.Telefon);
 
                     if (data.Gender == 0) {
-                        $("#gndrMaleDispecer").prop('checked', true)
-                        $("#gndrFemaleDispecer").prop('checked', false)
+                        $("#gndrMaleDispecer").prop('checked', true);
+                        $("#gndrFemaleDispecer").prop('checked', false);
                     } else {
-                        $("#gndrFemaleDispecer").prop('checked', true)
-                        $("#gndrMaleDispecer").prop('checked', false)
+                        $("#gndrFemaleDispecer").prop('checked', true);
+                        $("#gndrMaleDispecer").prop('checked', false);
                     }
                 }
             }
@@ -471,19 +545,19 @@
 
 
         if (profil.Gender == 0) {
-            $("#gndrMaleVozac").prop('checked', true)
-            $("#gndrFemaleVozac").prop('checked', false)
+            $("#gndrMaleVozac").prop('checked', true);
+            $("#gndrFemaleVozac").prop('checked', false);
         } else {
-            $("#gndrFemaleVozac").prop('checked', true)
-            $("#gndrMaleVozac").prop('checked', false)
+            $("#gndrFemaleVozac").prop('checked', true);
+            $("#gndrMaleVozac").prop('checked', false);
         }
 
         if (profil.Automobil.Tip == 0) {
-            $("#carTypeVozac").prop('checked', true)
-            $("#miniVanTypeVozac").prop('checked', false)
+            $("#carTypeVozac").prop('checked', true);
+            $("#miniVanTypeVozac").prop('checked', false);
         } else {
-            $("#miniVanTypeVozac").prop('checked', true)
-            $("#carTypeVozac").prop('checked', false)
+            $("#miniVanTypeVozac").prop('checked', true);
+            $("#carTypeVozac").prop('checked', false);
         }
     });
 
@@ -503,8 +577,14 @@
 
 
     $('#logOutVozac').click(function () {
-        localStorage.setItem("logged", "");
-        window.location.href = "Index.html";
+        $.ajax({
+            url: '/api/login',
+            type: 'GET',
+            success: function (data) {
+                localStorage.setItem("logged", "");
+                window.location.href = "Index.html";
+            }
+        });
     });
 
     $('#logInVozac').click(function () {
@@ -532,14 +612,14 @@
             $('#txtContactNumberVozac').val(profil.Telefon);
 
             if (profil.Gender == 0) {
-                $("#gndrMaleVozac").prop('checked', true)
-                $("#gndrFemaleVozac").prop('checked', false)
+                $("#gndrMaleVozac").prop('checked', true);
+                $("#gndrFemaleVozac").prop('checked', false);
             } else {
-                $("#gndrFemaleVozac").prop('checked', true)
-                $("#gndrMaleVozac").prop('checked', false)
+                $("#gndrFemaleVozac").prop('checked', true);
+                $("#gndrMaleVozac").prop('checked', false);
             }
         } else {
-            window.location.href = "Login.html"
+            window.location.href = "Login.html";
         }
     });
 
@@ -552,6 +632,106 @@
         $('#home3').removeClass("active");
         $('#changeLocationVozac').addClass("active");
     });
+
+
+    $("#gndrMaleVozac").click(function () {
+        $("#gndrFemaleVozac").prop("checked", false);
+        $('#gndrMaleVozac').prop("checked", true);
+    });
+
+
+    $("#gndrFemaleVozac").click(function () {
+        $("#gndrMaleVozac").prop("checked", false);
+        $('#gndrFemaleVozac').prop("checked", true);
+    });
+
+
+    $("#carTypeVozac").click(function () {
+        $("#miniVanTypeVozac").prop("checked", false);
+        $('#carTypeVozac').prop("checked", true);
+    });
+
+
+    $("#miniVanTypeVozac").click(function () {
+        $("#carTypeVozac").prop("checked", false);
+        $('#miniVanTypeVozac').prop("checked", true);
+    });
+
+
+    $('#btnSaveVozac').click(function () {
+        let logged = localStorage.getItem("logged");
+        if (logged == "") {
+            window.location.href = "Login.html";
+        }
+
+
+        var gndr;
+        if ($('#gndrMaleVozac').is(':checked')) {
+            gndr = $('#gndrMaleVozac').val();
+        }
+        else {
+            gndr = $('#gndrFemaleVozac').val();
+        }
+
+        var type;
+        if ($('#carTypeVozac').is(':checked')) {
+            type = $('#carTypeVozac').val();
+        }
+        else {
+            type = $('#miniVanTypeVozac').val();
+        }
+
+        let automobil = {
+            GodisteAutomobila: $('#txtYearOfManufactureVozac').val(),
+            BrojRegistarskeOznake: $('#txtLicencePlateVozac').val(),
+            BrojTaksiVozila: $('#txtCarIDVozac').val(),
+            Tip: type
+        };
+
+        let adresa = {
+            UlicaBroj: $('#txtStreetNumVozac').val(),
+            NaseljenoMesto: $('#txtCityVozac').val(),
+            PozivniBroj: $('#txtZipCodeVozac').val()
+        };
+
+        let lokacija = {
+            X: $('#txtCoordinateXVozac').val(),
+            Y: $('#txtCoordinateYVozac').val(),
+            Adresa: adresa
+        };
+
+        $.ajax({
+            url: '/api/vozac/putvozac',
+            method: 'PUT',
+            data: {
+                KorisnickoIme: $('#txtUsernameVozac').val(),
+                Email: $('#txtEmailVozac').val(),
+                Lozinka: $('#txtPasswordVozac').val(),
+                Ime: $('#txtFirstNameVozac').val(),
+                Prezime: $('#txtLastNameVozac').val(),
+                JMBG: $('#txtJmbgVozac').val(),
+                Telefon: $('#txtContactNumberVozac').val(),
+                Gender: gndr,
+                Automobil: automobil,
+                Lokacija: lokacija
+                //X: $('#txtCoordinateXNoviVozac').val(),
+                //Y: $('#txtCoordinateYNoviVozac').val(),
+                //UlicaBroj: $('#txtStreetNumNoviVozac').val(),
+                //NaseljenoMesto: $('#txtCityNoviVozac').val(),
+                //PozivniBroj: $('#txtZipCodeNoviVozac').val(),
+                //GodisteAutomobila: $('#txtYearOfManufactureNoviVozac').val(),
+                //BrojRegistarskeOznake: $('#txtLicencePlateNoviVozac').val(),
+                //BrojTaksiVozila: $('#txtCarIDNoviVozac').val(),
+                //Tip: type
+            },
+            success: function (data) {
+
+            }
+        });
+    });
+
+
+
 
     $('#btnSaveVozacLocation').click(function () {
         let adresa = {
@@ -569,7 +749,7 @@
 
 
         $.ajax({
-            url: '/api/vozac',
+            url: '/api/location',
             method: 'PUT',
             data: {
                 KorisnickoIme: profil.KorisnickoIme,

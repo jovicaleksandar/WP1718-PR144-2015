@@ -29,7 +29,7 @@
                     <ul class="nav navbar-nav">
                         <li id="home1"><a href="#">Home</a></li>
                         <li id="profilKorisnik"><a href="#">My Profile</a></li>
-                        <li><a href="#">Contact</a></li>
+                        <li id="voznjaKorisnik"><a href="#">Add ride</a></li>
                     </ul>
                     <ul class="navbar-nav nav navbar-right">
                         <li id="logInKorisnik"><a href="#">Login &nbsp;<i class="fas fa-user"></i></a></li>
@@ -113,6 +113,53 @@
         <!--*************************************************************************************************************************-->
         <!--*************************************************************************************************************************-->
 
+
+        <!--*************************************************************************************************************************-->
+        <!--*************************************************************************************************************************-->
+        <!--Voznja korisnik-->
+        <div id="novaVoznjaKorisnik">
+            <div class="col-md-10 col-md-offset-1" style="padding-top:70px;">
+                <div class="well">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr class="success">
+                                <th colspan="2" style="text-align:center">
+                                    Location
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Coordinate X</td>
+                                <td><input type="text" class="form-control" id="txtCoordinateXNovaVoznja" placeholder="Coordinate X" /> </td>
+                            </tr>
+                            <tr>
+                                <td>Coordinate Y</td>
+                                <td><input type="text" class="form-control" id="txtCoordinateYNovaVoznja" placeholder="Coordinate Y" /> </td>
+                            </tr>
+                            <tr>
+                                <td>Street and number</td>
+                                <td><input type="text" class="form-control" id="txtStreetNumNovaVoznja" placeholder="Street and Number" /> </td>
+                            </tr>
+                            <tr>
+                                <td>City</td>
+                                <td><input type="text" class="form-control" id="txtCityNovaVoznja" placeholder="City" /> </td>
+                            </tr>
+                            <tr>
+                                <td>Zip Code</td>
+                                <td><input type="text" class="form-control" id="txtZipCodeNovaVoznja" placeholder="Zip Code" /> </td>
+                            </tr>
+
+                            <tr class="success">
+                                <td colspan="2">
+                                    <input id="btnSaveNovaVoznja" class="form-control btn btn-success" type="button" value="Save Changes" />
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
 
 
