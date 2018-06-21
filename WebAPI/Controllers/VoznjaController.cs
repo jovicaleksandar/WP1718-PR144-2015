@@ -26,7 +26,7 @@ namespace WebAPI.Controllers
             Korisnici users = HttpContext.Current.Application["korisnici"] as Korisnici;
             Voznje voznje = HttpContext.Current.Application["voznje"] as Voznje;
 
-            if (user.Role == Enums.Uloga.Musterija)
+            if (user.Role == Enums.Uloga.Musterija && v.Musterija == user.KorisnickoIme)
             {
                 v.IdVoznje = voznje.voznje.Count;
                 v.Musterija = user.KorisnickoIme;
@@ -69,8 +69,62 @@ namespace WebAPI.Controllers
                     File.AppendAllText(path, line);
                 }
 
-                voznje = new Voznje(@"~/App_Data/voznje.txt");
+                //voznje = new Voznje(@"~/App_Data/voznje.txt");
                 HttpContext.Current.Application["voznje"] = voznje;
+
+                return true;
+            }
+
+            return false;
+        }
+
+        public bool Put(string id, [FromBody] Voznja v)
+        {
+            Korisnik user = (Korisnik)HttpContext.Current.Session["user"];
+
+            if (user == null)
+            {
+                user = new Korisnik();
+                HttpContext.Current.Session["user"] = user;
+            }
+
+            Korisnici users = HttpContext.Current.Application["korisnici"] as Korisnici;
+            Voznje voznje = HttpContext.Current.Application["voznje"] as Voznje;
+
+            if (user.KorisnickoIme == id)
+            {
+                foreach (Korisnik korisnik in users.korisnici)
+                {
+                    if (korisnik.KorisnickoIme == user.KorisnickoIme)
+                    {
+                        foreach (Voznja ride in korisnik.voznjeKorisnika)
+                        {
+                            if (ride.Status == Enums.Status.Kreirana_Na_Cekanju)
+                            {
+                                ride.Status = Enums.Status.Otkazana;
+
+                                string path = @"C:\Users\Coa\Desktop\NovaVerzija\WebAPI\WebAPI\App_Data\voznje.txt";
+                                string line = String.Empty;
+
+                                line = ride.IdVoznje.ToString() + '|' + ride.VremePorudzbine.ToString() + '|' + ride.LokacijaDolaskaTaksija.X + '|' + ride.LokacijaDolaskaTaksija.Y + '|' +
+                                    ride.LokacijaDolaskaTaksija.Adresa.UlicaBroj + '|' + ride.LokacijaDolaskaTaksija.Adresa.NaseljenoMesto + '|' + ride.LokacijaDolaskaTaksija.Adresa.PozivniBroj + '|' + ride.Automobil + '|' +
+                                    ride.Musterija + '|' + ride.Odrediste.X + '|' + ride.Odrediste.Y + '|' + ride.Odrediste.Adresa.UlicaBroj + '|' + ride.Odrediste.Adresa.NaseljenoMesto + '|' + ride.Odrediste.Adresa.PozivniBroj + '|' +
+                                    ride.Dispecer + '|' + ride.Vozac + '|' + ride.Iznos + '|' + ride.Komentar.Opis + '|' + ride.Komentar.DatumObjave + '|' + ride.Komentar.KorisnickoIme + '|' +
+                                    ride.Komentar.OcenaVoznje + '|' + ride.Status + '|' + Environment.NewLine;
+
+
+                                string[] arrLine = File.ReadAllLines(path);
+                                arrLine[ride.IdVoznje] = line;
+                                File.WriteAllLines(path, arrLine);
+                                File.WriteAllLines(path, File.ReadAllLines(path).Where(l => !string.IsNullOrWhiteSpace(l)));
+
+                                break;
+                            }
+                        }
+                    }
+                }
+
+                HttpContext.Current.Application["korisnici"] = users;
 
                 return true;
             }
