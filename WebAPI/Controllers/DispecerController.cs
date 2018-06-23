@@ -101,7 +101,6 @@ namespace WebAPI.Controllers
                     {
                         item.stanjeVozaca = Stanje.Zauzet;
                         v.Status = Status.Prihvacena;
-                        v.VremePorudzbine = DateTime.UtcNow;
                         v.Vozac = item.KorisnickoIme;
                         v.VremePorudzbine = DateTime.UtcNow;
                         v.IdVoznje = voznje.voznje.Count;

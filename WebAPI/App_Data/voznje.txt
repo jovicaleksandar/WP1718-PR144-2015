@@ -1,2 +1,2 @@
-0|23-Jun-18 20:43:25|123X|929Y|Nova Ulica|Novi Grad|Novi Zip|Automobil|||||||admin1|drajver|0|Ipak nema potrebe za voznjom.|23-Jun-18 21:45:16|drajver|9|Neuspesna|
-1|23-Jun-18 20:53:53|999X|888Y|Ulica|Grad|Zip|Automobil||XXX|YYY|Street Dest|City Dest|Zip Dest|admin1|drajver|9000000||01-Jan-01 00:00:00||0|Prihvacena|
+0|23-Jun-18 23:30:41|300X|300Y|Place|Town|100|Automobil||213|12321|123|123|123|admin1|drajver|213|dsa|23-Jun-18 23:38:30|drajver|2|Uspesna|
+1|23-Jun-18 23:31:44|400X|400Y|Ulca|Gradic|0-089123|Kombi|user||||||||0||01-Jan-01 00:00:00||0|Kreirana_Na_Cekanju|

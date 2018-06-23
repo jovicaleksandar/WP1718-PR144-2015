@@ -135,6 +135,7 @@ namespace WebAPI.Controllers
 
                 //voznje = new Voznje(@"~/App_Data/voznje.txt");
                 HttpContext.Current.Application["voznje"] = voznje;
+                HttpContext.Current.Application["korisnici"] = users;
                 return true;
             }
 

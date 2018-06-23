@@ -1310,7 +1310,7 @@
                                         }
 
                                         $.ajax({
-                                            url: `/api/status/putvoznjeuspesno/` + index,
+                                            url: '/api/status/PutVoznjauspesno/' + index,
                                             type: 'PUT',
                                             data: JSON.stringify(ride),
                                             contentType: 'application/json; charset=utf-8',
