@@ -1,2 +1,1 @@
-0|driver|sifra|Driver|Vozac|Muskarac|3982180|9083219012|driver@gmail.com|Vozac|9381290312X|1290832198Y|Ulica|Grad|Zip|driver|1999|29010-123|21|Automobil|Zauzet
-1|vozac|sifra|Vozac|Driver|Muskarac|89073419032490|89043908329032|vozac@gmail.com|Vozac|123X|123Y|Ulca|Gradc|Zip|vozac|2002|901328|890|Automobil|Zauzet
+0|drajver|sifra|Drajver|Vozac|Muskarac|32189021893|398012893201|drajver@gmail.com|Vozac|123x|456y|Ulicaaaa|Graaad|Zipppp|drajver|2005|32981-eqwui-231|398102|Automobil|Zauzet

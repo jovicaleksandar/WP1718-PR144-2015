@@ -544,6 +544,7 @@
                         <li id="home3"><a href="#">Home</a></li>
                         <li id="profilVozac"><a href="#">My Profile</a></li>
                         <li id="changeLocationVozac"><a href="#">Change Location</a></li>
+                        <li id="changeStatusVozac"><a href="#">Change Status</a></li>
                     </ul>
                     <ul class="navbar-nav nav navbar-right">
                         <li id="logInVozac"><a href="#">Login &nbsp;<i class="fas fa-user"></i></a></li>
@@ -708,10 +709,96 @@
             </div>
         </div>
 
+        <div class="container">
+            <div id="vozacStatus">
+                <div class="well">
+                    <table id="tabelaVoznjiVozac" class="table table-bordered" border="1"></table>
+                </div>
+            </div>
+        </div>
 
-        <!--*************************************************************************************************************************-->
-        <!--*************************************************************************************************************************-->
-    </div>
+        <div class="container">
+            <div id="vozacOdrediste">
+                <div class="well">
+                    <table id="tabelaOdredisteVozac" class="table table-bordered" border="1">
+                        <thead>
+                            <tr class="success">
+                                <th colspan="2" style="text-align:center">
+                                    Destination
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Coordinate X</td>
+                                <td><input type="text" class="form-control" id="txtCoordinateXDestination" placeholder="Coordinate X" /> </td>
+                            </tr>
+                            <tr>
+                                <td>Coordinate Y</td>
+                                <td><input type="text" class="form-control" id="txtCoordinateYDestination" placeholder="Coordinate Y" /> </td>
+                            </tr>
+                            <tr>
+                                <td>Street and number</td>
+                                <td><input type="text" class="form-control" id="txtStreetNumDestination" placeholder="Street and Number" /> </td>
+                            </tr>
+                            <tr>
+                                <td>City</td>
+                                <td><input type="text" class="form-control" id="txtCityDestination" placeholder="City" /> </td>
+                            </tr>
+                            <tr>
+                                <td>Zip Code</td>
+                                <td><input type="text" class="form-control" id="txtZipCodeDestination" placeholder="Zip Code" /> </td>
+                            </tr>
+                            <tr>
+                                <td>Amount</td>
+                                <td><input type="number" class="form-control" id="txtAmountDestination" placeholder="Amount" /> </td>
+                            </tr>
+
+                            <tr class="success">
+                                <td colspan="2">
+                                    <input id="btnSaveDestination" class="form-control btn btn-success" type="button" value="Save Destination" />
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+            <div id="neuspesnaVoznjaKomentar">
+                <div class="col-md-10 col-md-offset-1" style="padding-top:70px;">
+                    <div class="well">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr class="success">
+                                    <th colspan="2" style="text-align:center">
+                                        Comment
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Grade</td>
+                                    <td><input type="number" min="0" max="10" class="form-control" id="txtCommentNeuspesnaVoznjaGrade" /> </td>
+                                </tr>
+                                <tr>
+                                    <td>Description</td>
+                                    <td><textarea rows="4" cols="170" id="txtCommentNeuspesnaVoznjaDescription"></textarea> </td>
+                                </tr>
+                                <tr class="success">
+                                    <td colspan="2">
+                                        <input id="btnSaveNeuspesnaVoznjaComment" class="form-control btn btn-success" type="button" value="Save Comment" />
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+
+            <!--*************************************************************************************************************************-->
+            <!--*************************************************************************************************************************-->
+        </div>
 
 
 

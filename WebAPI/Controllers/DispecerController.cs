@@ -200,6 +200,7 @@ namespace WebAPI.Controllers
                         voznje.voznje[Int32.Parse(id)].Vozac = item.KorisnickoIme;
                         voznje.voznje[Int32.Parse(id)].Dispecer = user.KorisnickoIme;
                         voznje.voznje[Int32.Parse(id)].Status = Status.Prihvacena;
+                        item.voznjeKorisnika.Add(voznje.voznje[Int32.Parse(id)]);
 
                         string pathVozac = @"C:\Users\Coa\Desktop\NovaVerzija\WebAPI\WebAPI\App_Data\vozaci.txt";
 

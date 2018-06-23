@@ -15,6 +15,9 @@ namespace WebAPI.Models
         public Voznje(string path)
         {
             Korisnici korisnici = HttpContext.Current.Application["korisnici"] as Korisnici;
+            Vozaci vozaci = HttpContext.Current.Application["vozaci"] as Vozaci;
+            Dispeceri dispeceri = HttpContext.Current.Application["dispeceri"] as Dispeceri;
+
             path = HostingEnvironment.MapPath(path);
             voznje = new List<Voznja>();
             FileStream stream = new FileStream(path, FileMode.Open);
@@ -34,6 +37,20 @@ namespace WebAPI.Models
                 {
                     if (k.KorisnickoIme == tokens[8])
                         k.voznjeKorisnika.Add(d);
+                }
+
+                //tokens[15]
+                foreach (Vozac vozac in vozaci.vozaci)
+                {
+                    if (tokens[15] == vozac.KorisnickoIme)
+                        vozac.voznjeKorisnika.Add(d);
+                }
+
+                //tokens[14]
+                foreach (Dispecer dispecer in dispeceri.dispecers)
+                {
+                    if (tokens[14] == dispecer.KorisnickoIme)
+                        dispecer.voznjeKorisnika.Add(d);
                 }
 
             }

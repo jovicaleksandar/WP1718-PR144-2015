@@ -75,5 +75,33 @@ namespace WebAPI.Controllers
             }
             return null;
         }
+
+        [HttpGet]
+        public List<Voznja> Get()
+        {
+            Korisnik user = (Korisnik)HttpContext.Current.Session["user"];
+
+            if (user == null)
+            {
+                user = new Korisnik();
+                HttpContext.Current.Session["user"] = user;
+            }
+
+            Vozaci vozaci = HttpContext.Current.Application["vozaci"] as Vozaci;
+
+            if (user.Role == Uloga.Vozac)
+            {
+                foreach (Vozac v in vozaci.vozaci)
+                {
+                    if (user.KorisnickoIme == v.KorisnickoIme)
+                    {
+                        return v.voznjeKorisnika;
+                    }
+                }
+            }
+
+
+            return new List<Voznja>();
+        }
     }
 }

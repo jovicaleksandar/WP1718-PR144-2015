@@ -15,6 +15,7 @@ namespace WebAPI.Controllers
         [HttpGet]
         public List<Voznja> Get()
         {
+            Korisnici users = HttpContext.Current.Application["korisnici"] as Korisnici;
             Korisnik user = (Korisnik)HttpContext.Current.Session["user"];
             if (user == null)
             {
@@ -22,8 +23,11 @@ namespace WebAPI.Controllers
                 HttpContext.Current.Session["user"] = user;
             }
 
-            if (user.KorisnickoIme != "" && user.KorisnickoIme != null)
-                return user.voznjeKorisnika;
+            foreach (Korisnik k in users.korisnici)
+            {
+                if (user.KorisnickoIme != "" && user.KorisnickoIme != null && user.KorisnickoIme == k.KorisnickoIme)
+                    return user.voznjeKorisnika;
+            }
 
             return new List<Voznja>();
         }
@@ -45,6 +49,36 @@ namespace WebAPI.Controllers
 
             return new List<Voznja>();
         }
+
+
+        [HttpGet]
+        [Route("api/voznja/getdriversrides")]
+        public List<Voznja> GetDriversRides()
+        {
+            Voznje voznje = HttpContext.Current.Application["voznje"] as Voznje;
+            Vozaci vozaci = HttpContext.Current.Application["vozaci"] as Vozaci;
+
+            Korisnik user = (Korisnik)HttpContext.Current.Session["user"];
+            if (user == null)
+            {
+                user = new Korisnik();
+                HttpContext.Current.Session["user"] = user;
+            }
+
+            if (user.KorisnickoIme != "" && user.KorisnickoIme != null && user.Role == Enums.Uloga.Vozac)
+            {
+                foreach(Vozac rider in vozaci.vozaci)
+                {
+                    if (rider.KorisnickoIme == user.KorisnickoIme)
+                    {
+                        return rider.voznjeKorisnika;
+                    }
+                }
+            }
+
+            return new List<Voznja>();
+        }
+
         public bool Post([FromBody] Voznja v)
         {
             Korisnik user = (Korisnik)HttpContext.Current.Session["user"];
