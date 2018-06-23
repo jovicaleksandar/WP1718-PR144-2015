@@ -29,7 +29,7 @@ namespace WebAPI.Controllers
                 if (k.KorisnickoIme == korisnik.KorisnickoIme)
                     return false;
 
-
+            korisnik.Id = korisnici.korisnici.Count;
             korisnici.korisnici.Add(korisnik);
 
             string path = @"C:\Users\Coa\Desktop\NovaVerzija\WebAPI\WebAPI\App_Data\korisnici.txt";

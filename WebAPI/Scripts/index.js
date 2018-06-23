@@ -21,6 +21,9 @@
     $('#vozac').hide();
     $('#korisnikPodaci').hide();
     $('#novaVoznjaKorisnik').hide();
+    $('#izmeniVoznjuKorisnik').hide();
+    $('#modifikacijaVoznjeKorisnik').hide();
+    $('#changeDrive').hide();
     //$('#dispecerPodaci').hide();
     //$('#vozacPodaci').hide();
     //$('#dispecerNoviVozac').hide();
@@ -44,12 +47,16 @@
                 $('#home1').addClass("active");
                 $('#home2').removeClass("active");
                 $('#home3').removeClass("active");
+                $('#modifikujVoznjuKorisnik').removeClass("active");
+                $('#modifikacijaVoznjeKorisnik').hide();
+                $('#izmeniVoznjuKorisnik').hide();
             }
             else if (data.Role == 1) {
                 $('#korisnik').hide();
                 $('#korisnikPodaci').hide();
                 $('#dispecerNoviVozac').hide();
                 $('#dispecerPodaci').hide();
+                $('#dodajNovuVoznjuDispecer').hide();
                 $('#dispecer').show();
                 $('#vozac').hide();
                 $('#home2').addClass("active");
@@ -90,6 +97,9 @@
         $('#home1').removeClass("active");
         $('#voznjaKorisnik').removeClass("active");
         $('#profilKorisnik').addClass("active");
+        $('#modifikujVoznjuKorisnik').removeClass("active");
+        $('#modifikacijaVoznjeKorisnik').hide();
+        $('#izmeniVoznjuKorisnik').hide();
 
 
         $('#txtUsernameKorisnik').val(profil.KorisnickoIme);
@@ -118,6 +128,144 @@
         $('#voznjaKorisnik').removeClass("active");
         $('#dispecerNoviVozac').removeClass("active");
         $('#home1').addClass("active");
+        $('#modifikujVoznjuKorisnik').removeClass("active");
+        $('#novaVoznjaKorisnik').fadeOut(300);
+        $('#modifikacijaVoznjeKorisnik').hide();
+        $('#izmeniVoznjuKorisnik').hide();
+    });
+
+    //var username;
+    //$.ajax({
+    //    url: '/api/korisnik',
+    //    method: 'GET',
+    //    success: function (data) {
+    //        username = data;
+    //    }
+    //});
+
+    //var user = {
+    //    KorisnickoIme: `${username}`
+    //}
+
+    $('#modifikujVoznjuKorisnik').click(function () {
+        //let korisnickoIme = localStorage.getItem("logged");
+
+        $('#modifikacijaVoznjeKorisnik').hide();
+        $('#tabelaZaIzmenu').hide();
+        $('#korisnikPodaci').fadeOut(300);
+        $('#novaVoznjaKorisnik').fadeOut(300);
+        $('#jmbtrn1').fadeOut(300);
+        $('#izmeniVoznjuKorisnik').delay(300).fadeIn(300);
+        $('#profilKorisnik').removeClass("active");
+        $('#voznjaKorisnik').removeClass("active");
+        $('#dispecerNoviVozac').removeClass("active");
+        $('#home1').removeClass("active");
+        $('#modifikujVoznjuKorisnik').addClass("active");
+        $('#modifikujVoznjuKorisnik').removeClass("active");
+
+        
+        
+
+        $.ajax({
+            url: '/api/voznja',
+            type: 'GET',
+            success: function (data) {
+                var voznje = data;
+                //$('#tabelaZaIzmenu').hide();
+                $('#changeDrive').hide();
+                var table = `<thead><tr class="success"><th colspan="4" style="text-align:center">Rides</th></tr></thead>`;
+                table += `<tbody><tr><th>ID</th><th>Street and number</th><th>Otkazi</th><th>Izmeni</th>`;
+                var row;
+                //for (i = 0; i < data.Count; i++) {
+                $(data).each(function (index) {
+                    //var row = $('<tr>').addClass('success').text(data[index].LokacijaDolaskaTaksija.Adresa.UlicaBroj);
+                    //table.append(row);
+                    table += `<tr><td>${data[index].IdVoznje}</td><td> ${data[index].LokacijaDolaskaTaksija.Adresa.UlicaBroj} </td>`;
+                    table += `<td><input id="btnOtkaziVoznju${index}" class="btn btn-success" type="button" value="Otkazi" /></td>`;
+                    table += `<td><input id="btnIzmeniVoznju${index}" class="btn btn-success" type="button" value="Izmeni" /></td></tr>`;
+                });
+
+                $("#tabelaVoznji").html(table);
+
+                //var tabela = `<thead><tr class="success"><th colspan="4" style="text-align:center">Modify Ride</th></tr></thead><tbody>`;
+
+                //tabela += `<tr><td>Coordinate X</td><td><input type="text" class="form-control" id="changeCoordinateX" placeholder="Coordinate X" /></td></tr>`;
+
+
+                //tabela += `</tbody>`;
+                //$("#tabelaZaIzmenu").html(tabela);
+
+
+                $(data).each(function (index) {
+                    $('#btnOtkaziVoznju' + index).click(function ()
+                    {
+                        var num = index;
+                        $.ajax({
+                            url: `/api/voznja/` + index,
+                            type: 'DELETE',
+                            data: {
+                                id: num
+                            },
+                            success: function (data) {
+
+                            }
+                        });
+                    })
+
+                    $('#btnIzmeniVoznju' + index).click(function () {
+                        //alert("Izmena");
+                        //$('#changeDrive').show();
+                        $('#izmeniVoznjuKorisnik').hide();
+                        $('#modifikujVoznjuKorisnik').addClass("active");
+                        $('#modifikacijaVoznjeKorisnik').show();
+
+                        
+                        //$('#changeDrive').show();
+
+
+                        var num = index;
+
+                        $('#btnChange').click(function () {
+
+                            var type;
+                            if ($('#carTypeVozac').is(':checked')) {
+                                type = $('#carTypeChange').val();
+                            }
+                            else {
+                                type = $('#miniVanTypeChange').val();
+                            }
+
+                            let adresa = {
+                                UlicaBroj: $('#txtStreetNumChange').val(),
+                                NaseljenoMesto: $('#txtCityChange').val(),
+                                PozivniBroj: $('#txtZipCodeChange').val()
+                            };
+
+                            let lokacija = {
+                                X: $('#txtCoordinateXChange').val(),
+                                Y: $('#txtCoordinateYChange').val(),
+                                Adresa: adresa
+                            };
+                            
+                            $.ajax({
+                                url: `/api/voznja/` + index,
+                                type: 'PUT',
+                                data: {
+                                    LokacijaDolaskaTaksija: lokacija,
+                                    Automobil: type,
+                                    Musterija: temp
+                                },
+                                success: function (data) {
+
+                                }
+                            });
+                        })
+                    })
+                });
+            }
+        });
+
+
     });
 
     $('#voznjaKorisnik').click(function () {
@@ -135,6 +283,8 @@
         $('#home1').removeClass("active");
         $('#profilKorisnik').removeClass("active");
         $('#voznjaKorisnik').addClass("active");
+        $('#modifikujVoznjuKorisnik').removeClass("active");
+        $('#izmeniVoznjuKorisnik').hide();
     });
 
     $('#btnSaveKorisnik').click(function () {
@@ -239,12 +389,86 @@
         });
     });
 
-    $('#btnOtkaziTrenutnuVoznju').click(function () {
+
+    /*$('#izmeniVoznjuKorisnik').click(function () {
+        $('#modifikujVoznjuKorisnik').addClass("active");
+
+    });*/
+
+
+    $('#btnSaveNovaVoznjaDispecer').click(function () {
+        var type;
+        if ($('#carTypeNovaVoznjaDispecer').is(':checked')) {
+            type = $('#carTypeNovaVoznjaDispecer').val();
+        }
+        else {
+            type = $('#miniVanTypeNovaVoznjaDispecer').val();
+        }
+
+        let adresa = {
+            UlicaBroj: $('#txtStreetNumNovaVoznjaDispecer').val(),
+            NaseljenoMesto: $('#txtCityNovaVoznjaDispecer').val(),
+            PozivniBroj: $('#txtZipCodeNovaVoznjaDispecer').val()
+        };
+
+        let lokacija = {
+            X: $('#txtCoordinateXNovaVoznjaDispecer').val(),
+            Y: $('#txtCoordinateYNovaVoznjaDispecer').val(),
+            Adresa: adresa
+        };
+
+
+
+        $.ajax({
+            url: '/api/dispecer/postvoznja',
+            method: 'POST',
+            data: {
+                LokacijaDolaskaTaksija: lokacija,
+                Automobil: type,
+                Dispecer: temp
+            },
+            success: function (data) {
+                $('#txtStreetNumNovaVoznja').val("");
+                $('#txtCityNovaVoznja').val("");
+                $('#txtZipCodeNovaVoznja').val("");
+                $('#txtCoordinateXNovaVoznja').val("");
+                $('#txtCoordinateYNovaVoznja').val("");
+                //Dodaj tip vozila
+                window.location.href = "Index.html";
+            }
+        });
+    });
+
+    /*$('#btnOtkaziTrenutnuVoznju').click(function () {
+
+        var type;
+        if ($('#carTypeVozac').is(':checked')) {
+            type = $('#carTypeVozac').val();
+        }
+        else {
+            type = $('#miniVanTypeVozac').val();
+        }
+
+        let adresa = {
+            UlicaBroj: $('#txtStreetNumNovaVoznja').val(),
+            NaseljenoMesto: $('#txtCityNovaVoznja').val(),
+            PozivniBroj: $('#txtZipCodeNovaVoznja').val()
+        };
+
+        let lokacija = {
+            X: $('#txtCoordinateXNovaVoznja').val(),
+            Y: $('#txtCoordinateYNovaVoznja').val(),
+            Adresa: adresa
+        };
+
         $.ajax({
             url: '/api/voznja/' + temp,
             method: 'PUT',
-            contentType: 'application/json; charset=utf-8',
-            dataType: 'json',
+            data: {
+                LokacijaDolaskaTaksija: lokacija,
+                Automobil: type,
+                Musterija: temp
+            },
             success: function (data) {
                 if (data) {
                     window.location.href = "Index.html";
@@ -253,7 +477,7 @@
                 }
             }
         });
-    });
+    });*/
 
 
     $('#logOutKorisnik').click(function () {
@@ -353,6 +577,18 @@
         $('#home2').addClass("active");
     });
 
+    $('#voznjaDispecer').click(function () {
+        $('#dispecerPodaci').fadeOut(300);
+        $('#dispecerNoviVozac').fadeOut(300);
+        $('#jmbtrn2').fadeOut(300);
+        $('#profilDispecer').fadeOut(300);
+        $('#dodajNovuVoznjuDispecer').delay(300).fadeIn(300);
+        $('#profilDispecer').removeClass("active");
+        $('#dodajVozaca').removeClass("active");
+        $('#home2').removeClass("active");
+        $('#voznjaDispecer').addClass("active");
+    });
+    
 
     $('#logOutDispecer').click(function () {
         $.ajax({

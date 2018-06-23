@@ -22,6 +22,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost]
+        [Route("api/dispecer/postvozac")]
         public bool PostVozac([FromBody] Vozac v)
         {
             Vozaci vozaci = HttpContext.Current.Application["vozaci"] as Vozaci;
@@ -43,7 +44,7 @@ namespace WebAPI.Controllers
 
                 v.Id = vozaci.vozaci.Count;
                 v.Role = Uloga.Vozac;
-                v.Automobil.Vozac = v.Ime + " " + v.Prezime;
+                v.Automobil.Vozac = v.KorisnickoIme;
 
                 vozaci.vozaci.Add(v);
 
@@ -72,6 +73,14 @@ namespace WebAPI.Controllers
             }
             else
                 return false;
+        }
+
+        [HttpPost]
+        [Route("api/dispecer/postvoznja")]
+        public bool PostVoznja([FromBody] Voznja v)
+        {
+
+            return false;
         }
     }
 }
