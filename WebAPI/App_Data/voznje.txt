@@ -1,3 +1,6 @@
-0|01-Jan-01 00:00:00|123|456|Groove Street 78|Los Santos|100000|Kombi|acaKolarov|||||||0|0||01-Jan-01 00:00:00||0|Otkazana|
-1|01-Jan-01 00:00:00|132x|898y|ulica|grad|zip|Kombi|acaKolarov|||||||0|0||01-Jan-01 00:00:00||0|Kreirana_Na_Cekanju|
-2|01-Jan-01 00:00:00|43|354|231|123|123|Kombi|acaKolarov|||||||0|0||01-Jan-01 00:00:00||0|Otkazana|
+0|01-Jan-01 00:00:00|123|456|Groove Street 78|Los Santos|100000|Kombi|acaKolarov|||||||0|0|Nije dosao|23-Jun-18 12:04:28||3|Otkazana|
+1|01-Jan-01 00:00:00|132x|898y|ulica|grad|zip|Kombi|acaKolarov|||||||0|0||01-Jan-01 00:00:00||0|Otkazana|
+2|01-Jan-01 00:00:00|43|354|231|123|123|Kombi|acaKolarov||||||admin1|vozac|0||01-Jan-01 00:00:00||0|Prihvacena|
+3|23-Jun-18 11:50:42|231|312|Jovana Subotica 19|Novi Sad |21000|Kombi|acaKolarov|||||||0|0||01-Jan-01 00:00:00||0|Otkazana|
+4|23-Jun-18 11:58:04|980|831297|Masarikova|68|22440|Kombi|acaKolarov|||||||0|0|Nepotrebna ipak|23-Jun-18 12:11:23||9|Kreirana_Na_Cekanju|
+5|23-Jun-18 12:59:44|123X|456Y|strt|Grad|289371|Automobil|||||||admin1|driver|0||01-Jan-01 00:00:00||0|Kreirana_Na_Cekanju|

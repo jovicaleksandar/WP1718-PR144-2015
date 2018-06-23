@@ -16,7 +16,7 @@ namespace WebAPI.Models
         public string Musterija { get; set; }
         public Lokacija Odrediste { get; set; }
         public string Dispecer { get; set; }
-        public int Vozac { get; set; }
+        public string Vozac { get; set; }
         public double Iznos { get; set; }
         public Komentar Komentar { get; set; }
         public Status Status { get; set; }
@@ -41,7 +41,7 @@ namespace WebAPI.Models
             Musterija = IdMusterije;
             Odrediste = new Lokacija(XOdrediste, YOdrediste, UlicaBrojOdrediste, NaseljenoMestoOdrediste, PozivniBrojOdrediste);
             Dispecer = IdDispecera;
-            Vozac = Int32.Parse(IdVozaca);
+            Vozac = IdVozaca;
             this.Iznos = double.Parse(Iznos);
             Komentar = new Komentar(OpisKomentara, DatumKomentara, KorisnickoImeOnogKoPraviKomentar, IdVoznje, Ocena);
 

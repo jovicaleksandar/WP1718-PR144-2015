@@ -1,5 +1,2 @@
-0|driver|sifra|Carl|Johnson|Muskarac|9901283890213|021789345|driver@gmail.com|Vozac|1424|2978|Glavna|Beograd|11000|Carl Johnson|2016|78-Mia|100|Automobil
-1|driver2|sifra|drajver|drajverprezime|Zena|98130209123908|0931890321|driver@g,mail.com|Vozac|21|21|312|Sad|312|drajver drajverprezime|1999|123|21|Automobil
-0|vozac|sifra|Drajver|Vozac|Zena|309821398210|321890312890|vozac@gmail.com|Vozac|12345|54321|Karadjordjeva|Sid|22400||31029|209|1320|Kombi
-3|drajver|sifra|vozac|drajver|Muskarac|809132981|98032189012|drajver@gmail.com|Vozac|100|259|main|ns|398012|vozac drajver|2000|908123|391208|Automobil
-4|DriverGta|sifra|Carl|Johnson|Muskarac|90123802138|890321980213890|gta@gmail.com|Vozac|89231980|8932198312|Groove Street|Los Santos|10000|Carl Johnson|1999|LS-2000|100|Automobil
+0|driver|sifra|Driver|Vozac|Muskarac|3982180|9083219012|driver@gmail.com|Vozac|9381290312X|1290832198Y|Ulica|Grad|Zip|driver|1999|29010-123|21|Automobil|Zauzet
+1|vozac|sifra|Vozac|Driver|Muskarac|89073419032490|89043908329032|vozac@gmail.com|Vozac|123X|123Y|Ulca|Gradc|Zip|vozac|2002|901328|890|Automobil|Zauzet

@@ -14,5 +14,7 @@ namespace WebAPI.Models
         public enum Tip { Automobil, Kombi }
 
         public enum Status { Kreirana_Na_Cekanju, Formirana, Obradjena, Prihvacena, Otkazana, Neuspesna, Uspesna, U_Toku }
+
+        public enum Stanje { Slobodan, Zauzet }
     }
 }

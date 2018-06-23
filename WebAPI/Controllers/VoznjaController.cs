@@ -12,6 +12,7 @@ namespace WebAPI.Controllers
 {
     public class VoznjaController : ApiController
     {
+        [HttpGet]
         public List<Voznja> Get()
         {
             Korisnik user = (Korisnik)HttpContext.Current.Session["user"];
@@ -27,6 +28,23 @@ namespace WebAPI.Controllers
             return new List<Voznja>();
         }
 
+        [HttpGet]
+        [Route("api/voznja/getall")]
+        public List<Voznja> GetAll()
+        {
+            Voznje voznje = HttpContext.Current.Application["voznje"] as Voznje;
+            Korisnik user = (Korisnik)HttpContext.Current.Session["user"];
+            if (user == null)
+            {
+                user = new Korisnik();
+                HttpContext.Current.Session["user"] = user;
+            }
+
+            if (user.KorisnickoIme != "" && user.KorisnickoIme != null && user.Role == Enums.Uloga.Dispecer)
+                return voznje.voznje;
+
+            return new List<Voznja>();
+        }
         public bool Post([FromBody] Voznja v)
         {
             Korisnik user = (Korisnik)HttpContext.Current.Session["user"];
@@ -59,14 +77,7 @@ namespace WebAPI.Controllers
 
                 user.voznjeKorisnika.Add(v);
                 voznje.voznje.Add(v);
-
-                foreach (Korisnik k in users.korisnici)
-                {
-                    if (k.KorisnickoIme == user.KorisnickoIme)
-                    {
-                        k.voznjeKorisnika.Add(v);
-                    }
-                }
+                
 
                 string path = @"C:\Users\Coa\Desktop\NovaVerzija\WebAPI\WebAPI\App_Data\voznje.txt";
 
@@ -95,9 +106,7 @@ namespace WebAPI.Controllers
 
             return false;
         }
-
-        //[HttpPut]
-        //[Route("api/voznja/putmodifikuj")]
+        
         public bool Put(string id, [FromBody] Voznja v)
         {
             Korisnik user = (Korisnik)HttpContext.Current.Session["user"];
@@ -120,6 +129,7 @@ namespace WebAPI.Controllers
                         if (ride.Status == Enums.Status.Kreirana_Na_Cekanju && ride.IdVoznje.ToString() == id)
                         {
                             ride.IdVoznje = Int32.Parse(id);
+                            ride.VremePorudzbine = DateTime.UtcNow;
                             ride.Musterija = user.KorisnickoIme;
                             ride.Komentar = new Komentar();
                             ride.Komentar.Opis = "";
@@ -161,17 +171,9 @@ namespace WebAPI.Controllers
 
             return false;
         }
-
-        /*[HttpPut]
-        [Route("api/voznja/putotkazi")]
-        //[ActionName("Otkazi")]
-        public bool PutOtkazi(string id, [FromBody] Voznja v)
-        {
-            return false;
-        }*/
+        
 
         [HttpDelete]
-        //[Route("voznja/delete/{index:alpha}")]
         public bool Delete(string id)
         {
             Korisnik user = (Korisnik)HttpContext.Current.Session["user"];
