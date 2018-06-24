@@ -191,6 +191,7 @@
     <Compile Include="Controllers\KorisnikController.cs" />
     <Compile Include="Controllers\LocationController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\NeprihvaceneVoznjeController.cs" />
     <Compile Include="Controllers\RegistrationController.cs" />
     <Compile Include="Controllers\StatusController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />

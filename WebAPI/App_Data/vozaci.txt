@@ -1,2 +1,2 @@
-0|driver|sifra|Driver|Vozac|Muskarac|2389131029|390821908312|driver@gmail.com|Vozac|213312|903812|Ulica 78|Grad|zip|driver|2000|499|100|Automobil|Zauzet
+0|driver|sifra|Driver|Vozac|Muskarac|2389131029|390821908312|driver@gmail.com|Vozac|213312|903812|Ulica 78|Grad|zip|driver|2000|499|100|Automobil|Slobodan
 1|vozac|sifra|Vozac|Driver|Muskarac|9803290821|98031298012980|vozac@gmail.com|Vozac|980132|980213|Street|Varos|832190|vozac|938210|930821|093812|Automobil|Zauzet

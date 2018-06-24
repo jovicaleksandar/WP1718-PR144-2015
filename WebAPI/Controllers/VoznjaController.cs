@@ -100,6 +100,41 @@ namespace WebAPI.Controllers
             return new List<Voznja>();
         }
 
+
+
+        [HttpGet]
+        [Route("api/voznja/getunclaimedrides")]
+        public List<Voznja> GetUnclaimedRides()
+        {
+            Voznje voznje = HttpContext.Current.Application["voznje"] as Voznje;
+            Vozaci vozaci = HttpContext.Current.Application["vozaci"] as Vozaci;
+
+            List<Voznja> retVal = new List<Voznja>();
+
+            Korisnik user = (Korisnik)HttpContext.Current.Session["user"];
+            if (user == null)
+            {
+                user = new Korisnik();
+                HttpContext.Current.Session["user"] = user;
+            }
+
+            if (user.KorisnickoIme != "" && user.KorisnickoIme != null && user.Role == Enums.Uloga.Vozac)
+            {
+                foreach (Voznja v in voznje.voznje)
+                {
+                    if (v.Status == Enums.Status.Kreirana_Na_Cekanju)
+                    {
+                        retVal.Add(v);
+                    }
+                }
+                return retVal;
+            }
+
+            return new List<Voznja>();
+        }
+
+
+
         [HttpGet]
         [Route("api/voznja/getstatus/{id:int}")]
         public bool GetStatus(int id)

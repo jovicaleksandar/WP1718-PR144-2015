@@ -77,11 +77,13 @@
                 $('#korisnikPodaci').hide();
                 $('#dispecerNoviVozac').hide();
                 $('#vozacStatus').fadeOut(300);
+                $('#neprihvaceneVoznje').hide();
                 $('#dispecerPodaci').hide();
                 $('#dispecer').hide();
                 $('#home3').addClass("active");
                 $('#home1').removeClass("active");
                 $('#home2').removeClass("active");
+                $('#slobodneVoznje').removeClass("active");
             }
         }
     });
@@ -1056,6 +1058,7 @@
         };
 
         $('#jmbtrn3').fadeOut(300);
+        $('#neprihvaceneVoznje').hide();
         $('#vozacStatus').fadeOut(300);
         $('#neuspesnaVoznjaKomentar').hide();
         $('#vozacOdrediste').hide();
@@ -1064,6 +1067,7 @@
         $('#vozacPodaci').delay(300).fadeIn(300);
         $('#home3').removeClass("active");
         $('#changeLocationVozac').removeClass("active");
+        $('#slobodneVoznje').removeClass("active");
         $('#profilVozac').addClass("active");
 
 
@@ -1106,12 +1110,14 @@
         $('#vozacStatus').fadeOut(300);
         $('#vozacOdrediste').hide();
         $('#neuspesnaVoznjaKomentar').hide();
+        $('#neprihvaceneVoznje').hide();
         $('#dispecerPodaci').fadeOut(300);
         $('#dispecerNoviVozac').fadeOut(300);
         $('#vozacLocation').fadeOut(300);
         $('#vozacPodaci').fadeOut(300);
         $('#jmbtrn3').delay(300).fadeIn(300);
         $('#footer').delay(300).fadeIn(300);
+        $('#slobodneVoznje').removeClass("active");
         $('#profilVozac').removeClass("active");
         $('#home3').addClass("active");
     });
@@ -1140,6 +1146,7 @@
         if (check != "") {
             $('#vozacStatus').fadeOut(300);
             $('#jmbtrn3').fadeOut(300);
+            $('#neprihvaceneVoznje').hide();
             $('#vozacLocation').fadeOut(300);
             $('#footer').fadeOut(300);
             $('#vozacPodaci').delay(300).fadeIn(300);
@@ -1169,12 +1176,14 @@
 
     $('#changeLocationVozac').click(function () {
         $('#vozacStatus').fadeOut(300);
+        $('#neprihvaceneVoznje').hide();
         $('#neuspesnaVoznjaKomentar').hide();
         $('#vozacOdrediste').hide();
         $('#jmbtrn3').fadeOut(300);
         $('#footer').fadeOut(300);
         $('#vozacPodaci').fadeOut(300);
         $('#vozacLocation').delay(300).fadeIn(300);
+        $('#slobodneVoznje').removeClass("active");
         $('#profilVozac').removeClass("active");
         $('#home3').removeClass("active");
         $('#changeLocationVozac').addClass("active");
@@ -1272,7 +1281,7 @@
                 //Tip: type
             },
             success: function (data) {
-
+                window.location.href = "Index.html";
             }
         });
     });
@@ -1313,15 +1322,115 @@
 
     });
 
-
-    $('#changeStatusVozac').click(function () {
+    $('#slobodneVoznje').click(function () {
         $('#jmbtrn3').fadeOut(300);
         $('#neuspesnaVoznjaKomentar').hide();
         $('#vozacOdrediste').hide();
         $('#footer').fadeOut(300);
         $('#vozacPodaci').fadeOut(300);
         $('#vozacLocation').fadeOut(300);
+        $('#vozacStatus').fadeOut(300);
+        $('#slobodneVoznje').addClass("active");
+        $('#profilVozac').removeClass("active");
+        $('#home3').removeClass("active");
+        $('#changeLocationVozac').removeClass("active");
+        $('#changeStatusVozac').removeClass("active");
+
+        $('#neprihvaceneVoznje').delay(300).fadeIn(300);
+
+
+
+
+
+
+
+        $.ajax({
+            url: '/api/voznja/getunclaimedrides',
+            type: 'GET',
+            success: function (data) {
+                alert("Upao");
+                var voznje = data;
+
+                var table = `<thead><tr class="success"><th colspan="8" style="text-align:center">Rides</th></tr></thead>`;
+                table += `<tbody><tr><th>ID</th><th>Street and number</th><th>Status</th><th>Obradi</th><th>Korisnicko ime</th><th>Opis</th><th>Ocena</th>`;
+                var row;
+                //for (i = 0; i < data.Count; i++) {
+                $(data).each(function (index) {
+                    //var row = $('<tr>').addClass('success').text(data[index].LokacijaDolaskaTaksija.Adresa.UlicaBroj);
+                    //table.append(row);
+
+                    var status;
+                    if (data[index].Status == 0) {
+                        status = "Kreirana na cekanju";
+                    } else if (data[index].Status == 1) {
+                        status = "Formirana";
+                    } else if (data[index].Status == 2) {
+                        status = "Obradjena";
+                    } else if (data[index].Status == 3) {
+                        status = "Prihvacena";
+                    } else if (data[index].Status == 4) {
+                        status = "Otkazana";
+                    } else if (data[index].Status == 5) {
+                        status = "Neuspesna";
+                    } else if (data[index].Status == 6) {
+                        status = "Uspesna";
+                    } else if (data[index].Status == 7) {
+                        status = "U toku";
+                    } else {
+                        status = "Nepoznato";
+                    }
+
+                    table += `<tr><td>${data[index].IdVoznje}</td><td> ${data[index].LokacijaDolaskaTaksija.Adresa.UlicaBroj} </td><td> ${status} </td>`;
+
+                    table += `<td><input id="btnObradiNeprihvacenuVoznju${index}" class="btn btn-success" type="button" value="Obradi" /></td>`;
+
+                    table += `<td>${data[index].Komentar.KorisnickoIme}</td><td>${data[index].Komentar.Opis}</td><td>${data[index].Komentar.OcenaVoznje}</td></tr>`
+                });
+
+                $("#tabelaSlobodnihVoznji").html(table);
+
+
+                $(data).each(function (index) {
+                    $('#btnObradiNeprihvacenuVoznju' + index).click(function () {
+
+                        var id = `${data[index].IdVoznje}`;
+                        var status = `${$('#cmbStatus' + index).val()}`;
+                        var vozac = `${data[index].Vozac}`;
+
+                        var voznja = {
+                            IdVoznje: id,
+                            Vozac: vozac,
+                            Status: status
+                        }
+
+                        $.ajax({
+                            url: `/api/neprihvacenevoznje/` + id,
+                            type: 'PUT',
+                            data: JSON.stringify(voznja),
+                            contentType: 'application/json; charset=utf-8',
+                            dataType: 'json',
+                            success: function (data) {
+                                alert("Ipao u neprihvacene");
+                            }
+                        });
+                    });
+                });
+            }
+        });
+
+    });
+
+
+    $('#changeStatusVozac').click(function () {
+        $('#jmbtrn3').fadeOut(300);
+        $('#neuspesnaVoznjaKomentar').hide();
+        $('#vozacOdrediste').hide();
+        $('#footer').fadeOut(300);
+        $('#neprihvaceneVoznje').hide();
+        $('#vozacPodaci').fadeOut(300);
+        $('#vozacLocation').fadeOut(300);
         $('#vozacStatus').delay(300).fadeIn(300);
+        $('#slobodneVoznje').removeClass("active");
         $('#profilVozac').removeClass("active");
         $('#home3').removeClass("active");
         $('#changeLocationVozac').removeClass("active");
