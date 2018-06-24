@@ -206,6 +206,7 @@ namespace WebAPI.Controllers
                     if (item.stanjeVozaca == Stanje.Slobodan)
                     {
                         item.stanjeVozaca = Stanje.Zauzet;
+
                         voznje.voznje[Int32.Parse(id)].Vozac = item.KorisnickoIme;
                         voznje.voznje[Int32.Parse(id)].Dispecer = user.KorisnickoIme;
                         voznje.voznje[Int32.Parse(id)].Status = Status.Prihvacena;

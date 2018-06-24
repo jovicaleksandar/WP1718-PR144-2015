@@ -33,6 +33,27 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet]
+        [Route("api/voznja/getdispecerovevoznje")]
+        public List<Voznja> GetDispeceroveVoznje()
+        {
+            Dispeceri users = HttpContext.Current.Application["dispeceri"] as Dispeceri;
+            Korisnik user = (Korisnik)HttpContext.Current.Session["user"];
+            if (user == null)
+            {
+                user = new Korisnik();
+                HttpContext.Current.Session["user"] = user;
+            }
+
+            foreach (Korisnik k in users.dispecers)
+            {
+                if (user.KorisnickoIme != "" && user.KorisnickoIme != null && user.KorisnickoIme == k.KorisnickoIme)
+                    return user.voznjeKorisnika;
+            }
+
+            return new List<Voznja>();
+        }
+
+        [HttpGet]
         [Route("api/voznja/getall")]
         public List<Voznja> GetAll()
         {
