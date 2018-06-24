@@ -35,7 +35,7 @@ namespace WebAPI.Controllers
                         {
                             ride.Komentar.IdVoznje = k.IdVoznje;
                             ride.Komentar.DatumObjave = DateTime.UtcNow;
-                            ride.Komentar.KorisnickoIme = k.KorisnickoIme;
+                            ride.Komentar.KorisnickoIme = user.KorisnickoIme;
                             ride.Komentar.OcenaVoznje = k.OcenaVoznje;
                             ride.Komentar.Opis = k.Opis;
 
@@ -52,6 +52,23 @@ namespace WebAPI.Controllers
                             arrLine[ride.IdVoznje] = line;
                             File.WriteAllLines(path, arrLine);
                             File.WriteAllLines(path, File.ReadAllLines(path).Where(l => !string.IsNullOrWhiteSpace(l)));
+
+                            foreach (Korisnik kor in users.korisnici)
+                            {
+                                if (kor.KorisnickoIme == ride.Musterija)
+                                {
+                                    foreach (Voznja voznja in kor.voznjeKorisnika)
+                                    {
+                                        if (voznja.IdVoznje == ride.IdVoznje)
+                                        {
+                                            voznja.Komentar = ride.Komentar;
+                                        }
+                                    }
+                                }
+                            }
+
+                            Voznje voznje2 = new Voznje("~/App_Data/voznje.txt");
+                            HttpContext.Current.Application["voznje"] = voznje2;
 
                             HttpContext.Current.Application["korisnici"] = users;
 

@@ -53,7 +53,9 @@ namespace WebAPI.Controllers
                         File.WriteAllLines(path, arrLine);
                         File.WriteAllLines(path, File.ReadAllLines(path).Where(l => !string.IsNullOrWhiteSpace(l)));
 
-                        HttpContext.Current.Application["korisnici"] = users;
+                        Korisnici korisnici2 = new Korisnici("~/App_Data/korisnici.txt");
+                        HttpContext.Current.Application["korisnici"] = korisnici2;
+                        //HttpContext.Current.Application["korisnici"] = users;
 
                         return korisnik;
                     }
@@ -87,7 +89,8 @@ namespace WebAPI.Controllers
                         File.WriteAllLines(path, File.ReadAllLines(path).Where(l => !string.IsNullOrWhiteSpace(l)));
 
 
-                        HttpContext.Current.Application["dispeceri"] = dispeceri;
+                        Dispeceri dispeceri2 = new Dispeceri("~/App_Data/dispeceri.txt");
+                        HttpContext.Current.Application["dispeceri"] = dispeceri2;
 
                         return korisnik;
                     }

@@ -1,2 +1,2 @@
-0|23-Jun-18 23:30:41|300X|300Y|Place|Town|100|Automobil||213|12321|123|123|123|admin1|drajver|213|dsa|23-Jun-18 23:38:30|drajver|2|Uspesna|
-1|23-Jun-18 23:31:44|400X|400Y|Ulca|Gradic|0-089123|Kombi|user||||||||0||01-Jan-01 00:00:00||0|Kreirana_Na_Cekanju|
+0|24-Jun-18 19:45:11|123|312|Street|City|post|Automobil||789|987|Street|Gradic|Zipic|admin1|driver|100000||01-Jan-01 00:00:00||0|Uspesna|
+1|24-Jun-18 19:49:20|312|123|Glavna|NS|2103|Kombi|user||||||admin1|vozac|0||01-Jan-01 00:00:00||0|Prihvacena|

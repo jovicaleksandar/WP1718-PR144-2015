@@ -57,6 +57,8 @@ namespace WebAPI.Controllers
             {
                 if (item.KorisnickoIme == user.KorisnickoIme && user.Role == Enums.Uloga.Vozac && item.KorisnickoIme == v.Vozac)
                 {
+                    item.voznjeKorisnika[id].Status = Enums.Status.Uspesna;
+                    item.voznjeKorisnika[id].IdVoznje = v.IdVoznje;
                     item.voznjeKorisnika[id].Odrediste.X = v.Odrediste.X;
                     item.voznjeKorisnika[id].Odrediste.Y = v.Odrediste.Y;
                     item.voznjeKorisnika[id].Odrediste.Adresa.NaseljenoMesto = v.Odrediste.Adresa.NaseljenoMesto;
@@ -110,8 +112,11 @@ namespace WebAPI.Controllers
                             File.WriteAllLines(path, arrLine2);
                             File.WriteAllLines(path, File.ReadAllLines(path).Where(l => !string.IsNullOrWhiteSpace(l)));
 
-                            HttpContext.Current.Application["vozaci"] = vozaci;
-                            HttpContext.Current.Application["voznje"] = voznje;
+
+                            Voznje voznje2 = new Voznje("~/App_Data/voznje.txt");
+                            HttpContext.Current.Application["voznje"] = voznje2;
+                            //Vozaci vozaci2 = new Vozaci(@"~/App_Data/vozaci.txt");
+                            //HttpContext.Current.Application["vozaci"] = vozaci2;
 
                             return true;
                         }
@@ -168,8 +173,10 @@ namespace WebAPI.Controllers
                             File.WriteAllLines(path, arrLine2);
                             File.WriteAllLines(path, File.ReadAllLines(path).Where(l => !string.IsNullOrWhiteSpace(l)));
 
-                            HttpContext.Current.Application["vozaci"] = vozaci;
-                            HttpContext.Current.Application["voznje"] = voznje;
+                            Voznje voznje2 = new Voznje("~/App_Data/voznje.txt");
+                            HttpContext.Current.Application["voznje"] = voznje2;
+                            Vozaci vozaci2 = new Vozaci(@"~/App_Data/vozaci.txt");
+                            HttpContext.Current.Application["vozaci"] = vozaci2;
 
                             return true;
                         }

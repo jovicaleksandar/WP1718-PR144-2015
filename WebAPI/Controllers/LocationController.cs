@@ -54,7 +54,9 @@ namespace WebAPI.Controllers
                         File.WriteAllLines(path, arrLine);
                         File.WriteAllLines(path, File.ReadAllLines(path).Where(l => !string.IsNullOrWhiteSpace(l)));
 
-                        HttpContext.Current.Application["vozaci"] = vozaci;
+
+                        Vozaci vozaci2 = new Vozaci("~/App_Data/vozaci.txt");
+                        HttpContext.Current.Application["vozaci"] = vozaci2;
 
 
                         return vozac;

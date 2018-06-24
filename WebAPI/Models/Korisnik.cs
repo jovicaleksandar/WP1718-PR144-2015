@@ -63,7 +63,7 @@ namespace WebAPI.Models
             //this.Gender = Pol.Muskarac;
             //this.Role = Uloga.Musterija;
             //this.Telefon = "";
-            voznjeKorisnika = new List<Voznja>();
+            //voznjeKorisnika = new List<Voznja>();
         }
 
     }

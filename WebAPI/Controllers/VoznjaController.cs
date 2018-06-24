@@ -79,6 +79,39 @@ namespace WebAPI.Controllers
             return new List<Voznja>();
         }
 
+        [HttpGet]
+        [Route("api/voznja/getstatus/{id:int}")]
+        public bool GetStatus(int id)
+        {
+            Korisnik user = (Korisnik)HttpContext.Current.Session["user"];
+
+            if (user == null)
+            {
+                user = new Korisnik();
+                HttpContext.Current.Session["user"] = user;
+            }
+
+
+            Vozaci vozaci = HttpContext.Current.Application["vozaci"] as Vozaci;
+            Voznje voznje = HttpContext.Current.Application["voznje"] as Voznje;
+
+            foreach (Vozac driver in vozaci.vozaci)
+            {
+                if (driver.KorisnickoIme == user.KorisnickoIme)
+                {
+                    foreach (Voznja v in driver.voznjeKorisnika)
+                    {
+                        if (v.IdVoznje == id)
+                        {
+                            if (v.Status == Enums.Status.Uspesna || v.Status == Enums.Status.Neuspesna)
+                                return false;
+                        }
+                    }
+                }
+            }
+            return true;
+        }
+
         public bool Post([FromBody] Voznja v)
         {
             Korisnik user = (Korisnik)HttpContext.Current.Session["user"];
@@ -109,8 +142,9 @@ namespace WebAPI.Controllers
                 v.Odrediste.Adresa.PozivniBroj = "";
                 v.Odrediste.Adresa.UlicaBroj = "";
 
-                user.voznjeKorisnika.Add(v);
+                //user.voznjeKorisnika.Add(v);
                 voznje.voznje.Add(v);
+                users.korisnici[user.Id].voznjeKorisnika.Add(v);
                 
 
                 string path = @"C:\Users\Coa\Desktop\NovaVerzija\WebAPI\WebAPI\App_Data\voznje.txt";
@@ -133,9 +167,11 @@ namespace WebAPI.Controllers
                     File.AppendAllText(path, line);
                 }
 
-                //voznje = new Voznje(@"~/App_Data/voznje.txt");
-                HttpContext.Current.Application["voznje"] = voznje;
-                HttpContext.Current.Application["korisnici"] = users;
+                Voznje voznje2 = new Voznje("~/App_Data/voznje.txt");
+                HttpContext.Current.Application["voznje"] = voznje2;
+                Korisnici korisnici2 = new Korisnici(@"~/App_Data/korisnici.txt");
+                HttpContext.Current.Application["korisnici"] = korisnici2;
+
                 return true;
             }
 
@@ -199,7 +235,10 @@ namespace WebAPI.Controllers
                     }
                 }
 
-                HttpContext.Current.Application["korisnici"] = users;
+                Voznje voznje2 = new Voznje("~/App_Data/voznje.txt");
+                HttpContext.Current.Application["voznje"] = voznje2;
+                Korisnici korisnici2 = new Korisnici(@"~/App_Data/korisnici.txt");
+                HttpContext.Current.Application["korisnici"] = korisnici2;
 
                 return true;
             }
@@ -245,7 +284,8 @@ namespace WebAPI.Controllers
                 }
             }
 
-            HttpContext.Current.Application["korisnici"] = users;
+            Voznje voznje2 = new Voznje("~/App_Data/voznje.txt");
+            HttpContext.Current.Application["voznje"] = voznje2;
 
             return true;
         }

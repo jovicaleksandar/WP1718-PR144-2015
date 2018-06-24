@@ -67,8 +67,8 @@ namespace WebAPI.Controllers
                     File.AppendAllText(path, line);
                 }
 
-                vozaci = new Vozaci(@"~/App_Data/vozaci.txt");
-                HttpContext.Current.Application["vozaci"] = vozaci;
+                Vozaci vozaci2 = new Vozaci(@"~/App_Data/vozaci.txt");
+                HttpContext.Current.Application["vozaci"] = vozaci2;
 
                 return true;
             }
@@ -103,7 +103,6 @@ namespace WebAPI.Controllers
                         v.Status = Status.Prihvacena;
                         v.Vozac = item.KorisnickoIme;
                         v.VremePorudzbine = DateTime.UtcNow;
-                        v.IdVoznje = voznje.voznje.Count;
                         v.Dispecer = user.KorisnickoIme;
                         v.Komentar = new Komentar();
                         v.Komentar.Opis = "";
@@ -116,7 +115,15 @@ namespace WebAPI.Controllers
                         v.Odrediste.Adresa.PozivniBroj = "";
                         v.Odrediste.Adresa.UlicaBroj = "";
 
+                        v.IdVoznje = user.voznjeKorisnika.Count;
                         user.voznjeKorisnika.Add(v);
+
+                        v.IdVoznje = item.voznjeKorisnika.Count;
+                        item.voznjeKorisnika.Add(v);
+
+                        vozaci.vozaci[item.Id].voznjeKorisnika.Add(v);
+
+                        v.IdVoznje = voznje.voznje.Count;
                         voznje.voznje.Add(v);
 
                         string pathVozac = @"C:\Users\Coa\Desktop\NovaVerzija\WebAPI\WebAPI\App_Data\vozaci.txt";
@@ -134,7 +141,6 @@ namespace WebAPI.Controllers
                         File.WriteAllLines(pathVozac, arrLine);
                         File.WriteAllLines(pathVozac, File.ReadAllLines(pathVozac).Where(l => !string.IsNullOrWhiteSpace(l)));
 
-                        HttpContext.Current.Application["vozaci"] = vozaci;
 
                         /*foreach (Korisnik k in users.korisnici)
                         {
@@ -164,8 +170,12 @@ namespace WebAPI.Controllers
                             File.AppendAllText(path, line);
                         }
 
-                        //voznje = new Voznje(@"~/App_Data/voznje.txt");
-                        HttpContext.Current.Application["voznje"] = voznje;
+                        HttpContext.Current.Application["vozaci"] = vozaci;
+                        Voznje voznje2 = new Voznje("~/App_Data/voznje.txt");
+                        HttpContext.Current.Application["voznje"] = voznje2;
+                        //Vozaci vozaci2 = new Vozaci(@"~/App_Data/vozaci.txt");
+                        //HttpContext.Current.Application["vozaci"] = vozaci2;
+
                         return true;
                     }
                 }
@@ -216,8 +226,6 @@ namespace WebAPI.Controllers
                         File.WriteAllLines(pathVozac, arrLine);
                         File.WriteAllLines(pathVozac, File.ReadAllLines(pathVozac).Where(l => !string.IsNullOrWhiteSpace(l)));
 
-                        HttpContext.Current.Application["vozaci"] = vozaci;
-
 
                         string path = @"C:\Users\Coa\Desktop\NovaVerzija\WebAPI\WebAPI\App_Data\voznje.txt";
 
@@ -234,9 +242,9 @@ namespace WebAPI.Controllers
                         File.WriteAllLines(path, arrLine2);
                         File.WriteAllLines(path, File.ReadAllLines(path).Where(l => !string.IsNullOrWhiteSpace(l)));
 
-                        //voznje = new Voznje(@"~/App_Data/voznje.txt");
-                        HttpContext.Current.Application["voznje"] = voznje;
-
+                        Voznje voznje2 = new Voznje("~/App_Data/voznje.txt");
+                        HttpContext.Current.Application["voznje"] = voznje2;
+                        HttpContext.Current.Application["vozaci"] = vozaci;
 
 
                         return true;

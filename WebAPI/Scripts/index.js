@@ -182,14 +182,15 @@
                 var voznje = data;
                 //$('#tabelaZaIzmenu').hide();
                 $('#changeDrive').hide();
-                var table = `<thead><tr class="success"><th colspan="5" style="text-align:center">Rides</th></tr></thead>`;
-                table += `<tbody><tr><th>ID</th><th>Street and number</th><th>Status</th><th>Otkazi</th><th>Izmeni</th>`;
+                var table = `<thead><tr class="success"><th colspan="8" style="text-align:center">Rides</th></tr></thead>`;
+                table += `<tbody><tr><th>ID</th><th>Street and number</th><th>Status</th><th>Otkazi</th><th>Izmeni</th><th>Korisnicko ime</th><th>Opis</th><th>Ocena</th>`;
                 var row;
                 //for (i = 0; i < data.Count; i++) {
                 $(data).each(function (index) {
                     //var row = $('<tr>').addClass('success').text(data[index].LokacijaDolaskaTaksija.Adresa.UlicaBroj);
                     //table.append(row);
 
+                    var id = data[index].IdVoznje;
                     var status;
                     if (data[index].Status == 0) {
                         status = "Kreirana na cekanju";
@@ -213,7 +214,8 @@
 
                     table += `<tr><td>${data[index].IdVoznje}</td><td> ${data[index].LokacijaDolaskaTaksija.Adresa.UlicaBroj} </td><td> ${status} </td>`;
                     table += `<td><input id="btnOtkaziVoznju${index}" class="btn btn-success" type="button" value="Otkazi" /></td>`;
-                    table += `<td><input id="btnIzmeniVoznju${index}" class="btn btn-success" type="button" value="Izmeni" /></td></tr>`;
+                    table += `<td><input id="btnIzmeniVoznju${index}" class="btn btn-success" type="button" value="Izmeni" /></td>`;
+                    table += `<td>${data[index].Komentar.KorisnickoIme}</td><td>${data[index].Komentar.Opis}</td><td>${data[index].Komentar.OcenaVoznje}</td></tr>`
                 });
 
                 $("#tabelaVoznji").html(table);
@@ -228,11 +230,13 @@
 
 
                 $(data).each(function (index) {
+                    var id = data[index].IdVoznje;
                     $('#btnOtkaziVoznju' + index).click(function ()
                     {
                         var num = index;
+                        var idvoznje = `${data[index].IdVoznje}`;
                         $.ajax({
-                            url: `/api/voznja/` + index,
+                            url: `/api/voznja/` + data[index].IdVoznje,
                             type: 'DELETE',
                             data: {
                                 id: num
@@ -248,7 +252,7 @@
                                     let komentar = {
                                         Opis: `${opis}`,
                                         OcenaVoznje: `${ocena}`,
-                                        IdVoznje: `${index}`
+                                        IdVoznje: idvoznje
                                     };
 
                                     $.ajax({
@@ -304,7 +308,7 @@
                             };
                             
                             $.ajax({
-                                url: `/api/voznja/` + index,
+                                url: `/api/voznja/` + id,
                                 type: 'PUT',
                                 data: {
                                     LokacijaDolaskaTaksija: lokacija,
@@ -520,8 +524,8 @@
             success: function (data) {
                 var voznje = data;
 
-                var table = `<thead><tr class="success"><th colspan="4" style="text-align:center">Rides</th></tr></thead>`;
-                table += `<tbody><tr><th>ID</th><th>Street and number</th><th>Status</th><th>Obradi</th>`;
+                var table = `<thead><tr class="success"><th colspan="8" style="text-align:center">Rides</th></tr></thead>`;
+                table += `<tbody><tr><th>ID</th><th>Street and number</th><th>Status</th><th>Obradi</th><th>Korisnicko ime</th><th>Opis</th><th>Ocena</th>`;
                 var row;
                 //for (i = 0; i < data.Count; i++) {
                 $(data).each(function (index) {
@@ -551,7 +555,8 @@
 
                     table += `<tr><td>${data[index].IdVoznje}</td><td> ${data[index].LokacijaDolaskaTaksija.Adresa.UlicaBroj} </td><td> ${status} </td>`;
                     //table += `<td><input id="btnOtkaziVoznjuDispecer${index}" class="btn btn-success" type="button" value="Otkazi" /></td>`;
-                    table += `<td><input id="btnObradiVoznjuDispecer${index}" class="btn btn-success" type="button" value="Obradi" /></td></tr>`;
+                    table += `<td><input id="btnObradiVoznjuDispecer${index}" class="btn btn-success" type="button" value="Obradi" /></td>`;
+                    table += `<td>${data[index].Komentar.KorisnickoIme}</td><td>${data[index].Komentar.Opis}</td><td>${data[index].Komentar.OcenaVoznje}</td></tr>`
                 });
 
                 $("#tabelaVoznjiDispecer").html(table);
@@ -1217,14 +1222,14 @@
         $('#changeStatusVozac').addClass("active");
 
         $.ajax({
-            url: '/api/vozac',
+            url: '/api/voznja/getdriversrides',
             type: 'GET',
             success: function (data) {
                 alert("Upao");
                 var voznje = data;
 
-                var table = `<thead><tr class="success"><th colspan="5" style="text-align:center">Rides</th></tr></thead>`;
-                table += `<tbody><tr><th>ID</th><th>Street and number</th><th>Status</th><th>Uspesno/Neuspesno</th><th>Obradi</th>`;
+                var table = `<thead><tr class="success"><th colspan="8" style="text-align:center">Rides</th></tr></thead>`;
+                table += `<tbody><tr><th>ID</th><th>Street and number</th><th>Status</th><th>Uspesno/Neuspesno</th><th>Obradi</th><th>Korisnicko ime</th><th>Opis</th><th>Ocena</th>`;
                 var row;
                 //for (i = 0; i < data.Count; i++) {
                 $(data).each(function (index) {
@@ -1258,8 +1263,9 @@
                     table += `<td><select id="cmbStatus${index}"><option value="Uspesna">Successful</option><option value="Neuspesna">Unsuccessful</option></select></td>`;
 
 
+                    table += `<td><input id="btnObradiVoznjuVozac${index}" class="btn btn-success" type="button" value="Obradi" /></td>`;
 
-                    table += `<td><input id="btnObradiVoznjuVozac${index}" class="btn btn-success" type="button" value="Obradi" /></td></tr>`;
+                    table += `<td>${data[index].Komentar.KorisnickoIme}</td><td>${data[index].Komentar.Opis}</td><td>${data[index].Komentar.OcenaVoznje}</td></tr>`
                 });
 
                 $("#tabelaVoznjiVozac").html(table);
@@ -1267,15 +1273,16 @@
                 $(data).each(function (index) {
                     $('#btnObradiVoznjuVozac' + index).click(function () {
                         var num = index;
+                        var id = `${data[index].IdVoznje}`;
                         var status = `${$('#cmbStatus' + index).val()}`;
                         var vozac = `${data[index].Vozac}`;
                         var voznja = {
-                            IdVoznje: index,
+                            IdVoznje: id,
                             Vozac: vozac,
                             Status: status
                         }
                         $.ajax({
-                            url: `/api/status/` + index,
+                            url: `/api/status/` + id,
                             type: 'PUT',
                             data: JSON.stringify(voznja),
                             contentType: 'application/json; charset=utf-8',
@@ -1288,6 +1295,16 @@
                                     $('#vozacOdrediste').show();
 
 
+                                    $.ajax({
+                                        url: '/api/voznja/getstatus/' + id,
+                                        type: 'GET',
+                                        success: function (data) {
+                                            if (!data) {
+                                                alert("Ova voznja je vec obradjena");
+                                                window.location.href = "Index.html";
+                                            }
+                                        }
+                                    });
 
                                     $('#btnSaveDestination').click(function () {
                                         let adresa = {
@@ -1303,7 +1320,7 @@
                                         }
 
                                         var ride = {
-                                            IdVoznje: `${index}`,
+                                            IdVoznje: id,
                                             Vozac: vozac,
                                             Odrediste: lokacija,
                                             Iznos: `${$('#txtAmountDestination').val()}`
@@ -1323,7 +1340,18 @@
                                     });
 
                                 } else {
-                                    alert("Nije uspeo apdejt voznje");
+
+                                    $.ajax({
+                                        url: '/api/voznja/getstatus/' + id,
+                                        type: 'GET',
+                                        success: function (data) {
+                                            if (!data) {
+                                                alert("Ova voznja je vec obradjena");
+                                                window.location.href = "Index.html";
+                                            }
+                                        }
+                                    });
+
                                     $('#vozacStatus').hide();
                                     $('#vozacOdrediste').hide();
                                     $('#neuspesnaVoznjaKomentar').show();
