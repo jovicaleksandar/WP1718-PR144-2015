@@ -10,9 +10,8 @@ using WebAPI.Models;
 
 namespace WebAPI.Controllers
 {
-    public class NeprihvaceneVoznjeController : ApiController
+    public class ZavrsiVoznjuController : ApiController
     {
-        [HttpPut]
         public bool Put(int id, [FromBody] Voznja v)
         {
             Korisnik user = (Korisnik)HttpContext.Current.Session["user"];
@@ -27,49 +26,42 @@ namespace WebAPI.Controllers
             Voznje voznje = HttpContext.Current.Application["voznje"] as Voznje;
             Vozaci vozaci = HttpContext.Current.Application["vozaci"] as Vozaci;
 
-            if (user.Role == Enums.Uloga.Vozac)
+            foreach (Vozac item in vozaci.vozaci)
             {
-                foreach (Vozac item in vozaci.vozaci)
+                if (user.KorisnickoIme == item.KorisnickoIme)
                 {
-                    if (user.Id == item.Id)
-                    {
-                        voznje.voznje[id].Status = Enums.Status.Prihvacena;
-                        voznje.voznje[id].Vozac = user.KorisnickoIme;
-                        vozaci.vozaci[item.Id].voznjeKorisnika.Add(voznje.voznje[id]);
-                        vozaci.vozaci[item.Id].stanjeVozaca = Enums.Stanje.Zauzet;
-                        
-                        //user.voznjeKorisnika.Add(voznje.voznje[id]);
-                        
-                        item.voznjeKorisnika.Add(voznje.voznje[id]);
+                    voznje.voznje[id].Vozac = user.KorisnickoIme;
+                    item.stanjeVozaca = Enums.Stanje.Slobodan;
 
-                        string pathVozac = @"C:\Users\Coa\Desktop\NovaVerzija\WebAPI\WebAPI\App_Data\vozaci.txt";
+                    string pathVozac = @"C:\Users\Coa\Desktop\NovaVerzija\WebAPI\WebAPI\App_Data\vozaci.txt";
 
-                        string lineVozac = item.Id.ToString() + '|' + item.KorisnickoIme + '|' + item.Lozinka + '|' + item.Ime + '|' +
-                        item.Prezime + '|' + item.Gender + '|' + item.JMBG + '|' + item.Telefon + '|' +
-                                item.Email + '|' + item.Role + '|' + item.Lokacija.X + '|' + item.Lokacija.Y + '|' +
-                                item.Lokacija.Adresa.UlicaBroj + '|' + item.Lokacija.Adresa.NaseljenoMesto + '|' +
-                                item.Lokacija.Adresa.PozivniBroj + '|' + item.Automobil.Vozac + '|' + item.Automobil.GodisteAutomobila + '|' +
-                                item.Automobil.BrojRegistarskeOznake + '|' + item.Automobil.BrojTaksiVozila + '|' + item.Automobil.Tip +
-                                '|' + item.stanjeVozaca + Environment.NewLine;
+                    string lineVozac = item.Id.ToString() + '|' + item.KorisnickoIme + '|' + item.Lozinka + '|' + item.Ime + '|' +
+                    item.Prezime + '|' + item.Gender + '|' + item.JMBG + '|' + item.Telefon + '|' +
+                            item.Email + '|' + item.Role + '|' + item.Lokacija.X + '|' + item.Lokacija.Y + '|' +
+                            item.Lokacija.Adresa.UlicaBroj + '|' + item.Lokacija.Adresa.NaseljenoMesto + '|' +
+                            item.Lokacija.Adresa.PozivniBroj + '|' + item.Automobil.Vozac + '|' + item.Automobil.GodisteAutomobila + '|' +
+                            item.Automobil.BrojRegistarskeOznake + '|' + item.Automobil.BrojTaksiVozila + '|' + item.Automobil.Tip +
+                            '|' + item.stanjeVozaca + Environment.NewLine;
 
-                        string[] arrLine = File.ReadAllLines(pathVozac);
-                        arrLine[item.Id] = lineVozac;
-                        File.WriteAllLines(pathVozac, arrLine);
-                        File.WriteAllLines(pathVozac, File.ReadAllLines(pathVozac).Where(l => !string.IsNullOrWhiteSpace(l)));
+                    string[] arrLine = File.ReadAllLines(pathVozac);
+                    arrLine[item.Id] = lineVozac;
+                    File.WriteAllLines(pathVozac, arrLine);
+                    File.WriteAllLines(pathVozac, File.ReadAllLines(pathVozac).Where(l => !string.IsNullOrWhiteSpace(l)));
 
 
-                        HttpContext.Current.Application["vozaci"] = vozaci;
-                    }
+                    HttpContext.Current.Application["vozaci"] = vozaci;
                 }
             }
 
-            if (user.Role == Enums.Uloga.Vozac)
+            foreach (Voznja ride in voznje.voznje)
             {
-                foreach (Voznja ride in voznje.voznje)
+                if (ride.IdVoznje == id)
                 {
-                    if (ride.IdVoznje == id)
+                    if (ride.Status == Enums.Status.Uspesna)
                     {
-                        voznje.voznje[id].Status = Enums.Status.Prihvacena;
+                        ride.Vozac = user.KorisnickoIme;
+                        ride.Status = Enums.Status.Obradjena;
+
 
                         string path = @"C:\Users\Coa\Desktop\NovaVerzija\WebAPI\WebAPI\App_Data\voznje.txt";
                         string line = String.Empty;
@@ -85,7 +77,7 @@ namespace WebAPI.Controllers
                         File.WriteAllLines(path, arrLine);
                         File.WriteAllLines(path, File.ReadAllLines(path).Where(l => !string.IsNullOrWhiteSpace(l)));
 
-                        
+
                         Voznje voznje2 = new Voznje("~/App_Data/voznje.txt");
                         HttpContext.Current.Application["voznje"] = voznje2;
 
@@ -93,6 +85,7 @@ namespace WebAPI.Controllers
                     }
                 }
             }
+
             return false;
         }
     }

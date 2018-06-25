@@ -186,7 +186,7 @@
                 //$('#tabelaZaIzmenu').hide();
                 $('#changeDrive').hide();
                 var table = `<thead><tr class="success"><th colspan="8" style="text-align:center">Rides</th></tr></thead>`;
-                table += `<tbody><tr><th>ID</th><th>Street and number</th><th>Status</th><th>Otkazi</th><th>Izmeni</th><th>Korisnicko ime</th><th>Opis</th><th>Ocena</th>`;
+                table += `<tbody><tr><th>ID</th><th>Street and number</th><th>Status</th><th>Otkazi</th><th>Izmeni</th><th>Komentarisi</th><th>Korisnicko ime</th><th>Opis</th><th>Ocena</th>`;
                 var row;
                 //for (i = 0; i < data.Count; i++) {
                 $(data).each(function (index) {
@@ -218,6 +218,7 @@
                     table += `<tr><td>${data[index].IdVoznje}</td><td> ${data[index].LokacijaDolaskaTaksija.Adresa.UlicaBroj} </td><td> ${status} </td>`;
                     table += `<td><input id="btnOtkaziVoznju${index}" class="btn btn-success" type="button" value="Otkazi" /></td>`;
                     table += `<td><input id="btnIzmeniVoznju${index}" class="btn btn-success" type="button" value="Izmeni" /></td>`;
+                    table += `<td><input id="btnKomentarisiVoznju${index}" class="btn btn-success" type="button" value="Komentarisi" /></td>`;
                     table += `<td>${data[index].Komentar.KorisnickoIme}</td><td>${data[index].Komentar.Opis}</td><td>${data[index].Komentar.OcenaVoznje}</td></tr>`
                 });
 
@@ -230,6 +231,37 @@
 
                 //tabela += `</tbody>`;
                 //$("#tabelaZaIzmenu").html(tabela);
+
+                $(data).each(function (index) {
+                    var id = data[index].IdVoznje;
+                    $('#btnKomentarisiVoznju' + index).click(function () {
+                        $('#izmeniVoznjuKorisnik').delay(300).fadeOut(300);
+                        $('#otkazKomentar').delay(300).fadeIn(300);
+
+                        $('#btnSaveComment').click(function () {
+                            let opis = $('#txtCommentDescription').val();
+                            let ocena = $('#txtCommentGrade').val();
+                            let komentar = {
+                                Opis: `${opis}`,
+                                OcenaVoznje: `${ocena}`,
+                                IdVoznje: id
+                            };
+
+                            $.ajax({
+                                url: '/api/komentar',
+                                type: 'POST',
+                                data: JSON.stringify(komentar),
+                                contentType: 'application/json; charset=utf-8',
+                                dataType: 'json',
+                                success: function (data) {
+                                    $('#txtCommentDescription').val("");
+                                    $('#txtCommentGrade').val("");
+                                    window.location.href = "Index.html";
+                                }
+                            });
+                        })
+                    });
+                })
 
 
                 $(data).each(function (index) {
@@ -1443,8 +1475,8 @@
                 alert("Upao");
                 var voznje = data;
 
-                var table = `<thead><tr class="success"><th colspan="8" style="text-align:center">Rides</th></tr></thead>`;
-                table += `<tbody><tr><th>ID</th><th>Street and number</th><th>Status</th><th>Uspesno/Neuspesno</th><th>Obradi</th><th>Korisnicko ime</th><th>Opis</th><th>Ocena</th>`;
+                var table = `<thead><tr class="success"><th colspan="9" style="text-align:center">Rides</th></tr></thead>`;
+                table += `<tbody><tr><th>ID</th><th>Street and number</th><th>Status</th><th>Uspesno/Neuspesno</th><th>Obradi</th><th>Zavrsi</th><th>Korisnicko ime</th><th>Opis</th><th>Ocena</th>`;
                 var row;
                 //for (i = 0; i < data.Count; i++) {
                 $(data).each(function (index) {
@@ -1479,6 +1511,7 @@
 
 
                     table += `<td><input id="btnObradiVoznjuVozac${index}" class="btn btn-success" type="button" value="Obradi" /></td>`;
+                    table += `<td><input id="btnZavrsiVoznjuVozac${index}" class="btn btn-success" type="button" value="Zavrsi" /></td>`;
 
                     table += `<td>${data[index].Komentar.KorisnickoIme}</td><td>${data[index].Komentar.Opis}</td><td>${data[index].Komentar.OcenaVoznje}</td></tr>`
                 });
@@ -1598,6 +1631,38 @@
                         });
                     });
                 });
+
+
+                $(data).each(function (index) {
+                    $('#btnZavrsiVoznjuVozac' + index).click(function () {
+
+                        var num = index;
+                        var id = `${data[index].IdVoznje}`;
+                        var status = `${$('#cmbStatus' + index).val()}`;
+                        var vozac = `${data[index].Vozac}`;
+
+                        var voznja = {
+                            IdVoznje: id,
+                            Vozac: vozac,
+                            Status: status
+                        }
+
+                        $.ajax({
+                            url: `/api/zavrsivoznju/` + id,
+                            type: 'PUT',
+                            data: JSON.stringify(voznja),
+                            contentType: 'application/json; charset=utf-8',
+                            dataType: 'json',
+                            success: function (data) {
+                                if (data) {
+                                    alert("Zavrsio");
+                                } else {
+                                    alert("Neuspelo zavrsavanje");
+                                }
+                            }
+                        });
+                    });
+                })
             }
         });
     });
