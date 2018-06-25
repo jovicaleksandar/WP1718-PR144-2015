@@ -193,6 +193,7 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\NeprihvaceneVoznjeController.cs" />
     <Compile Include="Controllers\RegistrationController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\StatusController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Controllers\VozacController.cs" />

@@ -225,8 +225,8 @@ namespace WebAPI.Controllers
 
                 Voznje voznje2 = new Voznje("~/App_Data/voznje.txt");
                 HttpContext.Current.Application["voznje"] = voznje2;
-                Korisnici korisnici2 = new Korisnici(@"~/App_Data/korisnici.txt");
-                HttpContext.Current.Application["korisnici"] = korisnici2;
+                //Korisnici korisnici2 = new Korisnici(@"~/App_Data/korisnici.txt");
+                HttpContext.Current.Application["korisnici"] = users;
 
                 return true;
             }

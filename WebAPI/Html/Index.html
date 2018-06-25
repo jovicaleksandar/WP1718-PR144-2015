@@ -31,6 +31,7 @@
                         <li id="profilKorisnik"><a href="#">My Profile</a></li>
                         <li id="voznjaKorisnik"><a href="#">Add Ride</a></li>
                         <li id="modifikujVoznjuKorisnik"><a href="#">Change Rides</a></li>
+                        <li id="searchKorisnik"><a href="#">Search</a></li>
                     </ul>
                     <ul class="navbar-nav nav navbar-right">
                         <li id="logInKorisnik"><a href="#">Login &nbsp;<i class="fas fa-user"></i></a></li>
@@ -261,6 +262,37 @@
                 <table id="tabelaZaIzmenu" class="table table-bordered" border="1"></table>
             </div>
         </div>
+
+
+        <div id="searchRidesKorisnik">
+            <div class="well">
+                <table id="tabelaSearch" class="table table-bordered" border="1"></table>
+
+                <table id="tabelaFiltracija" class="table table-bordered" border="1"></table>
+
+
+                <div class="container">
+                    <table id="filtracijaVoznji">
+                        <tr>
+                            <td>
+                                <select id="statusiVoznjiZaFiltraciju">
+                                    <option value="Kreirana_Na_Cekanju">Kreirana na cekanju</option>
+                                    <option value="Formirana">Formirana</option>
+                                    <option value="Obradjena">Obradjena</option>
+                                    <option value="Prihvacena">Prihvacena</option>
+                                    <option value="Otkazana">Otkazana</option>
+                                    <option value="Neuspesna">Neuspesna</option>
+                                    <option value="Uspesna">Uspesna</option>
+                                    <option value="U_Toku">U toku</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr><td><input type="button" id="btnFiltracija" value="Filtriraj" /></td></tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
     </div>
 
     <div id="dispecer">

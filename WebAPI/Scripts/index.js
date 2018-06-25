@@ -21,6 +21,7 @@
     $('#vozac').hide();
     $('#korisnikPodaci').hide();
     $('#novaVoznjaKorisnik').hide();
+    $('#searchRidesKorisnik').hide();
     $('#izmeniVoznjuKorisnik').hide();
     $('#modifikacijaVoznjeKorisnik').hide();
     $('#otkazKomentar').hide();
@@ -42,12 +43,14 @@
                 $('#korisnik').show();
                 $('#korisnikPodaci').hide();
                 $('#novaVoznjaKorisnik').hide();
+                $('#searchRidesKorisnik').hide();
                 $('#dispecerNoviVozac').hide();
                 $('#dispecer').hide();
                 $('#vozac').hide();
                 $('#home1').addClass("active");
                 $('#home2').removeClass("active");
                 $('#home3').removeClass("active");
+                $('#searchKorisnik').removeClass("active");
                 $('#modifikujVoznjuKorisnik').removeClass("active");
                 $('#modifikacijaVoznjeKorisnik').hide();
                 $('#izmeniVoznjuKorisnik').hide();
@@ -102,11 +105,13 @@
         $('#footer').fadeOut(300);
         $('#dispecerNoviVozac').fadeOut(300);
         $('#novaVoznjaKorisnik').fadeOut(300);
+        $('#searchRidesKorisnik').fadeOut(300);
         $('#korisnikPodaci').delay(300).fadeIn(300);
         $('#home1').removeClass("active");
         $('#voznjaKorisnik').removeClass("active");
         $('#profilKorisnik').addClass("active");
         $('#modifikujVoznjuKorisnik').removeClass("active");
+        $('#searchKorisnik').removeClass("active");
         $('#modifikacijaVoznjeKorisnik').hide();
         $('#izmeniVoznjuKorisnik').hide();
         $('#otkazKomentar').hide();
@@ -134,15 +139,145 @@
         $('#korisnikPodaci').fadeOut(300);
         $('#jmbtrn1').delay(300).fadeIn(300);
         $('#footer').delay(300).fadeIn(300);
+        $('#searchRidesKorisnik').fadeOut(300);
         $('#profilKorisnik').removeClass("active");
         $('#voznjaKorisnik').removeClass("active");
         $('#dispecerNoviVozac').removeClass("active");
         $('#home1').addClass("active");
         $('#modifikujVoznjuKorisnik').removeClass("active");
+        $('#searchKorisnik').removeClass("active");
         $('#novaVoznjaKorisnik').fadeOut(300);
         $('#modifikacijaVoznjeKorisnik').hide();
         $('#izmeniVoznjuKorisnik').hide();
         $('#otkazKomentar').hide();
+    });
+
+
+    $('#searchKorisnik').click(function () {
+        $('#footer').fadeOut(300);
+        $('#korisnikPodaci').fadeOut(300);
+        $('#jmbtrn1').fadeOut(300);
+        $('#changeDrive').fadeOut(300);
+        $('#searchRidesKorisnik').delay(300).fadeIn(300);
+        $('#profilKorisnik').removeClass("active");
+        $('#voznjaKorisnik').removeClass("active");
+        $('#dispecerNoviVozac').removeClass("active");
+        $('#searchKorisnik').addClass("active");
+        $('#modifikujVoznjuKorisnik').removeClass("active");
+        $('#home1').removeClass("active");
+        $('#novaVoznjaKorisnik').fadeOut(300);
+        $('#modifikacijaVoznjeKorisnik').hide();
+        $('#izmeniVoznjuKorisnik').hide();
+        $('#tabelaFiltracija').hide();
+        $('#otkazKomentar').hide();
+        
+
+
+
+
+        
+
+        $.ajax({
+            url: '/api/voznja',
+            type: 'GET',
+            success: function (data) {
+                var voznje = data;
+
+                var table = `<thead><tr class="success"><th colspan="6" style="text-align:center">Rides</th></tr></thead>`;
+                table += `<tbody><tr><th>ID</th><th>Street and number</th><th>Status</th><th>Korisnicko ime</th><th>Opis</th><th>Ocena</th>`;
+                var row;
+                //for (i = 0; i < data.Count; i++) {
+                $(data).each(function (index) {
+                    //var row = $('<tr>').addClass('success').text(data[index].LokacijaDolaskaTaksija.Adresa.UlicaBroj);
+                    //table.append(row);
+
+                    var id = data[index].IdVoznje;
+                    var status;
+                    if (data[index].Status == 0) {
+                        status = "Kreirana na cekanju";
+                    } else if (data[index].Status == 1) {
+                        status = "Formirana";
+                    } else if (data[index].Status == 2) {
+                        status = "Obradjena";
+                    } else if (data[index].Status == 3) {
+                        status = "Prihvacena";
+                    } else if (data[index].Status == 4) {
+                        status = "Otkazana";
+                    } else if (data[index].Status == 5) {
+                        status = "Neuspesna";
+                    } else if (data[index].Status == 6) {
+                        status = "Uspesna";
+                    } else if (data[index].Status == 7) {
+                        status = "U toku";
+                    } else {
+                        status = "Nepoznato";
+                    }
+
+                    table += `<tr><td>${data[index].IdVoznje}</td><td> ${data[index].LokacijaDolaskaTaksija.Adresa.UlicaBroj} </td><td> ${status} </td>`;
+                    table += `<td>${data[index].Komentar.KorisnickoIme}</td><td>${data[index].Komentar.Opis}</td><td>${data[index].Komentar.OcenaVoznje}</td></tr>`
+                });
+
+                $("#tabelaSearch").html(table);
+
+                $('#btnFiltracija').click(function () {
+                    var value = `${$('#statusiVoznjiZaFiltraciju').val()}`;
+                    $('#tabelaSearch').hide();
+                    $('#tabelaFiltracija').delay(300).fadeIn(300);
+
+                    $.ajax({
+                        url: '/api/search/getfiltracija/' + value,
+                        type: 'GET',
+                        success: function (data) {
+                            var voznje = data;
+
+                            var table = `<thead><tr class="success"><th colspan="6" style="text-align:center">Rides</th></tr></thead>`;
+                            table += `<tbody><tr><th>ID</th><th>Street and number</th><th>Status</th><th>Korisnicko ime</th><th>Opis</th><th>Ocena</th>`;
+                            var row;
+                            //for (i = 0; i < data.Count; i++) {
+                            $(data).each(function (index) {
+                                //var row = $('<tr>').addClass('success').text(data[index].LokacijaDolaskaTaksija.Adresa.UlicaBroj);
+                                //table.append(row);
+
+                                var id = data[index].IdVoznje;
+                                var status;
+                                if (data[index].Status == 0) {
+                                    status = "Kreirana na cekanju";
+                                } else if (data[index].Status == 1) {
+                                    status = "Formirana";
+                                } else if (data[index].Status == 2) {
+                                    status = "Obradjena";
+                                } else if (data[index].Status == 3) {
+                                    status = "Prihvacena";
+                                } else if (data[index].Status == 4) {
+                                    status = "Otkazana";
+                                } else if (data[index].Status == 5) {
+                                    status = "Neuspesna";
+                                } else if (data[index].Status == 6) {
+                                    status = "Uspesna";
+                                } else if (data[index].Status == 7) {
+                                    status = "U toku";
+                                } else {
+                                    status = "Nepoznato";
+                                }
+
+                                table += `<tr><td>${data[index].IdVoznje}</td><td> ${data[index].LokacijaDolaskaTaksija.Adresa.UlicaBroj} </td><td> ${status} </td>`;
+                                table += `<td>${data[index].Komentar.KorisnickoIme}</td><td>${data[index].Komentar.Opis}</td><td>${data[index].Komentar.OcenaVoznje}</td></tr>`
+                            });
+
+                            $("#tabelaFiltracija").html(table);
+                            
+
+                        }
+                    });
+
+
+
+
+                });
+
+            }
+        });
+
     });
 
     //var username;
@@ -165,9 +300,11 @@
         $('#tabelaZaIzmenu').hide();
         $('#korisnikPodaci').fadeOut(300);
         $('#novaVoznjaKorisnik').fadeOut(300);
+        $('#searchRidesKorisnik').fadeOut(300);
         $('#jmbtrn1').fadeOut(300);
         $('#izmeniVoznjuKorisnik').delay(300).fadeIn(300);
         $('#profilKorisnik').removeClass("active");
+        $('#searchKorisnik').removeClass("active");
         $('#voznjaKorisnik').removeClass("active");
         $('#dispecerNoviVozac').removeClass("active");
         $('#home1').removeClass("active");
@@ -363,6 +500,7 @@
 
     });
 
+
     $('#voznjaKorisnik').click(function () {
 
         let korisnickoIme = localStorage.getItem("logged");
@@ -375,7 +513,9 @@
         $('#dispecerNoviVozac').fadeOut(300);
         $('#korisnikPodaci').fadeOut(300);
         $('#novaVoznjaKorisnik').delay(300).fadeIn(300);
+        $('#searchRidesKorisnik').fadeOut(300);
         $('#home1').removeClass("active");
+        $('#searchKorisnik').removeClass("active");
         $('#profilKorisnik').removeClass("active");
         $('#voznjaKorisnik').addClass("active");
         $('#modifikujVoznjuKorisnik').removeClass("active");
@@ -686,8 +826,19 @@
             $('#jmbtrn1').fadeOut(300);
             $('#footer').fadeOut(300);
             $('#korisnikPodaci').delay(300).fadeIn(300);
+            $('#searchKorisnik').removeClass("active");
             $('#home1').removeClass("active");
             $('#profilKorisnik').addClass("active");
+            $('#searchRidesKorisnik').fadeOut(300);
+            $('#profilKorisnik').removeClass("active");
+            $('#voznjaKorisnik').removeClass("active");
+            $('#dispecerNoviVozac').removeClass("active");
+            $('#modifikujVoznjuKorisnik').removeClass("active");
+            $('#searchKorisnik').removeClass("active");
+            $('#novaVoznjaKorisnik').fadeOut(300);
+            $('#modifikacijaVoznjeKorisnik').hide();
+            $('#izmeniVoznjuKorisnik').hide();
+            $('#otkazKomentar').hide();
 
 
             $('#txtUsernameKorisnik').val(profil.KorisnickoIme);
