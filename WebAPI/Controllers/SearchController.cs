@@ -44,6 +44,42 @@ namespace WebAPI.Controllers
         }
 
 
+
+        [HttpGet]
+        [Route("api/search/getfiltracijadispecer/{id}")]
+        public List<Voznja> GetFiltracijaDispecer(string id)
+        {
+            Dispeceri users = HttpContext.Current.Application["dispeceri"] as Dispeceri;
+            Korisnik user = (Korisnik)HttpContext.Current.Session["user"];
+            if (user == null)
+            {
+                user = new Korisnik();
+                HttpContext.Current.Session["user"] = user;
+            }
+
+            List<Voznja> retVal = new List<Voznja>();
+
+            foreach (Dispecer k in users.dispecers)
+            {
+                if (k.KorisnickoIme == user.KorisnickoIme)
+                {
+                    foreach (Voznja v in k.voznjeKorisnika)
+                    {
+                        if (v.Status.ToString() == id)
+                        {
+                            retVal.Add(v);
+                        }
+                    }
+                    return retVal;
+                }
+            }
+
+            return new List<Voznja>();
+        }
+
+
+
+
         [HttpGet]
         [Route("api/search/getsearch/{from}/{to}")]
         public List<Voznja> GetSearch(DateTime from, DateTime to)
@@ -83,6 +119,50 @@ namespace WebAPI.Controllers
         }
 
 
+
+
+        [HttpGet]
+        [Route("api/search/getsearchdispecer/{from}/{to}")]
+        public List<Voznja> GetSearchDispecer(DateTime from, DateTime to)
+        {
+            Dispeceri users = HttpContext.Current.Application["dispeceri"] as Dispeceri;
+            Korisnik user = (Korisnik)HttpContext.Current.Session["user"];
+            if (user == null)
+            {
+                user = new Korisnik();
+                HttpContext.Current.Session["user"] = user;
+            }
+
+            List<Voznja> retVal = new List<Voznja>();
+            int result1;
+            int result2;
+
+            foreach (Dispecer k in users.dispecers)
+            {
+                if (k.KorisnickoIme == user.KorisnickoIme)
+                {
+                    foreach (Voznja v in k.voznjeKorisnika)
+                    {
+                        result1 = DateTime.Compare(from, v.VremePorudzbine);
+                        result2 = DateTime.Compare(to, v.VremePorudzbine);
+
+                        if (result1 < 0 && result2 > 0)
+                        {
+                            retVal.Add(v);
+                        }
+                    }
+
+                    return retVal;
+                }
+            }
+
+            return new List<Voznja>();
+        }
+
+
+
+
+
         [HttpGet]
         [Route("api/search/getsearchgrade/{from}/{to}")]
         public List<Voznja> GetSearchGrade(int from, int to)
@@ -98,6 +178,43 @@ namespace WebAPI.Controllers
             List<Voznja> retVal = new List<Voznja>();
 
             foreach (Korisnik k in users.korisnici)
+            {
+                if (k.KorisnickoIme == user.KorisnickoIme)
+                {
+                    foreach (Voznja v in k.voznjeKorisnika)
+                    {
+                        if (v.Komentar.OcenaVoznje >= from && v.Komentar.OcenaVoznje <= to)
+                        {
+                            retVal.Add(v);
+                        }
+                    }
+
+                    return retVal;
+                }
+            }
+
+
+            return new List<Voznja>();
+        }
+
+
+
+
+        [HttpGet]
+        [Route("api/search/getsearchgradedispecer/{from}/{to}")]
+        public List<Voznja> GetSearchGradeDispecer(int from, int to)
+        {
+            Dispeceri users = HttpContext.Current.Application["dispeceri"] as Dispeceri;
+            Korisnik user = (Korisnik)HttpContext.Current.Session["user"];
+            if (user == null)
+            {
+                user = new Korisnik();
+                HttpContext.Current.Session["user"] = user;
+            }
+
+            List<Voznja> retVal = new List<Voznja>();
+
+            foreach (Dispecer k in users.dispecers)
             {
                 if (k.KorisnickoIme == user.KorisnickoIme)
                 {
@@ -151,5 +268,43 @@ namespace WebAPI.Controllers
 
             return new List<Voznja>();
         }
+
+
+
+
+        [HttpGet]
+        [Route("api/search/getsearchpricedispecer/{from}/{to}")]
+        public List<Voznja> GetSearchPriceDispecer(int from, int to)
+        {
+            Dispeceri users = HttpContext.Current.Application["dispeceri"] as Dispeceri;
+            Korisnik user = (Korisnik)HttpContext.Current.Session["user"];
+            if (user == null)
+            {
+                user = new Korisnik();
+                HttpContext.Current.Session["user"] = user;
+            }
+
+            List<Voznja> retVal = new List<Voznja>();
+
+            foreach (Korisnik k in users.dispecers)
+            {
+                if (k.KorisnickoIme == user.KorisnickoIme)
+                {
+                    foreach (Voznja v in k.voznjeKorisnika)
+                    {
+                        if (v.Iznos >= from && v.Iznos <= to)
+                        {
+                            retVal.Add(v);
+                        }
+                    }
+
+                    return retVal;
+                }
+            }
+
+
+            return new List<Voznja>();
+        }
+
     }
 }

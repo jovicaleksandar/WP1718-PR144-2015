@@ -4,3 +4,5 @@
 3|25-Jun-18 02:32:58|xXx|XxX|Jevrejska|Novi Sad|21000|Kombi|user||||||||0||01-Jan-01 00:00:00||0|Kreirana_Na_Cekanju|
 4|25-Jun-18 02:34:55|231|90821|Futoska|Novi Sad|21000|Kombi|user||||||||0||01-Jan-01 00:00:00||0|Kreirana_Na_Cekanju|
 5|25-Jun-18 02:37:01|213|213|Nikole Pasica|Novi Sad|21000|Kombi|user||||||||0||01-Jan-01 00:00:00||0|Kreirana_Na_Cekanju|
+6|25-Jun-18 19:38:08|312|321|132|123|231|Automobil|||||||admin1|driver|0||01-Jan-01 00:00:00||0|Prihvacena|
+7|25-Jun-18 19:38:39|ads|das|ads|adsds|a|Automobil|||||||admin1|vozac|0||01-Jan-01 00:00:00||0|Prihvacena|
