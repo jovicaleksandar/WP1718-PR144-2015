@@ -668,6 +668,7 @@
                         <li id="changeLocationVozac"><a href="#">Change Location</a></li>
                         <li id="changeStatusVozac"><a href="#">Change Status</a></li>
                         <li id="slobodneVoznje"><a href="#">Unclaimed Rides</a></li>
+                        <li id="searchVozac"><a href="#">Search</a></li>
                     </ul>
                     <ul class="navbar-nav nav navbar-right">
                         <li id="logInVozac"><a href="#">Login &nbsp;<i class="fas fa-user"></i></a></li>
@@ -931,6 +932,64 @@
             <!--*************************************************************************************************************************-->
             <!--*************************************************************************************************************************-->
         </div>
+
+
+        
+        <div id="searchRidesVozac">
+            <div class="well">
+                <table id="sortVoznjiVozac">
+                    <tr>
+                        <td>
+                            <select id="valueZaSortVozac">
+                                <option value="Datum">Datum</option>
+                                <option value="Ocena">Ocena</option>
+                            </select>
+                        </td>
+                        <th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>From: </th><td><input type="date" id="dateSearchFromVozac" /></td><th>&nbsp;</th><th>&nbsp;</th><th>To: </th><td><input type="date" id="dateSearchToVozac" /></td>
+                        <th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>From: </th><td><input type="number" id="gradeSearchFromVozac" /></td><th>&nbsp;</th><th>&nbsp;</th><th>To: </th><td><input type="number" id="gradeSearchToVozac" /></td>
+                        <th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>From: </th><td><input type="number" id="priceSearchFromVozac" /></td><th>&nbsp;</th><th>&nbsp;</th><th>To: </th><td><input type="number" id="priceSearchToVozac" /></td>
+                    </tr>
+                    <tr><td><input type="button" id="btnSortVozac" value="Sort" /></td><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><td><input type="button" id="btnSearchDateVozac" value="Search by Date" /></td>
+                    <th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><td><input type="button" id="btnSearchGradeVozac" value="Search by Grade" /></td>
+                    <th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><td><input type="button" id="btnSearchPriceVozac" value="Search by Price" /></td>
+                    </tr>
+                </table>
+
+                <hr />
+
+                <table id="tabelaSortVozac" class="table table-bordered" border="1"></table>
+
+                <table id="tabelaSearchVozac" class="table table-bordered" border="1"></table>
+
+                <table id="tabelaFiltracijaVozac" class="table table-bordered" border="1"></table>
+
+
+                <hr />
+                <div class="container">
+                    <table id="filtracijaVoznjiVozac">
+                        <tr>
+                            <td>
+                                <select id="statusiVoznjiZaFiltracijuVozac">
+                                    <option value="Kreirana_Na_Cekanju">Kreirana na cekanju</option>
+                                    <option value="Formirana">Formirana</option>
+                                    <option value="Obradjena">Obradjena</option>
+                                    <option value="Prihvacena">Prihvacena</option>
+                                    <option value="Otkazana">Otkazana</option>
+                                    <option value="Neuspesna">Neuspesna</option>
+                                    <option value="Uspesna">Uspesna</option>
+                                    <option value="U_Toku">U toku</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr><td><input type="button" id="btnFiltracijaVozac" value="Filtriraj" /></td></tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+
+
     </div>
 
 

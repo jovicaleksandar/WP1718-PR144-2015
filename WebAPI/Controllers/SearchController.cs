@@ -81,6 +81,41 @@ namespace WebAPI.Controllers
 
 
         [HttpGet]
+        [Route("api/search/getfiltracijavozac/{id}")]
+        public List<Voznja> GetFiltracijaVozac(string id)
+        {
+            Vozaci users = HttpContext.Current.Application["vozaci"] as Vozaci;
+            Korisnik user = (Korisnik)HttpContext.Current.Session["user"];
+            if (user == null)
+            {
+                user = new Korisnik();
+                HttpContext.Current.Session["user"] = user;
+            }
+
+            List<Voznja> retVal = new List<Voznja>();
+
+            foreach (Vozac k in users.vozaci)
+            {
+                if (k.KorisnickoIme == user.KorisnickoIme)
+                {
+                    foreach (Voznja v in k.voznjeKorisnika)
+                    {
+                        if (v.Status.ToString() == id)
+                        {
+                            retVal.Add(v);
+                        }
+                    }
+                    return retVal;
+                }
+            }
+
+            return new List<Voznja>();
+        }
+
+
+
+
+        [HttpGet]
         [Route("api/search/getsearch/{from}/{to}")]
         public List<Voznja> GetSearch(DateTime from, DateTime to)
         {
@@ -162,6 +197,48 @@ namespace WebAPI.Controllers
 
 
 
+        [HttpGet]
+        [Route("api/search/getsearchvozac/{from}/{to}")]
+        public List<Voznja> GetSearchVozac(DateTime from, DateTime to)
+        {
+            Vozaci users = HttpContext.Current.Application["vozaci"] as Vozaci;
+            Korisnik user = (Korisnik)HttpContext.Current.Session["user"];
+            if (user == null)
+            {
+                user = new Korisnik();
+                HttpContext.Current.Session["user"] = user;
+            }
+
+            List<Voznja> retVal = new List<Voznja>();
+            int result1;
+            int result2;
+
+            foreach (Vozac k in users.vozaci)
+            {
+                if (k.KorisnickoIme == user.KorisnickoIme)
+                {
+                    foreach (Voznja v in k.voznjeKorisnika)
+                    {
+                        result1 = DateTime.Compare(from, v.VremePorudzbine);
+                        result2 = DateTime.Compare(to, v.VremePorudzbine);
+
+                        if (result1 < 0 && result2 > 0)
+                        {
+                            retVal.Add(v);
+                        }
+                    }
+
+                    return retVal;
+                }
+            }
+
+            return new List<Voznja>();
+        }
+
+
+
+
+
 
         [HttpGet]
         [Route("api/search/getsearchgrade/{from}/{to}")]
@@ -235,6 +312,48 @@ namespace WebAPI.Controllers
         }
 
 
+
+
+
+
+
+        [HttpGet]
+        [Route("api/search/getsearchgradevozac/{from}/{to}")]
+        public List<Voznja> GetSearchGradeVozac(int from, int to)
+        {
+            Vozaci users = HttpContext.Current.Application["vozaci"] as Vozaci;
+            Korisnik user = (Korisnik)HttpContext.Current.Session["user"];
+            if (user == null)
+            {
+                user = new Korisnik();
+                HttpContext.Current.Session["user"] = user;
+            }
+
+            List<Voznja> retVal = new List<Voznja>();
+
+            foreach (Vozac k in users.vozaci)
+            {
+                if (k.KorisnickoIme == user.KorisnickoIme)
+                {
+                    foreach (Voznja v in k.voznjeKorisnika)
+                    {
+                        if (v.Komentar.OcenaVoznje >= from && v.Komentar.OcenaVoznje <= to)
+                        {
+                            retVal.Add(v);
+                        }
+                    }
+
+                    return retVal;
+                }
+            }
+
+
+            return new List<Voznja>();
+        }
+
+
+
+
         [HttpGet]
         [Route("api/search/getsearchprice/{from}/{to}")]
         public List<Voznja> GetSearchPrice(int from, int to)
@@ -305,6 +424,48 @@ namespace WebAPI.Controllers
 
             return new List<Voznja>();
         }
+
+
+
+
+
+
+        [HttpGet]
+        [Route("api/search/getsearchpricevozac/{from}/{to}")]
+        public List<Voznja> GetSearchPriceVozac(int from, int to)
+        {
+            Vozaci users = HttpContext.Current.Application["vozaci"] as Vozaci;
+            Korisnik user = (Korisnik)HttpContext.Current.Session["user"];
+            if (user == null)
+            {
+                user = new Korisnik();
+                HttpContext.Current.Session["user"] = user;
+            }
+
+            List<Voznja> retVal = new List<Voznja>();
+
+            foreach (Vozac k in users.vozaci)
+            {
+                if (k.KorisnickoIme == user.KorisnickoIme)
+                {
+                    foreach (Voznja v in k.voznjeKorisnika)
+                    {
+                        if (v.Iznos >= from && v.Iznos <= to)
+                        {
+                            retVal.Add(v);
+                        }
+                    }
+
+                    return retVal;
+                }
+            }
+
+
+            return new List<Voznja>();
+        }
+
+
+
 
     }
 }

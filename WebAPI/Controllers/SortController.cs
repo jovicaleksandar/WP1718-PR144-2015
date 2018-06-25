@@ -111,5 +111,58 @@ namespace WebAPI.Controllers
             return new List<Voznja>();
         }
 
+
+
+
+        [HttpGet]
+        [Route("api/sort/getsortvozac/{id}")]
+        public List<Voznja> GetSortVozac(string id)
+        {
+            Vozaci users = HttpContext.Current.Application["vozaci"] as Vozaci;
+            Korisnik user = (Korisnik)HttpContext.Current.Session["user"];
+            if (user == null)
+            {
+                user = new Korisnik();
+                HttpContext.Current.Session["user"] = user;
+            }
+
+            List<Voznja> retVal = new List<Voznja>();
+
+            if (id == "Datum")
+            {
+                foreach (Vozac k in users.vozaci)
+                {
+                    if (k.KorisnickoIme == user.KorisnickoIme)
+                    {
+                        foreach (Voznja v in k.voznjeKorisnika)
+                        {
+                            retVal.Add(v);
+                        }
+                        retVal = retVal.OrderByDescending(x => x.VremePorudzbine).ToList();
+                        return retVal;
+                    }
+                }
+            }
+            else if (id == "Ocena")
+            {
+                foreach (Vozac k in users.vozaci)
+                {
+                    if (k.KorisnickoIme == user.KorisnickoIme)
+                    {
+                        foreach (Voznja v in k.voznjeKorisnika)
+                        {
+                            retVal.Add(v);
+                        }
+                        retVal = retVal.OrderByDescending(x => x.Komentar.OcenaVoznje).ToList();
+                        return retVal;
+                    }
+                }
+
+            }
+
+            return new List<Voznja>();
+        }
+
+
     }
 }
