@@ -325,6 +325,222 @@
                 });
 
 
+
+
+
+                $('#btnSearchDate').click(function () {
+                    var value1 = `${$('#dateSearchFrom').val()}`;
+                    var value2 = `${$('#dateSearchTo').val()}`;
+
+                    if (value1 == "") {
+                        value1 = new Date();
+                        var dd = value1.getDate();
+                        var mm = value1.getMonth() + 1; //January is 0!
+                        var yyyy = value1.getFullYear();
+
+                        if (dd < 10) {
+                            dd = '0' + dd
+                        }
+
+                        if (mm < 10) {
+                            mm = '0' + mm
+                        }
+
+                        value1 = mm + '-' + dd + '-' + yyyy;
+                    }
+
+                    if (value2 == "") {
+                        value2 = new Date();
+                        var dd = value2.getDate();
+                        var mm = value2.getMonth() + 1; //January is 0!
+                        var yyyy = value2.getFullYear();
+
+                        if (dd < 10) {
+                            dd = '0' + dd
+                        }
+
+                        if (mm < 10) {
+                            mm = '0' + mm
+                        }
+
+                        value2 = mm + '-' + dd + '-' + yyyy;
+                    }
+
+                    $('#tabelaFiltracija').hide();
+                    $('#tabelaSearch').hide();
+                    $('#tabelaSort').delay(300).fadeIn(300);
+
+                    $.ajax({
+                        url: '/api/search/getsearch/' + value1 + '/' + value2,
+                        type: 'GET',
+                        success: function (data) {
+                            var voznje = data;
+
+                            var table = `<thead><tr class="success"><th colspan="6" style="text-align:center">Rides</th></tr></thead>`;
+                            table += `<tbody><tr><th>ID</th><th>Street and number</th><th>Status</th><th>Datum</th><th>Korisnicko ime</th><th>Opis</th><th>Ocena</th>`;
+
+
+                            $(data).each(function (index) {
+
+                                var id = data[index].IdVoznje;
+                                var status;
+                                if (data[index].Status == 0) {
+                                    status = "Kreirana na cekanju";
+                                } else if (data[index].Status == 1) {
+                                    status = "Formirana";
+                                } else if (data[index].Status == 2) {
+                                    status = "Obradjena";
+                                } else if (data[index].Status == 3) {
+                                    status = "Prihvacena";
+                                } else if (data[index].Status == 4) {
+                                    status = "Otkazana";
+                                } else if (data[index].Status == 5) {
+                                    status = "Neuspesna";
+                                } else if (data[index].Status == 6) {
+                                    status = "Uspesna";
+                                } else if (data[index].Status == 7) {
+                                    status = "U toku";
+                                } else {
+                                    status = "Nepoznato";
+                                }
+
+                                table += `<tr><td>${data[index].IdVoznje}</td><td> ${data[index].LokacijaDolaskaTaksija.Adresa.UlicaBroj} </td><td> ${status} </td>`;
+                                table += `<td>${data[index].VremePorudzbine}</td><td>${data[index].Komentar.KorisnickoIme}</td><td>${data[index].Komentar.Opis}</td><td>${data[index].Komentar.OcenaVoznje}</td></tr>`
+                            });
+
+                            $("#tabelaSort").html(table);
+
+
+                        }
+                    });
+                });
+
+
+
+
+
+
+                $('#btnSearchGrade').click(function () {
+                    var value1 = `${$('#gradeSearchFrom').val()}`;
+                    var value2 = `${$('#gradeSearchTo').val()}`;
+                    $('#tabelaFiltracija').hide();
+                    $('#tabelaSearch').hide();
+                    $('#tabelaSort').delay(300).fadeIn(300);
+
+                    if (value1 == "" || value2 == "") {
+                        value1 = -1;
+                        value2 = -1;
+                    }
+
+                    $.ajax({
+                        url: '/api/search/getsearchgrade/' + value1 + '/' + value2,
+                        type: 'GET',
+                        success: function (data) {
+                            var voznje = data;
+
+                            var table = `<thead><tr class="success"><th colspan="7" style="text-align:center">Rides</th></tr></thead>`;
+                            table += `<tbody><tr><th>ID</th><th>Street and number</th><th>Status</th><th>Datum</th><th>Korisnicko ime</th><th>Opis</th><th>Ocena</th>`;
+
+
+                            $(data).each(function (index) {
+
+                                var id = data[index].IdVoznje;
+                                var status;
+                                if (data[index].Status == 0) {
+                                    status = "Kreirana na cekanju";
+                                } else if (data[index].Status == 1) {
+                                    status = "Formirana";
+                                } else if (data[index].Status == 2) {
+                                    status = "Obradjena";
+                                } else if (data[index].Status == 3) {
+                                    status = "Prihvacena";
+                                } else if (data[index].Status == 4) {
+                                    status = "Otkazana";
+                                } else if (data[index].Status == 5) {
+                                    status = "Neuspesna";
+                                } else if (data[index].Status == 6) {
+                                    status = "Uspesna";
+                                } else if (data[index].Status == 7) {
+                                    status = "U toku";
+                                } else {
+                                    status = "Nepoznato";
+                                }
+
+                                table += `<tr><td>${data[index].IdVoznje}</td><td> ${data[index].LokacijaDolaskaTaksija.Adresa.UlicaBroj} </td><td> ${status} </td>`;
+                                table += `<td>${data[index].VremePorudzbine}</td><td>${data[index].Komentar.KorisnickoIme}</td><td>${data[index].Komentar.Opis}</td><td>${data[index].Komentar.OcenaVoznje}</td></tr>`
+                            });
+
+                            $("#tabelaSort").html(table);
+
+
+                        }
+                    });
+                });
+
+
+
+
+
+
+
+                $('#btnSearchPrice').click(function () {
+                    var value1 = `${$('#priceSearchFrom').val()}`;
+                    var value2 = `${$('#priceSearchTo').val()}`;
+                    $('#tabelaFiltracija').hide();
+                    $('#tabelaSearch').hide();
+                    $('#tabelaSort').delay(300).fadeIn(300);
+
+                    if (value1 == "" || value2 == "") {
+                        value1 = -1;
+                        value2 = -1;
+                    }
+
+                    $.ajax({
+                        url: '/api/search/getsearchprice/' + value1 + '/' + value2,
+                        type: 'GET',
+                        success: function (data) {
+                            var voznje = data;
+
+                            var table = `<thead><tr class="success"><th colspan="8" style="text-align:center">Rides</th></tr></thead>`;
+                            table += `<tbody><tr><th>ID</th><th>Street and number</th><th>Status</th><th>Datum</th><th>Korisnicko ime</th><th>Opis</th><th>Ocena</th><th>Cena</th>`;
+
+
+                            $(data).each(function (index) {
+
+                                var id = data[index].IdVoznje;
+                                var status;
+                                if (data[index].Status == 0) {
+                                    status = "Kreirana na cekanju";
+                                } else if (data[index].Status == 1) {
+                                    status = "Formirana";
+                                } else if (data[index].Status == 2) {
+                                    status = "Obradjena";
+                                } else if (data[index].Status == 3) {
+                                    status = "Prihvacena";
+                                } else if (data[index].Status == 4) {
+                                    status = "Otkazana";
+                                } else if (data[index].Status == 5) {
+                                    status = "Neuspesna";
+                                } else if (data[index].Status == 6) {
+                                    status = "Uspesna";
+                                } else if (data[index].Status == 7) {
+                                    status = "U toku";
+                                } else {
+                                    status = "Nepoznato";
+                                }
+
+                                table += `<tr><td>${data[index].IdVoznje}</td><td> ${data[index].LokacijaDolaskaTaksija.Adresa.UlicaBroj} </td><td> ${status} </td>`;
+                                table += `<td>${data[index].VremePorudzbine}</td><td>${data[index].Komentar.KorisnickoIme}</td><td>${data[index].Komentar.Opis}</td><td>${data[index].Komentar.OcenaVoznje}</td><td>${data[index].Iznos}</td></tr>`
+                            });
+
+                            $("#tabelaSort").html(table);
+
+
+                        }
+                    });
+                });
+
+
             }
         });
 

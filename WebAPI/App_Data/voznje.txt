@@ -1,6 +1,6 @@
 0|24-Jun-18 22:51:13|123|456|Masarikova 68B|Sid|22440|Kombi|user||||||||0|Nije potrebno|24-Jun-18 22:53:40|user|9|Otkazana|
 1|24-Jun-18 22:56:09|123|456|Jovana Subotica 19|Novi Sad|21000|Kombi|user|xXx|Epsilon|Hajduk Veljka|Novi Sad|21000||vozac|1000|Super|25-Jun-18 00:20:39|user|10|Obradjena|
-2|25-Jun-18 00:07:05|312|321|Hajduk Veljka 10|Novi Sad|2100|Kombi|user|321|213|Jovana SUbotica 19|Novi Sad|21000||vozac|1000|Zadovoljan!|25-Jun-18 00:21:18|user|10|Obradjena|
+2|25-Jun-18 00:07:05|312|321|Hajduk Veljka 10|Novi Sad|2100|Kombi|user|321|213|Jovana SUbotica 19|Novi Sad|21000||vozac|1000|Zadovoljan!|25-Jun-18 00:21:18|user|8|Obradjena|
 3|25-Jun-18 02:32:58|xXx|XxX|Jevrejska|Novi Sad|21000|Kombi|user||||||||0||01-Jan-01 00:00:00||0|Kreirana_Na_Cekanju|
 4|25-Jun-18 02:34:55|231|90821|Futoska|Novi Sad|21000|Kombi|user||||||||0||01-Jan-01 00:00:00||0|Kreirana_Na_Cekanju|
 5|25-Jun-18 02:37:01|213|213|Nikole Pasica|Novi Sad|21000|Kombi|user||||||||0||01-Jan-01 00:00:00||0|Kreirana_Na_Cekanju|
