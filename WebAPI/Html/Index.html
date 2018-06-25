@@ -266,11 +266,28 @@
 
         <div id="searchRidesKorisnik">
             <div class="well">
+                <table id="sortVoznji">
+                    <tr>
+                        <td>
+                            <select id="valueZaSort">
+                                <option value="Datum">Datum</option>
+                                <option value="Ocena">Ocena</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr><td><input type="button" id="btnSort" value="Sort" /></td></tr>
+                </table>
+
+                <hr />
+
+                <table id="tabelaSort" class="table table-bordered" border="1"></table>
+
                 <table id="tabelaSearch" class="table table-bordered" border="1"></table>
 
                 <table id="tabelaFiltracija" class="table table-bordered" border="1"></table>
 
 
+                <hr />
                 <div class="container">
                     <table id="filtracijaVoznji">
                         <tr>

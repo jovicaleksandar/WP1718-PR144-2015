@@ -42,5 +42,11 @@ namespace WebAPI.Controllers
 
             return new List<Voznja>();
         }
-    }
+
+
+        [HttpGet]
+        [Route("api/search/search/{id}")]
+        public List<Voznja> GetSearch(string id)
+        {
+        }
 }
