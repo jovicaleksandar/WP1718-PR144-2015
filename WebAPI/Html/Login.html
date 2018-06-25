@@ -5,6 +5,8 @@
     <title></title>
     <script src="../Scripts/jquery-3.3.1.js"></script>
     <script src="../Scripts/Login.js"></script>
+    <script src="../Scripts/jquery.validate.js"></script>
+    <script src="../Scripts/jquery.validate.min.js"></script>
     <link href="../Content/bootstrap.min.css" rel="stylesheet" />
     <link href="../Content/style.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
@@ -40,30 +42,33 @@
 
     <div class="col-md-10 col-md-offset-1" style="padding-top:70px;">
         <div class="well">
-            <table class="table table-bordered">
-                <thead>
-                    <tr class="success">
-                        <th colspan="2" style="text-align:center">
-                            Login
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Username</td>
-                        <td><input type="text" class="form-control" id="txtUsername" placeholder="Username" /> </td>
-                    </tr>
-                    <tr>
-                        <td>Password</td>
-                        <td><input type="password" class="form-control" id="txtPassword" placeholder="Password" /></td>
-                    </tr>
-                    <tr class="success">
-                        <td colspan="2">
-                            <input id="btnLogin" class="form-control btn btn-success" type="button" value="Login" />
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            <form method="post" action="#" id="loginForm">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr class="success">
+                            <th colspan="2" style="text-align:center">
+                                Login
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Username</td>
+                            <td><input type="text" class="form-control" name="korisnickoIme" id="txtUsername" placeholder="Username" /> </td>
+                        </tr>
+                        <tr>
+                            <td>Password</td>
+                            <td><input type="password" class="form-control" name="lozinka" id="txtPassword" placeholder="Password" /></td>
+                        </tr>
+                        <tr class="success">
+                            <td colspan="2">
+                                <input id="btnLogin" class="form-control btn btn-success" type="submit" value="Login" />
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </form>
+            <script>validateLogin()</script>
 
             <div class="modal fade" tabindex="-1" id="successModal"
                  data-keyboard="false" data-backdrop="static">

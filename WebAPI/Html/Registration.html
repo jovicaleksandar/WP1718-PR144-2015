@@ -5,6 +5,8 @@
     <meta charset="utf-8" />
     <script src="../Scripts/jquery-3.3.1.js"></script>
     <script src="../Scripts/registration.js"></script>
+    <script src="../Scripts/jquery.validate.js"></script>
+    <script src="../Scripts/jquery.validate.min.js"></script>
     <link href="../Content/bootstrap.min.css" rel="stylesheet" />
     <link href="../Content/style.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
@@ -40,63 +42,67 @@
 
     <div class="col-md-10 col-md-offset-1" style="padding-top:70px;">
         <div class="well">
-            <table class="table table-bordered">
-                <thead>
-                    <tr class="success">
-                        <th colspan="2" style="text-align:center">
-                            New User Registration
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Username</td>
-                        <td><input type="text" class="form-control" id="txtUsername" placeholder="Username" /> </td>
-                    </tr>
-                    <tr>
-                        <td>Email</td>
-                        <td><input type="text" class="form-control" id="txtEmail" placeholder="Email" /> </td>
-                    </tr>
-                    <tr>
-                        <td>Password</td>
-                        <td><input type="password" class="form-control" id="txtPassword" placeholder="Password" /></td>
-                    </tr>
-                    <tr>
-                        <td>Confirm Password</td>
-                        <td>
-                            <input type="password" class="form-control" id="txtConfirmPassword" placeholder="Confirm Password" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>First Name</td>
-                        <td><input type="text" class="form-control" id="txtFirstName" placeholder="First Name" /> </td>
-                    </tr>
-                    <tr>
-                        <td>Last Name</td>
-                        <td><input type="text" class="form-control" id="txtLastName" placeholder="Last Name" /> </td>
-                    </tr>
-                    <tr>
-                        <td>JMBG</td>
-                        <td><input type="text" class="form-control" id="txtJmbg" placeholder="JMBG" /> </td>
-                    </tr>
-                    <tr>
-                        <td>Contact Number</td>
-                        <td><input type="text" class="form-control" id="txtContactNumber" placeholder="Contact Number" /> </td>
-                    </tr>
-                    <tr>
-                        <td>Gender</td>
-                        <td>
-                            <input type="radio" name="gender" id="gndrMale" value="Muskarac"> Male &nbsp;&nbsp;&nbsp;&nbsp;
-                            &nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" id="gndrFemale" name="gender" value="Zena"> Female
-                        </td>
-                    </tr>
-                    <tr class="success">
-                        <td colspan="2">
-                            <input id="btnRegister" class="form-control btn btn-success" type="button" value="Register" />
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            <form method="post" action="#" id="regForm">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr class="success">
+                            <th colspan="2" style="text-align:center">
+                                New User Registration
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Username</td>
+                            <td><input type="text" class="form-control" name="username" id="txtUsername" placeholder="Username" /> </td>
+                        </tr>
+                        <tr>
+                            <td>Email</td>
+                            <td><input type="email" class="form-control" name="email" id="txtEmail" placeholder="Email" /> </td>
+                        </tr>
+                        <tr>
+                            <td>Password</td>
+                            <td><input type="password" class="form-control" name="password" id="txtPassword" placeholder="Password" /></td>
+                        </tr>
+                        <tr>
+                            <td>Confirm Password</td>
+                            <td>
+                                <input type="password" class="form-control" name="confirmPassword" id="txtConfirmPassword" placeholder="Confirm Password" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>First Name</td>
+                            <td><input type="text" class="form-control" name="firstName" id="txtFirstName" placeholder="First Name" /> </td>
+                        </tr>
+                        <tr>
+                            <td>Last Name</td>
+                            <td><input type="text" class="form-control" name="lastName" id="txtLastName" placeholder="Last Name" /> </td>
+                        </tr>
+                        <tr>
+                            <td>JMBG</td>
+                            <td><input type="number" class="form-control" name="JMBG" id="txtJmbg" placeholder="JMBG" /> </td>
+                        </tr>
+                        <tr>
+                            <td>Contact Number</td>
+                            <td><input type="text" class="form-control" name="contactNumber" id="txtContactNumber" placeholder="Contact Number" /> </td>
+                        </tr>
+                        <tr>
+                            <td>Gender</td>
+                            <td>
+                                <input type="radio" name="gender" id="gndrMale" value="Muskarac"> Male &nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" id="gndrFemale" name="gender" value="Zena"> Female
+                            </td>
+                        </tr>
+                        <tr class="success">
+                            <td colspan="2">
+                                <input id="btnRegister" class="form-control btn btn-success" type="submit" value="Register" />
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </form>
+
+            <script>validateRegister()</script>
 
             <div class="modal fade" tabindex="-1" id="successModal"
                  data-keyboard="false" data-backdrop="static">
