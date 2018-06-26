@@ -184,6 +184,7 @@ namespace WebAPI.Controllers
 
             if (user.Role == Enums.Uloga.Musterija && v.Musterija == user.KorisnickoIme)
             {
+                v.LokacijaDolaskaTaksija.Adresa.PozivniBroj = "21000";
                 v.VremePorudzbine = DateTime.UtcNow;
                 v.IdVoznje = voznje.voznje.Count;
                 v.Musterija = user.KorisnickoIme;

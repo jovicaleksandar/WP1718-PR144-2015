@@ -8,7 +8,17 @@
     <link href="../Content/bootstrap.css" rel="stylesheet" />
     <link href="../Content/style.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBrjeABCsOwW1rhi7eW6_b_fWF8OK2HeiA&callback=myMap" async defer></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css">
+
+    <style>
+        /* Always set the map height explicitly to define the size of the div
+        * element that contains the map. */
+        #map {
+            height: 300px;
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
 
@@ -47,6 +57,10 @@
                 <h1><i class="fas fa-taxi"></i>&nbsp; E-Taxi</h1>
             </div>
         </div>
+
+        <div class="container"><div id="map"></div></div>
+
+        
 
 
 
@@ -274,13 +288,83 @@
                                 <option value="Ocena">Ocena</option>
                             </select>
                         </td>
-                        <th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>From: </th><td><input type="date" id="dateSearchFrom" /></td><th>&nbsp;</th><th>&nbsp;</th><th>To: </th><td><input type="date" id="dateSearchTo" /></td>
-                        <th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>From: </th><td><input type="number" id="gradeSearchFrom" /></td><th>&nbsp;</th><th>&nbsp;</th><th>To: </th><td><input type="number" id="gradeSearchTo" /></td>
-                        <th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>From: </th><td><input type="number" id="priceSearchFrom" /></td><th>&nbsp;</th><th>&nbsp;</th><th>To: </th><td><input type="number" id="priceSearchTo" /></td>
+                        <th>&nbsp;</th>
+                        <th>&nbsp;</th>
+                        <th>&nbsp;</th>
+                        <th>&nbsp;</th>
+                        <th>&nbsp;</th>
+                        <th>&nbsp;</th>
+                        <th>&nbsp;</th>
+                        <th>From: </th>
+                        <td><input type="date" id="dateSearchFrom" /></td>
+                        <th>&nbsp;</th>
+                        <th>&nbsp;</th>
+                        <th>To: </th>
+                        <td><input type="date" id="dateSearchTo" /></td>
+                        <th>&nbsp;</th>
+                        <th>&nbsp;</th>
+                        <th>&nbsp;</th>
+                        <th>&nbsp;</th>
+                        <th>&nbsp;</th>
+                        <th>&nbsp;</th>
+                        <th>&nbsp;</th>
+                        <th>From: </th>
+                        <td><input type="number" id="gradeSearchFrom" /></td>
+                        <th>&nbsp;</th>
+                        <th>&nbsp;</th>
+                        <th>To: </th>
+                        <td><input type="number" id="gradeSearchTo" /></td>
+                        <th>&nbsp;</th>
+                        <th>&nbsp;</th>
+                        <th>&nbsp;</th>
+                        <th>&nbsp;</th>
+                        <th>&nbsp;</th>
+                        <th>&nbsp;</th>
+                        <th>&nbsp;</th>
+                        <th>From: </th>
+                        <td><input type="number" id="priceSearchFrom" /></td>
+                        <th>&nbsp;</th>
+                        <th>&nbsp;</th>
+                        <th>To: </th>
+                        <td><input type="number" id="priceSearchTo" /></td>
                     </tr>
-                    <tr><td><input type="button" id="btnSort" value="Sort" /></td><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><td><input type="button" id="btnSearchDate" value="Search by Date" /></td>
-                    <th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><td><input type="button" id="btnSearchGrade" value="Search by Grade" /></td>
-                    <th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><td><input type="button" id="btnSearchPrice" value="Search by Price" /></td>
+                    <tr>
+                        <td><input type="button" id="btnSort" value="Sort" /></td>
+                        <th>&nbsp;</th>
+                        <th>&nbsp;</th>
+                        <th>&nbsp;</th>
+                        <th>&nbsp;</th>
+                        <th>&nbsp;</th>
+                        <th>&nbsp;</th>
+                        <th>&nbsp;</th>
+                        <th>&nbsp;</th>
+                        <td><input type="button" id="btnSearchDate" value="Search by Date" /></td>
+                        <th>&nbsp;</th>
+                        <th>&nbsp;</th>
+                        <th>&nbsp;</th>
+                        <th>&nbsp;</th>
+                        <th>&nbsp;</th>
+                        <th>&nbsp;</th>
+                        <th>&nbsp;</th>
+                        <th>&nbsp;</th>
+                        <th>&nbsp;</th>
+                        <th>&nbsp;</th>
+                        <th>&nbsp;</th>
+                        <th>&nbsp;</th>
+                        <td><input type="button" id="btnSearchGrade" value="Search by Grade" /></td>
+                        <th>&nbsp;</th>
+                        <th>&nbsp;</th>
+                        <th>&nbsp;</th>
+                        <th>&nbsp;</th>
+                        <th>&nbsp;</th>
+                        <th>&nbsp;</th>
+                        <th>&nbsp;</th>
+                        <th>&nbsp;</th>
+                        <th>&nbsp;</th>
+                        <th>&nbsp;</th>
+                        <th>&nbsp;</th>
+                        <th>&nbsp;</th>
+                        <td><input type="button" id="btnSearchPrice" value="Search by Price" /></td>
                     </tr>
                 </table>
 

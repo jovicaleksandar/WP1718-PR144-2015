@@ -1,4 +1,9 @@
-﻿$(document).ready(function () {
+﻿//var location;
+var latitude;
+var longitude;
+let fulAdresa = '';
+
+$(document).ready(function () {
     let korisnickoIme = localStorage.getItem("logged");
     let Korisnik = {
         KorisnickoIme: `${korisnickoIme}`
@@ -25,6 +30,7 @@
     $('#izmeniVoznjuKorisnik').hide();
     $('#modifikacijaVoznjeKorisnik').hide();
     $('#otkazKomentar').hide();
+    $('#map').hide();
     $('#changeDrive').hide();
     //$('#dispecerPodaci').hide();
     //$('#vozacPodaci').hide();
@@ -155,6 +161,7 @@
         $('#modifikacijaVoznjeKorisnik').hide();
         $('#izmeniVoznjuKorisnik').hide();
         $('#otkazKomentar').hide();
+        
     });
 
 
@@ -793,6 +800,12 @@
         $('#voznjaKorisnik').addClass("active");
         $('#modifikujVoznjuKorisnik').removeClass("active");
         $('#izmeniVoznjuKorisnik').hide();
+        $('#map').delay(300).fadeIn(300);
+
+        myMap();
+
+
+
     });
 
     $('#btnSaveKorisnik').click(function () {
@@ -855,6 +868,12 @@
 
     $('#btnSaveNovaVoznja').click(function () {
 
+        let niz = fulAdresa.split(',');
+        //alert("Event latLng: " + event.latLng);
+
+        //$('#txtCoordinateXNovaVoznja').val(event.lat());
+        //$('#txtCoordinateYNovaVoznja').val(location.lng());
+
         var type;
         if ($('#carTypeVozac').is(':checked')) {
             type = $('#carTypeVozac').val();
@@ -864,14 +883,14 @@
         }
 
         let adresa = {
-            UlicaBroj: $('#txtStreetNumNovaVoznja').val(),
-            NaseljenoMesto: $('#txtCityNovaVoznja').val(),
+            UlicaBroj: `${niz[2]}`,
+            NaseljenoMesto: `${niz[3]}`,
             PozivniBroj: $('#txtZipCodeNovaVoznja').val()
         };
 
         let lokacija = {
-            X: $('#txtCoordinateXNovaVoznja').val(),
-            Y: $('#txtCoordinateYNovaVoznja').val(),
+            X: `${niz[0]}`,
+            Y: `${niz[1]}`,
             Adresa: adresa
         };
 
@@ -2983,3 +3002,58 @@
     //**********************************************************************************************************************
     //**********************************************************************************************************************
 });
+
+
+
+
+function displayLocation(latitude, longitude) {
+    var request = new XMLHttpRequest();
+    var method = 'GET';
+    var url = 'http://maps.googleapis.com/maps/api/geocode/json?latlng='
+        + latitude + ',' + longitude + '&sensor=true';
+    var async = false;
+    var address;
+    request.open(method, url, async);
+    request.onreadystatechange = function () {
+        if (request.readyState == 4 && request.status == 200) {
+            var data = JSON.parse(request.responseText);
+            address = data.results[0];
+            var value = address.formatted_address.split(",");
+            count = value.length;
+            country = value[count - 1];
+            state = value[count - 2];
+            city = value[count - 3];
+        }
+    };
+    request.send();
+    return address.formatted_address;
+};
+
+
+
+function placeMarker(map, location) {
+    var marker = new google.maps.Marker({
+        position: location,
+        map: map
+    });
+    var fullAdresa = displayLocation(location.lat(), location.lng());
+    var delovi = fullAdresa.split(",");
+    var ulicaIbroj = delovi[0];
+    var grad = delovi[1];//sa zipom
+    var drzava = delovi[2];
+    fulAdresa = location.lat() + "," + location.lng() + "," + ulicaIbroj + "," + grad + "," + drzava;
+    var infowindow = new google.maps.InfoWindow({
+        content: 'Latitude: ' + location.lat() + '<br>Longitude: ' + location.lng() + '<br>Ulica i broj: ' + ulicaIbroj + '<br>Grad: ' + grad + '<br>Drzava: ' + drzava + '<br>=' + displayLocation(location.lat(), location.lng())
+    });
+    infowindow.open(map, marker);
+}
+
+function myMap() {
+    var mapCanvas = document.getElementById("map");
+    var myCenter = new google.maps.LatLng(45.242630873254775, 19.842914435055945);
+    var mapOptions = { center: myCenter, zoom: 15 };
+    var map = new google.maps.Map(mapCanvas, mapOptions);
+    google.maps.event.addListener(map, 'click', function (event) {
+        placeMarker(map, event.latLng);
+    });
+}
