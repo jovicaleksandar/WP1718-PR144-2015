@@ -804,8 +804,6 @@ $(document).ready(function () {
 
         myMap();
 
-
-
     });
 
     $('#btnSaveKorisnik').click(function () {
@@ -3042,6 +3040,14 @@ function placeMarker(map, location) {
     var grad = delovi[1];//sa zipom
     var drzava = delovi[2];
     fulAdresa = location.lat() + "," + location.lng() + "," + ulicaIbroj + "," + grad + "," + drzava;
+
+    var array = fulAdresa.split(',');
+
+    $('#txtCoordinateXNovaVoznja').val(array[0]);
+    $('#txtCoordinateYNovaVoznja').val(array[1]);
+    $('#txtStreetNumNovaVoznja').val(array[2]);
+    $('#txtCityNovaVoznja').val(array[3]);
+
     var infowindow = new google.maps.InfoWindow({
         content: 'Latitude: ' + location.lat() + '<br>Longitude: ' + location.lng() + '<br>Ulica i broj: ' + ulicaIbroj + '<br>Grad: ' + grad + '<br>Drzava: ' + drzava + '<br>=' + displayLocation(location.lat(), location.lng())
     });
