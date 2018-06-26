@@ -59,6 +59,7 @@ $(document).ready(function () {
                 $('#searchKorisnik').removeClass("active");
                 $('#modifikujVoznjuKorisnik').removeClass("active");
                 $('#modifikacijaVoznjeKorisnik').hide();
+                $('#map').hide();
                 $('#izmeniVoznjuKorisnik').hide();
                 $('#otkazKomentar').hide();
             }
@@ -125,6 +126,7 @@ $(document).ready(function () {
         $('#searchKorisnik').removeClass("active");
         $('#modifikacijaVoznjeKorisnik').hide();
         $('#izmeniVoznjuKorisnik').hide();
+        $('#map').hide();
         $('#otkazKomentar').hide();
 
 
@@ -160,6 +162,7 @@ $(document).ready(function () {
         $('#novaVoznjaKorisnik').fadeOut(300);
         $('#modifikacijaVoznjeKorisnik').hide();
         $('#izmeniVoznjuKorisnik').hide();
+        $('#map').hide();
         $('#otkazKomentar').hide();
         
     });
@@ -181,6 +184,7 @@ $(document).ready(function () {
         $('#modifikacijaVoznjeKorisnik').hide();
         $('#izmeniVoznjuKorisnik').hide();
         $('#tabelaFiltracija').hide();
+        $('#map').hide();
         $('#tabelaSort').hide();
         $('#otkazKomentar').hide();
         
@@ -590,6 +594,7 @@ $(document).ready(function () {
         $('#home1').removeClass("active");
         $('#modifikujVoznjuKorisnik').addClass("active");
         $('#modifikujVoznjuKorisnik').removeClass("active");
+        $('#map').hide();
         $('#otkazKomentar').hide();
 
         
@@ -1159,6 +1164,7 @@ $(document).ready(function () {
             $('#novaVoznjaKorisnik').fadeOut(300);
             $('#modifikacijaVoznjeKorisnik').hide();
             $('#izmeniVoznjuKorisnik').hide();
+            $('#map').hide();
             $('#otkazKomentar').hide();
 
 
