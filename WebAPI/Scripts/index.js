@@ -970,69 +970,97 @@
 
 
         $.ajax({
-            url: '/api/voznja/getall',
+            url: '/api/vozac/getslobodne',
             type: 'GET',
             success: function (data) {
-                var voznje = data;
+                var slobodniVozaci;
+                slobodniVozaci = data;
 
-                var table = `<thead><tr class="success"><th colspan="8" style="text-align:center">Rides</th></tr></thead>`;
-                table += `<tbody><tr><th>ID</th><th>Street and number</th><th>Status</th><th>Obradi</th><th>Korisnicko ime</th><th>Opis</th><th>Ocena</th>`;
-                var row;
-                //for (i = 0; i < data.Count; i++) {
-                $(data).each(function (index) {
-                    //var row = $('<tr>').addClass('success').text(data[index].LokacijaDolaskaTaksija.Adresa.UlicaBroj);
-                    //table.append(row);
 
-                    var status;
-                    if (data[index].Status == 0) {
-                        status = "Kreirana na cekanju";
-                    } else if (data[index].Status == 1) {
-                        status = "Formirana";
-                    } else if (data[index].Status == 2) {
-                        status = "Obradjena";
-                    } else if (data[index].Status == 3) {
-                        status = "Prihvacena";
-                    } else if (data[index].Status == 4) {
-                        status = "Otkazana";
-                    } else if (data[index].Status == 5) {
-                        status = "Neuspesna";
-                    } else if (data[index].Status == 6) {
-                        status = "Uspesna";
-                    } else if (data[index].Status == 7) {
-                        status = "U toku";
-                    } else {
-                        status = "Nepoznato";
-                    }
-
-                    table += `<tr><td>${data[index].IdVoznje}</td><td> ${data[index].LokacijaDolaskaTaksija.Adresa.UlicaBroj} </td><td> ${status} </td>`;
-                    //table += `<td><input id="btnOtkaziVoznjuDispecer${index}" class="btn btn-success" type="button" value="Otkazi" /></td>`;
-                    table += `<td><input id="btnObradiVoznjuDispecer${index}" class="btn btn-success" type="button" value="Obradi" /></td>`;
-                    table += `<td>${data[index].Komentar.KorisnickoIme}</td><td>${data[index].Komentar.Opis}</td><td>${data[index].Komentar.OcenaVoznje}</td></tr>`
+                $(slobodniVozaci).each(function (indeks) {
+                    alert(slobodniVozaci[indeks].KorisnickoIme);
                 });
 
-                $("#tabelaVoznjiDispecer").html(table);
+
+                $.ajax({
+                    url: '/api/voznja/getall',
+                    type: 'GET',
+                    success: function (data) {
+                        var voznje = data;
+
+                        var table = `<thead><tr class="success"><th colspan="8" style="text-align:center">Rides</th></tr></thead>`;
+                        table += `<tbody><tr><th>ID</th><th>Street and number</th><th>Status</th><th>Slobodni Vozaci</th><th>Obradi</th><th>Korisnicko ime</th><th>Opis</th><th>Ocena</th>`;
+                        var row;
+                        //for (i = 0; i < data.Count; i++) {
+                        $(data).each(function (index) {
+                            //var row = $('<tr>').addClass('success').text(data[index].LokacijaDolaskaTaksija.Adresa.UlicaBroj);
+                            //table.append(row);
 
 
 
-                $(data).each(function (index) {
-                    $('#btnObradiVoznjuDispecer' + index).click(function () {
-                        var num = index;
-                        $.ajax({
-                            url: `/api/dispecer/` + index,
-                            type: 'PUT',
-                            data: {
-                                id: num
-                            },
-                            success: function (data) {
-                                if (data) {
-                                    alert("Odradio");
-                                    window.location.href = "Index.html";
-                                } else {
-                                    alert("Nema slobodnih vozaca");
-                                }
+                            var status;
+                            if (data[index].Status == 0) {
+                                status = "Kreirana na cekanju";
+                            } else if (data[index].Status == 1) {
+                                status = "Formirana";
+                            } else if (data[index].Status == 2) {
+                                status = "Obradjena";
+                            } else if (data[index].Status == 3) {
+                                status = "Prihvacena";
+                            } else if (data[index].Status == 4) {
+                                status = "Otkazana";
+                            } else if (data[index].Status == 5) {
+                                status = "Neuspesna";
+                            } else if (data[index].Status == 6) {
+                                status = "Uspesna";
+                            } else if (data[index].Status == 7) {
+                                status = "U toku";
+                            } else {
+                                status = "Nepoznato";
                             }
+
+                            table += `<tr><td>${data[index].IdVoznje}</td><td> ${data[index].LokacijaDolaskaTaksija.Adresa.UlicaBroj} </td><td> ${status} </td>`;
+
+                            table += `<td><select id="slobodniVozaciDispecer${index}">`
+
+                            $(slobodniVozaci).each(function (indeks) {
+                                table += `<option value="${slobodniVozaci[indeks].KorisnickoIme}">${slobodniVozaci[indeks].KorisnickoIme}</option>`
+                            });
+
+                            table += `</select></td>`
+
+                            //table += `<td><input id="btnOtkaziVoznjuDispecer${index}" class="btn btn-success" type="button" value="Otkazi" /></td>`;
+                            table += `<td><input id="btnObradiVoznjuDispecer${index}" class="btn btn-success" type="button" value="Obradi" /></td>`;
+                            table += `<td>${data[index].Komentar.KorisnickoIme}</td><td>${data[index].Komentar.Opis}</td><td>${data[index].Komentar.OcenaVoznje}</td></tr>`
                         });
-                    });
+
+                        $("#tabelaVoznjiDispecer").html(table);
+
+
+
+                        $(data).each(function (index) {
+                            $('#btnObradiVoznjuDispecer' + index).click(function () {
+                                var num = index;
+                                var vozac = `${$('#slobodniVozaciDispecer' + index).val()}`;
+
+                                $.ajax({
+                                    url: `/api/dispecer/` + index,
+                                    type: 'PUT',
+                                    data: {
+                                        Vozac: vozac
+                                    },
+                                    success: function (data) {
+                                        if (data) {
+                                            alert("Odradio");
+                                            window.location.href = "Index.html";
+                                        } else {
+                                            alert("Nema slobodnih vozaca");
+                                        }
+                                    }
+                                });
+                            });
+                        });
+                    }
                 });
             }
         });

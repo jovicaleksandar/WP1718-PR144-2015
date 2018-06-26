@@ -203,7 +203,7 @@ namespace WebAPI.Controllers
             {
                 foreach (Vozac item in vozaci.vozaci)
                 {
-                    if (item.stanjeVozaca == Stanje.Slobodan)
+                    if (item.stanjeVozaca == Stanje.Slobodan && item.KorisnickoIme == v.Vozac)
                     {
                         item.stanjeVozaca = Stanje.Zauzet;
 

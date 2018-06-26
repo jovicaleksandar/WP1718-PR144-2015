@@ -65,7 +65,7 @@ namespace WebAPI.Controllers
                         arrLine[item.Id] = line;
                         File.WriteAllLines(path, arrLine);
                         File.WriteAllLines(path, File.ReadAllLines(path).Where(l => !string.IsNullOrWhiteSpace(l)));
-                        
+
                         Vozaci vozaci2 = new Vozaci(@"~/App_Data/vozaci.txt");
                         HttpContext.Current.Application["vozaci"] = vozaci2;
 
@@ -103,6 +103,32 @@ namespace WebAPI.Controllers
 
 
             return new List<Voznja>();
+        }
+
+
+
+        [HttpGet]
+        [Route("api/vozac/getslobodne")]
+        public List<Vozac> GetSlobodne()
+        {
+            Vozaci users = HttpContext.Current.Application["vozaci"] as Vozaci;
+            Korisnik user = (Korisnik)HttpContext.Current.Session["user"];
+            if (user == null)
+            {
+                user = new Korisnik();
+                HttpContext.Current.Session["user"] = user;
+            }
+
+            List<Vozac> retVal = new List<Vozac>();
+
+            foreach (Vozac k in users.vozaci)
+            {
+                if (k.stanjeVozaca == Stanje.Slobodan)
+                    retVal.Add(k);
+            }
+
+            return retVal;
+
         }
     }
 }
