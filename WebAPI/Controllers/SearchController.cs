@@ -466,6 +466,66 @@ namespace WebAPI.Controllers
 
 
 
+        [HttpGet]
+        [Route("api/search/getsearchbyname/{fname}/{lname}")]
+        public List<Korisnik> GetSearchByName(string fname, string lname)
+        {
+            Korisnici users = HttpContext.Current.Application["korisnici"] as Korisnici;
+            Dispeceri dispeceri = HttpContext.Current.Application["dispeceri"] as Dispeceri;
+            Vozaci vozaci = HttpContext.Current.Application["vozaci"] as Vozaci;
+
+            Korisnik user = (Korisnik)HttpContext.Current.Session["user"];
+            if (user == null)
+            {
+                user = new Korisnik();
+                HttpContext.Current.Session["user"] = user;
+            }
+
+            List<Korisnik> retVal = new List<Korisnik>();
+
+            bool flag1 = true;
+            bool flag2 = true;
+
+            if (fname.Equals("nevalidan_unos"))
+                flag1 = false;
+
+            if (lname.Equals("nevalidan_unos"))
+                flag2 = false;
+
+            if (user.Role == Enums.Uloga.Dispecer)
+            {
+                foreach (Korisnik k in users.korisnici)
+                {
+                    if (!flag1)
+                        fname = k.Ime;
+
+                    if (!flag2)
+                        lname = k.Prezime;
+
+                    if (k.Ime.ToLower().Equals(fname.ToLower()) && k.Prezime.ToLower().Equals(lname.ToLower()))
+                        retVal.Add(k);
+                }
+
+                foreach(Vozac v in vozaci.vozaci)
+                {
+                    if (!flag1)
+                        fname = v.Ime;
+
+                    if (!flag2)
+                        lname = v.Prezime;
+
+                    if (v.Ime.ToLower().Equals(fname.ToLower()) && v.Prezime.ToLower().Equals(lname.ToLower()))
+                        retVal.Add(v);
+                }
+
+                return retVal;
+            }
+
+            return new List<Korisnik>();
+        }
+
+
+
 
     }
 }

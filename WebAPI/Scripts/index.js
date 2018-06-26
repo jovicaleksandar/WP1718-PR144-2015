@@ -1896,6 +1896,53 @@
                 });
 
 
+                $('#btnSearchByNameDispecer').click(function () {
+                    var value1 = `${$('#firstNameForSearch').val()}`;
+                    var value2 = `${$('#lastNameForSearch').val()}`;
+                    $('#tabelaFiltracijaDispecer').hide();
+                    $('#tabelaSearchDispecer').hide();
+                    $('#tabelaSortDispecer').delay(300).fadeIn(300);
+
+                    if (value1 == "") {
+                        value1 = "nevalidan_unos";
+                    }
+                    if (value2 == "") {
+                        value2 = "nevalidan_unos";
+                    }
+
+                    $.ajax({
+                        url: '/api/search/getsearchbyname/' + value1 + '/' + value2,
+                        type: 'GET',
+                        success: function (data) {
+                            var voznje = data;
+
+                            var table = `<thead><tr class="success"><th colspan="5" style="text-align:center">Users</th></tr></thead>`;
+                            table += `<tbody><tr><th>ID</th><th>Ime</th><th>Prezime</th><th>Role</th><th>Korisnicko ime</th>`;
+
+
+                            $(data).each(function (index) {
+
+                                var id = data[index].IdVoznje;
+                                var status;
+                                if (data[index].Role == 0) {
+                                    status = "Musterija";
+                                } else if (data[index].Role == 1) {
+                                    status = "Dispecer";
+                                } else if (data[index].Role == 2) {
+                                    status = "Vozac";
+                                } else {
+                                    status = "Nepoznato";
+                                }
+
+                                table += `<tr><td>${data[index].Id}</td><td> ${data[index].Ime} </td><td> ${data[index].Prezime} </td><td> ${status} </td><td> ${data[index].KorisnickoIme} </td></tr>`
+                            });
+
+                            $("#tabelaSortDispecer").html(table);
+
+
+                        }
+                    });
+                });
 
             }
         });
