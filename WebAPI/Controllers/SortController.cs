@@ -23,9 +23,19 @@ namespace WebAPI.Controllers
                 HttpContext.Current.Session["user"] = user;
             }
 
+
+
+            List<Voznja> search = HttpContext.Current.Session["search"] as List<Voznja>;
+
+            if (search == null)
+            {
+                search = new List<Voznja>();
+                HttpContext.Current.Session["search"] = search;
+            }
+
             List<Voznja> retVal = new List<Voznja>();
 
-            if (id == "Datum")
+            /*if (id == "Datum")
             {
                 foreach (Korisnik k in users.korisnici)
                 {
@@ -55,9 +65,28 @@ namespace WebAPI.Controllers
                     }
                 }
 
+            }*/
+
+            if (id == "Datum")
+            {
+                foreach (Voznja v in search)
+                {
+                    retVal.Add(v);
+                }
+                retVal = retVal.OrderByDescending(x => x.VremePorudzbine).ToList();
+            }
+            else if (id == "Ocena")
+            {
+                foreach (Voznja v in search)
+                {
+                    retVal.Add(v);
+                }
+                retVal = retVal.OrderByDescending(x => x.Komentar.OcenaVoznje).ToList();
             }
 
-            return new List<Voznja>();
+            HttpContext.Current.Session["search"] = retVal;
+
+            return retVal;
         }
 
 
