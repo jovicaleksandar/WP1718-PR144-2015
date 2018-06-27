@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web;
+using System.Web.Hosting;
 using System.Web.Http;
 using WebAPI.Models;
 using static WebAPI.Models.Enums;
@@ -42,7 +43,9 @@ namespace WebAPI.Controllers
                         item.Gender = korisnik.Gender;
                         item.Role = Uloga.Musterija;
 
-                        string path = @"C:\Users\Coa\Desktop\NovaVerzija\WebAPI\WebAPI\App_Data\korisnici.txt";
+                        string path = "~/App_Data/korisnici.txt";
+                        path = HostingEnvironment.MapPath(path);
+
                         //users.korisnici.Add(korisnik);
                         string line = korisnik.Id.ToString() + '|' + korisnik.KorisnickoIme + '|' + korisnik.Lozinka + '|' + korisnik.Ime + '|' +
                         korisnik.Prezime + '|' + korisnik.Gender + '|' + korisnik.JMBG + '|' + korisnik.Telefon + '|' +
@@ -77,7 +80,10 @@ namespace WebAPI.Controllers
                         item.Gender = korisnik.Gender;
                         item.Role = Uloga.Dispecer;
 
-                        string path = @"C:\Users\Coa\Desktop\NovaVerzija\WebAPI\WebAPI\App_Data\dispeceri.txt";
+                        //string path = @"C:\Users\Coa\Desktop\NovaVerzija\WebAPI\WebAPI\App_Data\dispeceri.txt";
+                        string path = "~/App_Data/dispeceri.txt";
+                        path = HostingEnvironment.MapPath(path);
+
                         //dispeceri.dispecers.Add(korisnik as Dispecer);
                         string line = korisnik.Id.ToString() + '|' + korisnik.KorisnickoIme + '|' + korisnik.Lozinka + '|' + korisnik.Ime + '|' +
                         korisnik.Prezime + '|' + korisnik.Gender + '|' + korisnik.JMBG + '|' + korisnik.Telefon + '|' +

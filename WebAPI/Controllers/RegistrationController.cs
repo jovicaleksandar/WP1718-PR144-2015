@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web;
+using System.Web.Hosting;
 using System.Web.Http;
 using WebAPI.Models;
 
@@ -32,7 +33,9 @@ namespace WebAPI.Controllers
             korisnik.Id = korisnici.korisnici.Count;
             korisnici.korisnici.Add(korisnik);
 
-            string path = @"C:\Users\Coa\Desktop\NovaVerzija\WebAPI\WebAPI\App_Data\korisnici.txt";
+            //string path = @"C:\Users\Coa\Desktop\NovaVerzija\WebAPI\WebAPI\App_Data\korisnici.txt";
+            string path = "~/App_Data/korisnici.txt";
+            path = HostingEnvironment.MapPath(path);
 
             string line = String.Empty; 
             line = korisnik.Id.ToString() + '|' + korisnik.KorisnickoIme + '|' + korisnik.Lozinka + '|' + korisnik.Ime + '|' +

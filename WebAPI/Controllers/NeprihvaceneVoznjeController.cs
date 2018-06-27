@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web;
+using System.Web.Hosting;
 using System.Web.Http;
 using WebAPI.Models;
 
@@ -42,7 +43,9 @@ namespace WebAPI.Controllers
                         
                         item.voznjeKorisnika.Add(voznje.voznje[id]);
 
-                        string pathVozac = @"C:\Users\Coa\Desktop\NovaVerzija\WebAPI\WebAPI\App_Data\vozaci.txt";
+                        //string pathVozac = @"C:\Users\Coa\Desktop\NovaVerzija\WebAPI\WebAPI\App_Data\vozaci.txt";
+                        string pathVozac = "~/App_Data/vozaci.txt";
+                        pathVozac = HostingEnvironment.MapPath(pathVozac);
 
                         string lineVozac = item.Id.ToString() + '|' + item.KorisnickoIme + '|' + item.Lozinka + '|' + item.Ime + '|' +
                         item.Prezime + '|' + item.Gender + '|' + item.JMBG + '|' + item.Telefon + '|' +
@@ -71,7 +74,10 @@ namespace WebAPI.Controllers
                     {
                         voznje.voznje[id].Status = Enums.Status.Prihvacena;
 
-                        string path = @"C:\Users\Coa\Desktop\NovaVerzija\WebAPI\WebAPI\App_Data\voznje.txt";
+                        //string path = @"C:\Users\Coa\Desktop\NovaVerzija\WebAPI\WebAPI\App_Data\voznje.txt";
+                        string path = "~/App_Data/voznje.txt";
+                        path = HostingEnvironment.MapPath(path);
+
                         string line = String.Empty;
 
                         line = ride.IdVoznje.ToString() + '|' + ride.VremePorudzbine.ToString() + '|' + ride.LokacijaDolaskaTaksija.X + '|' + ride.LokacijaDolaskaTaksija.Y + '|' +

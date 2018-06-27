@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web;
+using System.Web.Hosting;
 using System.Web.Http;
 using WebAPI.Models;
 
@@ -224,9 +225,11 @@ namespace WebAPI.Controllers
                 //user.voznjeKorisnika.Add(v);
                 voznje.voznje.Add(v);
                 users.korisnici[user.Id].voznjeKorisnika.Add(v);
-                
 
-                string path = @"C:\Users\Coa\Desktop\NovaVerzija\WebAPI\WebAPI\App_Data\voznje.txt";
+
+                //string path = @"C:\Users\Coa\Desktop\NovaVerzija\WebAPI\WebAPI\App_Data\voznje.txt";
+                string path = "~/App_Data/voznje.txt";
+                path = HostingEnvironment.MapPath(path);
 
 
                 string line = String.Empty;
@@ -297,7 +300,9 @@ namespace WebAPI.Controllers
                             ride.LokacijaDolaskaTaksija.Adresa.PozivniBroj = v.LokacijaDolaskaTaksija.Adresa.PozivniBroj;
                             ride.LokacijaDolaskaTaksija.Adresa.UlicaBroj = v.LokacijaDolaskaTaksija.Adresa.UlicaBroj;
 
-                            string path = @"C:\Users\Coa\Desktop\NovaVerzija\WebAPI\WebAPI\App_Data\voznje.txt";
+                            //string path = @"C:\Users\Coa\Desktop\NovaVerzija\WebAPI\WebAPI\App_Data\voznje.txt";
+                            string path = "~/App_Data/voznje.txt";
+                            path = HostingEnvironment.MapPath(path);
                             string line = String.Empty;
 
                             line = ride.IdVoznje.ToString() + '|' + ride.VremePorudzbine.ToString() + '|' + ride.LokacijaDolaskaTaksija.X + '|' + ride.LokacijaDolaskaTaksija.Y + '|' +
@@ -346,7 +351,10 @@ namespace WebAPI.Controllers
                 {
                     ride.Status = Enums.Status.Otkazana;
 
-                    string path = @"C:\Users\Coa\Desktop\NovaVerzija\WebAPI\WebAPI\App_Data\voznje.txt";
+                    //string path = @"C:\Users\Coa\Desktop\NovaVerzija\WebAPI\WebAPI\App_Data\voznje.txt";
+                    string path = "~/App_Data/voznje.txt";
+                    path = HostingEnvironment.MapPath(path);
+
                     string line = String.Empty;
 
                     line = ride.IdVoznje.ToString() + '|' + ride.VremePorudzbine.ToString() + '|' + ride.LokacijaDolaskaTaksija.X + '|' + ride.LokacijaDolaskaTaksija.Y + '|' +

@@ -1,9 +1,10 @@
-0|driver|sifra|Driver|Vozac|Muskarac|2389131029|390821908312|driver@gmail.com|Vozac|45.12375939752803|19.21845306618752|Trg Republike 18|Šid|22240|driver|2000|499|100|Automobil|Slobodan
+0|driver|sifra|Driver|Vozac|Muskarac|2389131029|390821908312|driver@gmail.com|Vozac|45.12375939752803|19.21845306618752|Trg Republike 18|Šid|22240|driver|2000|499|100|Automobil|Zauzet
 1|vozac|sifra|Vozac|Driver|Muskarac|9803290821|98031298012980|vozac@gmail.com|Vozac|45.12324656958748|19.217170406226046|Miloša Obilića 12|Šid |22240|vozac|938210|930821|093812|Automobil|Slobodan
 2|vozacRuma|sifra|Ruma|Vozac|Muskarac|39820192180931|89032190382910|ruma@gmail.com|Vozac|45.00463389022077|19.831575060631963|Rumska|Ruma|980123|vozacRuma|908321|9803219|3903812|Automobil|Slobodan
 3|vozacNS|sifra|VozacNS|Novi Sad|Muskarac|90832109213980|89032190382910|vozacNS@gmail.com|Vozac|45.24051564710488|19.827997061136784|Cara Lazara|Novi Sad|21000|vozacNS|23918|139208|321980|Automobil|Zauzet
 4|vozacSid|sifra|Sid|Vozac|Muskarac|389201032180|89032190382910|sid@gmail.com|Vozac|45.12670776763983|19.225149893392427|Karađorđeva 18|Šid |22240|vozacSid|2000|2103120|312089|Automobil|Slobodan
 5|vozacPetrovaradin|sifra|Petrovaradin|Vozac|Muskarac|08932198032189012|93801289021890312|petrovaradin@gmail.com|Vozac|45.23719156118973|19.8879927123819|Livadska 2|Petrovaradin|890321|vozacPetrovaradin|89321908|890321980|32108932198|Automobil|Slobodan
-6|vozacBeograd|sifra|Beograd|Vozac|Muskarac|8392108321|93801289021890312|beograd@gmail.com|Vozac|44.80803783278599|20.437157877976233|Zarija Vujoševića 98| Beograd|11000|vozacBeograd|39182|382910|321980|Automobil|Slobodan
+6|vozacBeograd|sifra|Beograd|Vozac|Muskarac|8392108321|93801289021890312|beograd@gmail.com|Vozac|44.80803783278599|20.437157877976233|Zarija Vujoševića 98| Beograd|11000|vozacBeograd|39182|382910|321980|Automobil|Zauzet
 7|vozacSM|sifra|SM|Vozac|Muskarac|812930|93801289021890312|sremskamitrovica@gmail.com|Vozac|44.99191247716692|19.63989502753725|Kej 20|Sremska Mitrovica|832190|vozacSM|93082|398012|932180|Automobil|Slobodan
-8|zgVozac|sifra|Zg|Vozac|Muskarac|089123890231|93801289021890312|zg@gmail.com|Vozac|45.81115458598344|15.971287626197181|Gundulićeva ul. 12|Zagreb| 10000|zgVozac|983021980321|98032890198102|890908|Automobil|Slobodan
+8|zgVozac|sifra|Zg|Vozac|Muskarac|089123890231|93801289021890312|zg@gmail.com|Vozac|45.81115458598344|16.081231231|Unnamed Road|None||zgVozac|983021980321|98032890198102|890908|Automobil|Slobodan
+9|drajverDrajver|sifra|Drajver|Vozac|Muskarac|091323201909132|3098219120831|drajver@gmail.com|Vozac|45|19|Nepoznata|Nepoznata|21000|drajverDrajver|90132|328901|329081|Automobil|Slobodan

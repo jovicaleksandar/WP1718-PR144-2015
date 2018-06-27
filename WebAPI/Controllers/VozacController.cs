@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web;
+using System.Web.Hosting;
 using System.Web.Http;
 using WebAPI.Models;
 using static WebAPI.Models.Enums;
@@ -51,7 +52,9 @@ namespace WebAPI.Controllers
                         item.Lokacija.Adresa.PozivniBroj = v.Lokacija.Adresa.PozivniBroj;
                         item.Lokacija.Adresa.UlicaBroj = v.Lokacija.Adresa.UlicaBroj;
 
-                        string path = @"C:\Users\Coa\Desktop\NovaVerzija\WebAPI\WebAPI\App_Data\vozaci.txt";
+                        //string path = @"C:\Users\Coa\Desktop\NovaVerzija\WebAPI\WebAPI\App_Data\vozaci.txt";
+                        string path = "~/App_Data/vozaci.txt";
+                        path = HostingEnvironment.MapPath(path);
 
                         string line = item.Id.ToString() + '|' + item.KorisnickoIme + '|' + item.Lozinka + '|' + item.Ime + '|' +
                         item.Prezime + '|' + item.Gender + '|' + item.JMBG + '|' + item.Telefon + '|' +

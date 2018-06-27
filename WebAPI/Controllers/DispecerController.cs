@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web;
+using System.Web.Hosting;
 using System.Web.Http;
 using WebAPI.Models;
 using static WebAPI.Models.Enums;
@@ -49,7 +50,9 @@ namespace WebAPI.Controllers
 
                 vozaci.vozaci.Add(v);
 
-                string path = @"C:\Users\Coa\Desktop\NovaVerzija\WebAPI\WebAPI\App_Data\vozaci.txt";
+                //string path = @"C:\Users\Coa\Desktop\NovaVerzija\WebAPI\WebAPI\App_Data\vozaci.txt";
+                string path = "~/App_Data/vozaci.txt";
+                path = HostingEnvironment.MapPath(path);
 
                 string line = String.Empty;
                 line = v.Id.ToString() + '|' + v.KorisnickoIme + '|' + v.Lozinka + '|' + v.Ime + '|' +
@@ -126,7 +129,9 @@ namespace WebAPI.Controllers
                         v.IdVoznje = voznje.voznje.Count;
                         voznje.voznje.Add(v);
 
-                        string pathVozac = @"C:\Users\Coa\Desktop\NovaVerzija\WebAPI\WebAPI\App_Data\vozaci.txt";
+                        //string pathVozac = @"C:\Users\Coa\Desktop\NovaVerzija\WebAPI\WebAPI\App_Data\vozaci.txt";
+                        string pathVozac = "~/App_Data/vozaci.txt";
+                        pathVozac = HostingEnvironment.MapPath(pathVozac);
 
                         string lineVozac = item.Id.ToString() + '|' + item.KorisnickoIme + '|' + item.Lozinka + '|' + item.Ime + '|' +
                         item.Prezime + '|' + item.Gender + '|' + item.JMBG + '|' + item.Telefon + '|' +
@@ -150,7 +155,9 @@ namespace WebAPI.Controllers
                             }
                         }*/
 
-                        string path = @"C:\Users\Coa\Desktop\NovaVerzija\WebAPI\WebAPI\App_Data\voznje.txt";
+                        //string path = @"C:\Users\Coa\Desktop\NovaVerzija\WebAPI\WebAPI\App_Data\voznje.txt";
+                        string path = "~/App_Data/voznje.txt";
+                        path = HostingEnvironment.MapPath(path);
 
 
                         string line = String.Empty;
@@ -212,7 +219,9 @@ namespace WebAPI.Controllers
                         voznje.voznje[Int32.Parse(id)].Status = Status.Prihvacena;
                         item.voznjeKorisnika.Add(voznje.voznje[Int32.Parse(id)]);
 
-                        string pathVozac = @"C:\Users\Coa\Desktop\NovaVerzija\WebAPI\WebAPI\App_Data\vozaci.txt";
+                        //string pathVozac = @"C:\Users\Coa\Desktop\NovaVerzija\WebAPI\WebAPI\App_Data\vozaci.txt";
+                        string pathVozac = "~/App_Data/vozaci.txt";
+                        pathVozac = HostingEnvironment.MapPath(pathVozac);
 
                         string lineVozac = item.Id.ToString() + '|' + item.KorisnickoIme + '|' + item.Lozinka + '|' + item.Ime + '|' +
                         item.Prezime + '|' + item.Gender + '|' + item.JMBG + '|' + item.Telefon + '|' +
@@ -228,7 +237,9 @@ namespace WebAPI.Controllers
                         File.WriteAllLines(pathVozac, File.ReadAllLines(pathVozac).Where(l => !string.IsNullOrWhiteSpace(l)));
 
 
-                        string path = @"C:\Users\Coa\Desktop\NovaVerzija\WebAPI\WebAPI\App_Data\voznje.txt";
+                        //string path = @"C:\Users\Coa\Desktop\NovaVerzija\WebAPI\WebAPI\App_Data\voznje.txt";
+                        string path = "~/App_Data/voznje.txt";
+                        path = HostingEnvironment.MapPath(path);
 
 
                         string line = String.Empty;
