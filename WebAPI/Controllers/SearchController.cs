@@ -385,6 +385,15 @@ namespace WebAPI.Controllers
             }
 
 
+            bool flag1 = true;
+            bool flag2 = true;
+
+            if (from == -1)
+                flag1 = false;
+
+            if (to == -1)
+                flag2 = false;
+
             List<Voznja> retVal = new List<Voznja>();
 
             /*foreach (Korisnik k in users.korisnici)
@@ -406,6 +415,12 @@ namespace WebAPI.Controllers
 
             foreach (Voznja v in search)
             {
+                if (!flag1)
+                    from = v.Komentar.OcenaVoznje;
+
+                if (!flag2)
+                    to = v.Komentar.OcenaVoznje;
+
                 if (v.Komentar.OcenaVoznje >= from && v.Komentar.OcenaVoznje <= to)
                 {
                     retVal.Add(v);
@@ -440,6 +455,15 @@ namespace WebAPI.Controllers
                 HttpContext.Current.Session["search"] = search;
             }
 
+            bool flag1 = true;
+            bool flag2 = true;
+
+            if (from == -1)
+                flag1 = false;
+
+            if (to == -1)
+                flag2 = false;
+
             List<Voznja> retVal = new List<Voznja>();
 
             /*foreach (Dispecer k in users.dispecers)
@@ -461,6 +485,12 @@ namespace WebAPI.Controllers
 
             foreach (Voznja v in search)
             {
+                if (!flag1)
+                    from = v.Komentar.OcenaVoznje;
+
+                if (!flag2)
+                    to = v.Komentar.OcenaVoznje;
+
                 if (v.Komentar.OcenaVoznje >= from && v.Komentar.OcenaVoznje <= to)
                 {
                     retVal.Add(v);
@@ -498,6 +528,15 @@ namespace WebAPI.Controllers
                 HttpContext.Current.Session["search"] = search;
             }
 
+            bool flag1 = true;
+            bool flag2 = true;
+
+            if (from == -1)
+                flag1 = false;
+
+            if (to == -1)
+                flag2 = false;
+
             List<Voznja> retVal = new List<Voznja>();
 
             /*foreach (Vozac k in users.vozaci)
@@ -519,6 +558,12 @@ namespace WebAPI.Controllers
 
             foreach (Voznja v in search)
             {
+                if (!flag1)
+                    from = v.Komentar.OcenaVoznje;
+
+                if (!flag2)
+                    to = v.Komentar.OcenaVoznje;
+
                 if (v.Komentar.OcenaVoznje >= from && v.Komentar.OcenaVoznje <= to)
                 {
                     retVal.Add(v);
@@ -535,7 +580,7 @@ namespace WebAPI.Controllers
 
         [HttpGet]
         [Route("api/search/getsearchprice/{from}/{to}")]
-        public List<Voznja> GetSearchPrice(int from, int to)
+        public List<Voznja> GetSearchPrice(double from, double to)
         {
             Korisnici users = HttpContext.Current.Application["korisnici"] as Korisnici;
             Korisnik user = (Korisnik)HttpContext.Current.Session["user"];
@@ -552,6 +597,16 @@ namespace WebAPI.Controllers
                 search = new List<Voznja>();
                 HttpContext.Current.Session["search"] = search;
             }
+
+            bool flag1 = true;
+            bool flag2 = true;
+
+            if (from == -1)
+                flag1 = false;
+
+            if (to == -1)
+                flag2 = false;
+
 
             List<Voznja> retVal = new List<Voznja>();
 
@@ -574,6 +629,12 @@ namespace WebAPI.Controllers
 
             foreach (Voznja v in search)
             {
+                if (!flag1)
+                    from = v.Iznos;
+
+                if (!flag2)
+                    to = v.Iznos;
+
                 if (v.Iznos >= from && v.Iznos <= to)
                 {
                     retVal.Add(v);
@@ -590,7 +651,7 @@ namespace WebAPI.Controllers
 
         [HttpGet]
         [Route("api/search/getsearchpricedispecer/{from}/{to}")]
-        public List<Voznja> GetSearchPriceDispecer(int from, int to)
+        public List<Voznja> GetSearchPriceDispecer(double from, double to)
         {
             Dispeceri users = HttpContext.Current.Application["dispeceri"] as Dispeceri;
             Korisnik user = (Korisnik)HttpContext.Current.Session["user"];
@@ -608,6 +669,14 @@ namespace WebAPI.Controllers
                 HttpContext.Current.Session["search"] = search;
             }
 
+            bool flag1 = true;
+            bool flag2 = true;
+
+            if (from == -1)
+                flag1 = false;
+
+            if (to == -1)
+                flag2 = false;
 
             List<Voznja> retVal = new List<Voznja>();
 
@@ -628,6 +697,12 @@ namespace WebAPI.Controllers
             }*/
             foreach (Voznja v in search)
             {
+                if (!flag1)
+                    from = v.Iznos;
+
+                if (!flag2)
+                    to = v.Iznos;
+
                 if (v.Iznos >= from && v.Iznos <= to)
                 {
                     retVal.Add(v);
@@ -646,7 +721,7 @@ namespace WebAPI.Controllers
 
         [HttpGet]
         [Route("api/search/getsearchpricevozac/{from}/{to}")]
-        public List<Voznja> GetSearchPriceVozac(int from, int to)
+        public List<Voznja> GetSearchPriceVozac(double from, double to)
         {
             Vozaci users = HttpContext.Current.Application["vozaci"] as Vozaci;
             Korisnik user = (Korisnik)HttpContext.Current.Session["user"];
@@ -664,6 +739,14 @@ namespace WebAPI.Controllers
                 HttpContext.Current.Session["search"] = search;
             }
 
+            bool flag1 = true;
+            bool flag2 = true;
+
+            if (from == -1)
+                flag1 = false;
+
+            if (to == -1)
+                flag2 = false;
 
             List<Voznja> retVal = new List<Voznja>();
 
@@ -685,6 +768,12 @@ namespace WebAPI.Controllers
 
             foreach (Voznja v in search)
             {
+                if (!flag1)
+                    from = v.Iznos;
+
+                if (!flag2)
+                    to = v.Iznos;
+
                 if (v.Iznos >= from && v.Iznos <= to)
                 {
                     retVal.Add(v);

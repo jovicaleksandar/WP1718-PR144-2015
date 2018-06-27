@@ -4,6 +4,7 @@ var longitude;
 let fulAdresa = '';
 
 $(document).ready(function () {
+    //localStorage.clear();
     let korisnickoIme = localStorage.getItem("logged");
     let Korisnik = {
         KorisnickoIme: `${korisnickoIme}`
@@ -443,8 +444,11 @@ $(document).ready(function () {
                     $('#tabelaSearch').hide();
                     $('#tabelaSort').delay(300).fadeIn(300);
 
-                    if (value1 == "" || value2 == "") {
+                    if (value1 == "") {
                         value1 = -1;
+                    }
+
+                    if (value2 == "") {
                         value2 = -1;
                     }
 
