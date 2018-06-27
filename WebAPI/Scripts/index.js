@@ -1000,11 +1000,12 @@ $(document).ready(function () {
                 slobodniVozaci = data;
 
 
-                $(slobodniVozaci).each(function (indeks) {
+                /*$(slobodniVozaci).each(function (indeks) {
                     alert(slobodniVozaci[indeks].KorisnickoIme);
-                });
+                });*/
                 
 
+                var statusi = [];
 
                 $.ajax({
                     url: '/api/voznja/getall',
@@ -1019,6 +1020,8 @@ $(document).ready(function () {
                         $(data).each(function (index) {
                             //var row = $('<tr>').addClass('success').text(data[index].LokacijaDolaskaTaksija.Adresa.UlicaBroj);
                             //table.append(row);
+
+                            statusi[index] = data[index].Status;
 
                             let najblizi = [];
 
@@ -1108,19 +1111,21 @@ $(document).ready(function () {
                             $('#btnObradiVoznjuDispecer' + index).click(function () {
                                 var num = index;
                                 var vozac = `${$('#slobodniVozaciDispecer' + index).val()}`;
+                                var stejtus = statusi[index];
 
                                 $.ajax({
                                     url: `/api/dispecer/` + index,
                                     type: 'PUT',
                                     data: {
-                                        Vozac: vozac
+                                        Vozac: vozac,
+                                        Status: stejtus
                                     },
                                     success: function (data) {
                                         if (data) {
                                             alert("Odradio");
                                             window.location.href = "Index.html";
                                         } else {
-                                            alert("Nema slobodnih vozaca");
+                                            alert("Ovu voznju nije moguce obraditi ili nema slobodnih vozaca");
                                         }
                                     }
                                 });
