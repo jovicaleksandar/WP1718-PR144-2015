@@ -10,3 +10,4 @@
 9|26-Jun-18 18:15:59|45.24244957124195|19.83606514585358|Bulevar cara Lazara 47| Novi Sad 21000||Kombi|user||||||||0||01-Jan-01 00:00:00||0|Kreirana_Na_Cekanju|
 10|26-Jun-18 18:17:46|45.243597807551694|19.819928976419988|Bulevar Evrope 17| Novi Sad 406018|21000|Kombi|user||||||||0||01-Jan-01 00:00:00||0|Kreirana_Na_Cekanju|
 11|26-Jun-18 18:54:31|45.26179640759174|19.813666375089497|Kornelija Stankovića 23| Novi Sad|21000|Kombi|user||||||||0||01-Jan-01 00:00:00||0|Kreirana_Na_Cekanju|
+12|27-Jun-18 00:04:25|45.12619198456965|19.22443768849041|Karađorđeva 26| Šid 22240|21000|Kombi|user||||||||0||01-Jan-01 00:00:00||0|Kreirana_Na_Cekanju|

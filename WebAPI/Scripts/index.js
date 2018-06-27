@@ -969,6 +969,7 @@ $(document).ready(function () {
         });
     });
 
+
     $('#modifikujVoznjuDispecer').click(function () {
         //let korisnickoIme = localStorage.getItem("logged");
 
@@ -987,7 +988,7 @@ $(document).ready(function () {
         $('#searchDispecer').removeClass("active");
         $('#dispeceroveVoznje').removeClass("active");
         $('#home2').removeClass("active");
-        
+
 
 
 
@@ -1002,6 +1003,7 @@ $(document).ready(function () {
                 $(slobodniVozaci).each(function (indeks) {
                     alert(slobodniVozaci[indeks].KorisnickoIme);
                 });
+                
 
 
                 $.ajax({
@@ -1018,7 +1020,49 @@ $(document).ready(function () {
                             //var row = $('<tr>').addClass('success').text(data[index].LokacijaDolaskaTaksija.Adresa.UlicaBroj);
                             //table.append(row);
 
+                            let najblizi = [];
 
+                            
+                            for (var driver in slobodniVozaci) {
+                                let distance;
+                                distance = Math.sqrt(Math.pow(slobodniVozaci[driver].Lokacija.X - data[index].LokacijaDolaskaTaksija.X, 2) + Math.pow(slobodniVozaci[driver].Lokacija.Y - data[index].LokacijaDolaskaTaksija.Y, 2))
+
+                                let vozac1 = {
+                                    KorisnickoIme: slobodniVozaci[driver].KorisnickoIme,
+                                    Rastojanje: distance
+                                }
+                                najblizi.push(vozac1);
+                            }
+
+                            najblizi.sort(function (a, b) {
+                                return a.Rastojanje - b.Rastojanje;
+                            })
+
+                            let petNajblizih = [];
+
+                            if (najblizi.length >= 5) {
+                                petNajblizih[0] = najblizi[0];
+                                petNajblizih[1] = najblizi[1];
+                                petNajblizih[2] = najblizi[2];
+                                petNajblizih[3] = najblizi[3];
+                                petNajblizih[4] = najblizi[4];
+                            } else if (najblizi.length == 4) {
+                                petNajblizih[0] = najblizi[0];
+                                petNajblizih[1] = najblizi[1];
+                                petNajblizih[2] = najblizi[2];
+                                petNajblizih[3] = najblizi[3];
+                            } else if (najblizi.length == 3) {
+                                petNajblizih[0] = najblizi[0];
+                                petNajblizih[1] = najblizi[1];
+                                petNajblizih[2] = najblizi[2];
+                            } else if (najblizi.length == 2) {
+                                petNajblizih[0] = najblizi[0];
+                                petNajblizih[1] = najblizi[1];
+                            } else if (najblizi.length == 1) {
+                                petNajblizih[0] = najblizi[0];
+                            } else {
+                                petNajblizih[0] = "Nema slobodnih";
+                            }
 
                             var status;
                             if (data[index].Status == 0) {
@@ -1045,8 +1089,8 @@ $(document).ready(function () {
 
                             table += `<td><select id="slobodniVozaciDispecer${index}">`
 
-                            $(slobodniVozaci).each(function (indeks) {
-                                table += `<option value="${slobodniVozaci[indeks].KorisnickoIme}">${slobodniVozaci[indeks].KorisnickoIme}</option>`
+                            $(petNajblizih).each(function (indeks) {
+                                table += `<option value="${petNajblizih[indeks].KorisnickoIme}">${petNajblizih[indeks].KorisnickoIme}</option>`
                             });
 
                             table += `</select></td>`
