@@ -76,9 +76,17 @@ namespace WebAPI.Controllers
                 HttpContext.Current.Session["user"] = user;
             }
 
+            List<Voznja> search = HttpContext.Current.Session["search"] as List<Voznja>;
+
+            if (search == null)
+            {
+                search = new List<Voznja>();
+                HttpContext.Current.Session["search"] = search;
+            }
+
             List<Voznja> retVal = new List<Voznja>();
 
-            foreach (Dispecer k in users.dispecers)
+            /*foreach (Dispecer k in users.dispecers)
             {
                 if (k.KorisnickoIme == user.KorisnickoIme)
                 {
@@ -91,9 +99,20 @@ namespace WebAPI.Controllers
                     }
                     return retVal;
                 }
+            }*/
+
+
+            foreach (Voznja v in search)
+            {
+                if (v.Status.ToString() == id)
+                {
+                    retVal.Add(v);
+                }
             }
 
-            return new List<Voznja>();
+            HttpContext.Current.Session["search"] = retVal;
+
+            return retVal;
         }
 
 
@@ -111,9 +130,18 @@ namespace WebAPI.Controllers
                 HttpContext.Current.Session["user"] = user;
             }
 
+            List<Voznja> search = HttpContext.Current.Session["search"] as List<Voznja>;
+
+            if (search == null)
+            {
+                search = new List<Voznja>();
+                HttpContext.Current.Session["search"] = search;
+            }
+
             List<Voznja> retVal = new List<Voznja>();
 
-            foreach (Vozac k in users.vozaci)
+
+            /*foreach (Vozac k in users.vozaci)
             {
                 if (k.KorisnickoIme == user.KorisnickoIme)
                 {
@@ -126,9 +154,19 @@ namespace WebAPI.Controllers
                     }
                     return retVal;
                 }
+            }*/
+
+            foreach (Voznja v in search)
+            {
+                if (v.Status.ToString() == id)
+                {
+                    retVal.Add(v);
+                }
             }
 
-            return new List<Voznja>();
+            HttpContext.Current.Session["search"] = retVal;
+
+            return retVal;
         }
 
 
@@ -208,11 +246,19 @@ namespace WebAPI.Controllers
                 HttpContext.Current.Session["user"] = user;
             }
 
+            List<Voznja> search = HttpContext.Current.Session["search"] as List<Voznja>;
+
+            if (search == null)
+            {
+                search = new List<Voznja>();
+                HttpContext.Current.Session["search"] = search;
+            }
+
             List<Voznja> retVal = new List<Voznja>();
             int result1;
             int result2;
 
-            foreach (Dispecer k in users.dispecers)
+            /*foreach (Dispecer k in users.dispecers)
             {
                 if (k.KorisnickoIme == user.KorisnickoIme)
                 {
@@ -229,9 +275,23 @@ namespace WebAPI.Controllers
 
                     return retVal;
                 }
+            }*/
+
+
+            foreach (Voznja v in search)
+            {
+                result1 = DateTime.Compare(from, v.VremePorudzbine);
+                result2 = DateTime.Compare(to, v.VremePorudzbine);
+
+                if (result1 < 0 && result2 > 0)
+                {
+                    retVal.Add(v);
+                }
             }
 
-            return new List<Voznja>();
+            HttpContext.Current.Session["search"] = retVal;
+
+            return retVal;
         }
 
 
@@ -249,11 +309,21 @@ namespace WebAPI.Controllers
                 HttpContext.Current.Session["user"] = user;
             }
 
+
+            List<Voznja> search = HttpContext.Current.Session["search"] as List<Voznja>;
+
+            if (search == null)
+            {
+                search = new List<Voznja>();
+                HttpContext.Current.Session["search"] = search;
+            }
+
+
             List<Voznja> retVal = new List<Voznja>();
             int result1;
             int result2;
 
-            foreach (Vozac k in users.vozaci)
+            /*foreach (Vozac k in users.vozaci)
             {
                 if (k.KorisnickoIme == user.KorisnickoIme)
                 {
@@ -270,9 +340,23 @@ namespace WebAPI.Controllers
 
                     return retVal;
                 }
+            }*/
+
+
+            foreach (Voznja v in search)
+            {
+                result1 = DateTime.Compare(from, v.VremePorudzbine);
+                result2 = DateTime.Compare(to, v.VremePorudzbine);
+
+                if (result1 < 0 && result2 > 0)
+                {
+                    retVal.Add(v);
+                }
             }
 
-            return new List<Voznja>();
+            HttpContext.Current.Session["search"] = retVal;
+
+            return retVal;
         }
 
 
@@ -348,9 +432,17 @@ namespace WebAPI.Controllers
                 HttpContext.Current.Session["user"] = user;
             }
 
+            List<Voznja> search = HttpContext.Current.Session["search"] as List<Voznja>;
+
+            if (search == null)
+            {
+                search = new List<Voznja>();
+                HttpContext.Current.Session["search"] = search;
+            }
+
             List<Voznja> retVal = new List<Voznja>();
 
-            foreach (Dispecer k in users.dispecers)
+            /*foreach (Dispecer k in users.dispecers)
             {
                 if (k.KorisnickoIme == user.KorisnickoIme)
                 {
@@ -364,10 +456,20 @@ namespace WebAPI.Controllers
 
                     return retVal;
                 }
+            }*/
+
+
+            foreach (Voznja v in search)
+            {
+                if (v.Komentar.OcenaVoznje >= from && v.Komentar.OcenaVoznje <= to)
+                {
+                    retVal.Add(v);
+                }
             }
 
+            HttpContext.Current.Session["search"] = retVal;
 
-            return new List<Voznja>();
+            return retVal;
         }
 
 
@@ -388,9 +490,17 @@ namespace WebAPI.Controllers
                 HttpContext.Current.Session["user"] = user;
             }
 
+            List<Voznja> search = HttpContext.Current.Session["search"] as List<Voznja>;
+
+            if (search == null)
+            {
+                search = new List<Voznja>();
+                HttpContext.Current.Session["search"] = search;
+            }
+
             List<Voznja> retVal = new List<Voznja>();
 
-            foreach (Vozac k in users.vozaci)
+            /*foreach (Vozac k in users.vozaci)
             {
                 if (k.KorisnickoIme == user.KorisnickoIme)
                 {
@@ -404,10 +514,20 @@ namespace WebAPI.Controllers
 
                     return retVal;
                 }
+            }*/
+
+
+            foreach (Voznja v in search)
+            {
+                if (v.Komentar.OcenaVoznje >= from && v.Komentar.OcenaVoznje <= to)
+                {
+                    retVal.Add(v);
+                }
             }
 
+            HttpContext.Current.Session["search"] = retVal;
 
-            return new List<Voznja>();
+            return retVal;
         }
 
 
@@ -480,9 +600,18 @@ namespace WebAPI.Controllers
                 HttpContext.Current.Session["user"] = user;
             }
 
+            List<Voznja> search = HttpContext.Current.Session["search"] as List<Voznja>;
+
+            if (search == null)
+            {
+                search = new List<Voznja>();
+                HttpContext.Current.Session["search"] = search;
+            }
+
+
             List<Voznja> retVal = new List<Voznja>();
 
-            foreach (Korisnik k in users.dispecers)
+            /*foreach (Korisnik k in users.dispecers)
             {
                 if (k.KorisnickoIme == user.KorisnickoIme)
                 {
@@ -496,10 +625,18 @@ namespace WebAPI.Controllers
 
                     return retVal;
                 }
+            }*/
+            foreach (Voznja v in search)
+            {
+                if (v.Iznos >= from && v.Iznos <= to)
+                {
+                    retVal.Add(v);
+                }
             }
 
+            HttpContext.Current.Session["search"] = retVal;
 
-            return new List<Voznja>();
+            return retVal;
         }
 
 
@@ -519,9 +656,18 @@ namespace WebAPI.Controllers
                 HttpContext.Current.Session["user"] = user;
             }
 
+            List<Voznja> search = HttpContext.Current.Session["search"] as List<Voznja>;
+
+            if (search == null)
+            {
+                search = new List<Voznja>();
+                HttpContext.Current.Session["search"] = search;
+            }
+
+
             List<Voznja> retVal = new List<Voznja>();
 
-            foreach (Vozac k in users.vozaci)
+            /*foreach (Vozac k in users.vozaci)
             {
                 if (k.KorisnickoIme == user.KorisnickoIme)
                 {
@@ -535,10 +681,19 @@ namespace WebAPI.Controllers
 
                     return retVal;
                 }
+            }*/
+
+            foreach (Voznja v in search)
+            {
+                if (v.Iznos >= from && v.Iznos <= to)
+                {
+                    retVal.Add(v);
+                }
             }
 
+            HttpContext.Current.Session["search"] = retVal;
 
-            return new List<Voznja>();
+            return retVal;
         }
 
 
@@ -558,6 +713,15 @@ namespace WebAPI.Controllers
                 HttpContext.Current.Session["user"] = user;
             }
 
+            List<Korisnik> searchUsers = HttpContext.Current.Session["searchUsers"] as List<Korisnik>;
+
+            if (searchUsers == null)
+            {
+                searchUsers = new List<Korisnik>();
+                HttpContext.Current.Session["searchUsers"] = searchUsers;
+            }
+
+
             List<Korisnik> retVal = new List<Korisnik>();
 
             bool flag1 = true;
@@ -569,7 +733,7 @@ namespace WebAPI.Controllers
             if (lname.Equals("nevalidan_unos"))
                 flag2 = false;
 
-            if (user.Role == Enums.Uloga.Dispecer)
+            /*if (user.Role == Enums.Uloga.Dispecer)
             {
                 foreach (Korisnik k in users.korisnici)
                 {
@@ -596,9 +760,35 @@ namespace WebAPI.Controllers
                 }
 
                 return retVal;
+            }*/
+
+            foreach (Korisnik k in searchUsers)
+            {
+                if (!flag1)
+                    fname = k.Ime;
+
+                if (!flag2)
+                    lname = k.Prezime;
+
+                if (k.Ime.ToLower().Equals(fname.ToLower()) && k.Prezime.ToLower().Equals(lname.ToLower()))
+                    retVal.Add(k);
             }
 
-            return new List<Korisnik>();
+            /*foreach (Vozac v in searchUsers)
+            {
+                if (!flag1)
+                    fname = v.Ime;
+
+                if (!flag2)
+                    lname = v.Prezime;
+
+                if (v.Ime.ToLower().Equals(fname.ToLower()) && v.Prezime.ToLower().Equals(lname.ToLower()))
+                    retVal.Add(v);
+            }*/
+
+            HttpContext.Current.Session["searchUsers"] = retVal;
+
+            return retVal;
         }
 
 

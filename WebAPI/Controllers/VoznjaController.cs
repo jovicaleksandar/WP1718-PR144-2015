@@ -53,6 +53,28 @@ namespace WebAPI.Controllers
             return new List<Voznja>();
         }
 
+
+
+        [HttpGet]
+        [Route("api/voznja/getdispecerovevoznjesearch")]
+        public List<Voznja> GetDispeceroveVoznjeSearch()
+        {
+            Dispeceri users = HttpContext.Current.Application["dispeceri"] as Dispeceri;
+            Voznje voznje = HttpContext.Current.Application["voznje"] as Voznje;
+            Korisnik user = (Korisnik)HttpContext.Current.Session["user"];
+            if (user == null)
+            {
+                user = new Korisnik();
+                HttpContext.Current.Session["user"] = user;
+            }
+
+            List<Voznja> retVal = new List<Voznja>();
+            retVal = voznje.voznje;
+
+            return retVal;
+        }
+
+
         [HttpGet]
         [Route("api/voznja/getall")]
         public List<Voznja> GetAll()

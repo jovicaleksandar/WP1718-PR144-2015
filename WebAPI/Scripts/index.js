@@ -1636,7 +1636,7 @@ $(document).ready(function () {
 
 
         $.ajax({
-            url: '/api/voznja/getdispecerovevoznje',
+            url: '/api/voznja/getdispecerovevoznjesearch',
             type: 'GET',
             success: function (data) {
                 var voznje = data;
