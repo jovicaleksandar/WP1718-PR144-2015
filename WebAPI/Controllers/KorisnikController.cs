@@ -49,7 +49,7 @@ namespace WebAPI.Controllers
                         //users.korisnici.Add(korisnik);
                         string line = korisnik.Id.ToString() + '|' + korisnik.KorisnickoIme + '|' + korisnik.Lozinka + '|' + korisnik.Ime + '|' +
                         korisnik.Prezime + '|' + korisnik.Gender + '|' + korisnik.JMBG + '|' + korisnik.Telefon + '|' +
-                                korisnik.Email + '|' + korisnik.Role + Environment.NewLine;
+                                korisnik.Email + '|' + korisnik.Role + '|' + korisnik.Nalog + Environment.NewLine;
 
                         string[] arrLine = File.ReadAllLines(path);
                         arrLine[item.Id] = line;
@@ -87,7 +87,7 @@ namespace WebAPI.Controllers
                         //dispeceri.dispecers.Add(korisnik as Dispecer);
                         string line = korisnik.Id.ToString() + '|' + korisnik.KorisnickoIme + '|' + korisnik.Lozinka + '|' + korisnik.Ime + '|' +
                         korisnik.Prezime + '|' + korisnik.Gender + '|' + korisnik.JMBG + '|' + korisnik.Telefon + '|' +
-                                korisnik.Email + '|' + korisnik.Role + Environment.NewLine;
+                                korisnik.Email + '|' + korisnik.Role + '|' + korisnik.Nalog + Environment.NewLine;
 
                         string[] arrLine = File.ReadAllLines(path);
                         arrLine[item.Id] = line;

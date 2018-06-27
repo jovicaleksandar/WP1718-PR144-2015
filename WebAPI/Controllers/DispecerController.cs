@@ -59,7 +59,7 @@ namespace WebAPI.Controllers
                 v.Prezime + '|' + v.Gender + '|' + v.JMBG + '|' + v.Telefon + '|' + v.Email + '|' + v.Role +
                 '|' + v.Lokacija.X + '|' + v.Lokacija.Y + '|' + v.Lokacija.Adresa.UlicaBroj + '|' + v.Lokacija.Adresa.NaseljenoMesto +
                 '|' + v.Lokacija.Adresa.PozivniBroj + '|' + v.Automobil.Vozac + '|' + v.Automobil.GodisteAutomobila + '|' + v.Automobil.BrojRegistarskeOznake +
-                '|' + v.Automobil.BrojTaksiVozila + '|' + v.Automobil.Tip + '|' + v.stanjeVozaca + Environment.NewLine;
+                '|' + v.Automobil.BrojTaksiVozila + '|' + v.Automobil.Tip + '|' + v.stanjeVozaca + '|' + v.Nalog + Environment.NewLine;
 
                 if (!File.Exists(path))
                 {
@@ -139,7 +139,7 @@ namespace WebAPI.Controllers
                                 item.Lokacija.Adresa.UlicaBroj + '|' + item.Lokacija.Adresa.NaseljenoMesto + '|' +
                                 item.Lokacija.Adresa.PozivniBroj + '|' + item.Automobil.Vozac + '|' + item.Automobil.GodisteAutomobila + '|' +
                                 item.Automobil.BrojRegistarskeOznake + '|' + item.Automobil.BrojTaksiVozila + '|' + item.Automobil.Tip +
-                                '|' + item.stanjeVozaca + Environment.NewLine;
+                                '|' + item.stanjeVozaca + '|' + item.Nalog + Environment.NewLine;
 
                         string[] arrLine = File.ReadAllLines(pathVozac);
                         arrLine[item.Id] = lineVozac;
@@ -229,7 +229,7 @@ namespace WebAPI.Controllers
                                 item.Lokacija.Adresa.UlicaBroj + '|' + item.Lokacija.Adresa.NaseljenoMesto + '|' +
                                 item.Lokacija.Adresa.PozivniBroj + '|' + item.Automobil.Vozac + '|' + item.Automobil.GodisteAutomobila + '|' +
                                 item.Automobil.BrojRegistarskeOznake + '|' + item.Automobil.BrojTaksiVozila + '|' + item.Automobil.Tip +
-                                '|' + item.stanjeVozaca + Environment.NewLine;
+                                '|' + item.stanjeVozaca + '|' + item.Nalog + Environment.NewLine;
 
                         string[] arrLine = File.ReadAllLines(pathVozac);
                         arrLine[item.Id] = lineVozac;

@@ -22,8 +22,9 @@ namespace WebAPI.Models
         public string Email { get; set; }
         public Uloga Role { get; set; }
         public List<Voznja> voznjeKorisnika { get; set; }
+        public Account Nalog { get; set; }
 
-        public Korisnik(int id, string korisnickoIme, string lozinka, string ime, string prezime, string gender, string jMBG, string telefon, string email, string role)
+        public Korisnik(int id, string korisnickoIme, string lozinka, string ime, string prezime, string gender, string jMBG, string telefon, string email, string role, string nalog)
         {
             Id = id;
             KorisnickoIme = korisnickoIme;
@@ -46,6 +47,14 @@ namespace WebAPI.Models
                 Role = Uloga.Vozac;
             else
                 Role = Uloga.Musterija;
+
+            if (nalog.ToLower() == "banovan")
+            {
+                Nalog = Account.Banovan;
+            } else
+            {
+                Nalog = Account.Normalno;
+            }
 
             voznjeKorisnika = new List<Voznja>();
         }

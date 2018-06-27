@@ -29,7 +29,7 @@ namespace WebAPI.Controllers
 
             foreach (var item in users.korisnici)
             {
-                if (item.KorisnickoIme == korisnik.KorisnickoIme && item.Lozinka == korisnik.Lozinka)
+                if (item.KorisnickoIme == korisnik.KorisnickoIme && item.Lozinka == korisnik.Lozinka && item.Nalog == Enums.Account.Normalno)
                 {
                     HttpContext.Current.Session["user"] = item as Korisnik;
                     return true;
@@ -38,7 +38,7 @@ namespace WebAPI.Controllers
 
             foreach (var item in dispeceri.dispecers)
             {
-                if (item.KorisnickoIme == korisnik.KorisnickoIme && item.Lozinka == korisnik.Lozinka)
+                if (item.KorisnickoIme == korisnik.KorisnickoIme && item.Lozinka == korisnik.Lozinka && item.Nalog == Enums.Account.Normalno)
                 {
                     HttpContext.Current.Session["user"] = item as Dispecer;
                     return true;
@@ -47,7 +47,7 @@ namespace WebAPI.Controllers
 
             foreach (var item in vozaci.vozaci)
             {
-                if (item.KorisnickoIme == korisnik.KorisnickoIme && item.Lozinka == korisnik.Lozinka)
+                if (item.KorisnickoIme == korisnik.KorisnickoIme && item.Lozinka == korisnik.Lozinka && item.Nalog == Enums.Account.Normalno)
                 {
                     HttpContext.Current.Session["user"] = item as Vozac;
                     return true;

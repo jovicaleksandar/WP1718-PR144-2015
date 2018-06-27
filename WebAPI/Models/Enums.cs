@@ -16,5 +16,6 @@ namespace WebAPI.Models
         public enum Status { Kreirana_Na_Cekanju, Formirana, Obradjena, Prihvacena, Otkazana, Neuspesna, Uspesna, U_Toku }
 
         public enum Stanje { Slobodan, Zauzet }
+        public enum Account { Normalno, Banovan }
     }
 }

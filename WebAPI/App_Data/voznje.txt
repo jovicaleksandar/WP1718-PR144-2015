@@ -7,10 +7,11 @@
 6|25-Jun-18 19:38:08|312|321|132|123|231|Automobil|||||||admin1|driver|0||01-Jan-01 00:00:00||0|Prihvacena|
 7|25-Jun-18 19:38:39|ads|das|ads|adsds|a|Automobil|||||||admin1|vozac|0||01-Jan-01 00:00:00||0|Prihvacena|
 8|26-Jun-18 12:29:55|123|312|321|213|213|Kombi|user||||||admin1|vozacNS|0||01-Jan-01 00:00:00||0|Prihvacena|
-9|26-Jun-18 18:15:59|45.24244957124195|19.83606514585358|Bulevar cara Lazara 47| Novi Sad 21000||Kombi|user||||||||0||01-Jan-01 00:00:00||0|Kreirana_Na_Cekanju|
+9|26-Jun-18 18:15:59|45.24244957124195|19.83606514585358|Bulevar cara Lazara 47| Novi Sad 21000||Kombi|user||||||admin1|vozacPetrovaradin|0||01-Jan-01 00:00:00||0|Prihvacena|
 10|26-Jun-18 18:17:46|45.243597807551694|19.819928976419988|Bulevar Evrope 17| Novi Sad 406018|21000|Kombi|user||||||||0||01-Jan-01 00:00:00||0|Kreirana_Na_Cekanju|
 11|26-Jun-18 18:54:31|45.26179640759174|19.813666375089497|Kornelija Stankovića 23| Novi Sad|21000|Kombi|user||||||||0||01-Jan-01 00:00:00||0|Kreirana_Na_Cekanju|
 12|27-Jun-18 00:04:25|45.12619198456965|19.22443768849041|Karađorđeva 26| Šid 22240|21000|Kombi|user||||||||0||01-Jan-01 00:00:00||0|Kreirana_Na_Cekanju|
 13|27-Jun-18 00:34:06|45.86062161623151|16.115952822094414|Aleja Mira 8| 10360|21000|Kombi|user|321|321|132|321|321||zgVozac|32||01-Jan-01 00:00:00||0|Obradjena|
 14|27-Jun-18 11:54:23|45.241210658669345|19.830743643168034|Bulevar cara Lazara 75| Novi Sad 21000|21000|Kombi|user1214||||||||0||01-Jan-01 00:00:00||0|Kreirana_Na_Cekanju|
 15|27-Jun-18 11:58:01|45|20|Nepoznata|Nepoznato|921380|Automobil|||||||admin2|driver|0||01-Jan-01 00:00:00||0|Prihvacena|
+16|27-Jun-18 17:31:34|45.243023692297726|19.83812508237702|Bulevar cara Lazara 25| Novi Sad 21000|21000|Kombi|qwerty|213|312|213|123|132||vozac|132||01-Jan-01 00:00:00||0|Uspesna|

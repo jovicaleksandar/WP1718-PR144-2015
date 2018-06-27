@@ -9,7 +9,7 @@ namespace WebAPI.Models
     {
         public Dispecer() : base() { }
 
-        public Dispecer(int Id, string KorisnickoIme, string Lozinka, string Ime, string Prezime, string pol, string Jmbg, string Telefon, string email, string uloga) : base(Id, KorisnickoIme, Lozinka, Ime, Prezime, pol, Jmbg, Telefon, email, uloga)
+        public Dispecer(int Id, string KorisnickoIme, string Lozinka, string Ime, string Prezime, string pol, string Jmbg, string Telefon, string email, string uloga, string nalog) : base(Id, KorisnickoIme, Lozinka, Ime, Prezime, pol, Jmbg, Telefon, email, uloga, nalog)
         {
 
         }

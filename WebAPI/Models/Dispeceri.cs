@@ -26,7 +26,7 @@ namespace WebAPI.Models
                     break;
 
                 string[] tokens = line.Split('|');
-                Dispecer d = new Dispecer(Int32.Parse(tokens[0]), tokens[1], tokens[2], tokens[3], tokens[4], tokens[5], tokens[6], tokens[7], tokens[8], tokens[9]);
+                Dispecer d = new Dispecer(Int32.Parse(tokens[0]), tokens[1], tokens[2], tokens[3], tokens[4], tokens[5], tokens[6], tokens[7], tokens[8], tokens[9], tokens[10]);
                 dispecers.Add(d);
             }
             sr.Close();

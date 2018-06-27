@@ -47,7 +47,7 @@ namespace WebAPI.Controllers
                         vozac.Prezime + '|' + vozac.Gender + '|' + vozac.JMBG + '|' + vozac.Telefon + '|' + vozac.Email + '|' + vozac.Role +
                         '|' + vozac.Lokacija.X + '|' + vozac.Lokacija.Y + '|' + vozac.Lokacija.Adresa.UlicaBroj + '|' + vozac.Lokacija.Adresa.NaseljenoMesto +
                         '|' + vozac.Lokacija.Adresa.PozivniBroj + '|' + vozac.Automobil.Vozac + '|' + vozac.Automobil.GodisteAutomobila + '|' + vozac.Automobil.BrojRegistarskeOznake +
-                        '|' + vozac.Automobil.BrojTaksiVozila + '|' + vozac.Automobil.Tip + '|' + vozac.stanjeVozaca + Environment.NewLine;
+                        '|' + vozac.Automobil.BrojTaksiVozila + '|' + vozac.Automobil.Tip + '|' + vozac.stanjeVozaca + '|' + vozac.Nalog + Environment.NewLine;
 
 
                         string[] arrLine = File.ReadAllLines(path);

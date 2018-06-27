@@ -2020,8 +2020,8 @@ $(document).ready(function () {
                         success: function (data) {
                             var voznje = data;
 
-                            var table = `<thead><tr class="success"><th colspan="5" style="text-align:center">Users</th></tr></thead>`;
-                            table += `<tbody><tr><th>ID</th><th>Ime</th><th>Prezime</th><th>Role</th><th>Korisnicko ime</th>`;
+                            var table = `<thead><tr class="success"><th colspan="7" style="text-align:center">Users</th></tr></thead>`;
+                            table += `<tbody><tr><th>ID</th><th>Ime</th><th>Prezime</th><th>Role</th><th>Korisnicko ime</th><th>Ban</th><th>Unban</th>`;
 
 
                             $(data).each(function (index) {
@@ -2038,11 +2038,48 @@ $(document).ready(function () {
                                     status = "Nepoznato";
                                 }
 
-                                table += `<tr><td>${data[index].Id}</td><td> ${data[index].Ime} </td><td> ${data[index].Prezime} </td><td> ${status} </td><td> ${data[index].KorisnickoIme} </td></tr>`
+                                table += `<tr><td>${data[index].Id}</td><td> ${data[index].Ime} </td><td> ${data[index].Prezime} </td><td> ${status} </td><td> ${data[index].KorisnickoIme} </td><td><input id="btnBanujKorisnika${index}" class="btn btn-success" type="button" value="Ban" /></td><td><input id="btnOdbanujKorisnika${index}" class="btn btn-success" type="button" value="Unban" /></td></tr>`
                             });
 
                             $("#tabelaSortDispecer").html(table);
 
+
+                            $(data).each(function (index) {
+                                var korisnik = voznje[index];
+                                $('#btnBanujKorisnika' + index).click(function () {
+                                    $.ajax({
+                                        url: '/api/ban/putban',
+                                        type: 'PUT',
+                                        data: JSON.stringify(korisnik),
+                                        contentType: 'application/json; charset=utf-8',
+                                        dataType: 'json',
+                                        success: function (data) {
+                                            if (data) {
+                                                alert("Uspesno banovan");
+                                            } else {
+                                                alert("Neuspesno banovan");
+                                            }
+                                        }
+                                    });
+                                });
+
+                                $('#btnOdbanujKorisnika' + index).click(function () {
+                                    $.ajax({
+                                        url: '/api/ban/putunban',
+                                        type: 'PUT',
+                                        data: JSON.stringify(korisnik),
+                                        contentType: 'application/json; charset=utf-8',
+                                        dataType: 'json',
+                                        success: function (data) {
+                                            if (data) {
+                                                alert("Uspesno odbanovan");
+                                            } else {
+                                                alert("Neuspesno odbanovan");
+                                            }
+                                        }
+                                    });
+                                });
+                            });
 
                         }
                     });
@@ -2432,7 +2469,7 @@ $(document).ready(function () {
                             contentType: 'application/json; charset=utf-8',
                             dataType: 'json',
                             success: function (data) {
-                                alert("Ipao u neprihvacene");
+                                alert("Upao u neprihvacene");
                             }
                         });
                     });

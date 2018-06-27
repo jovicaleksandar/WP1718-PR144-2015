@@ -30,6 +30,7 @@ namespace WebAPI.Controllers
                 if (k.KorisnickoIme == korisnik.KorisnickoIme)
                     return false;
 
+            korisnik.Nalog = Enums.Account.Normalno;
             korisnik.Id = korisnici.korisnici.Count;
             korisnici.korisnici.Add(korisnik);
 
@@ -40,7 +41,7 @@ namespace WebAPI.Controllers
             string line = String.Empty; 
             line = korisnik.Id.ToString() + '|' + korisnik.KorisnickoIme + '|' + korisnik.Lozinka + '|' + korisnik.Ime + '|' +
             korisnik.Prezime + '|' + korisnik.Gender + '|' + korisnik.JMBG + '|' + korisnik.Telefon + '|' +
-                    korisnik.Email + '|' + korisnik.Role + Environment.NewLine;
+                    korisnik.Email + '|' + korisnik.Role + '|' + korisnik.Nalog + Environment.NewLine;
 
             if (!File.Exists(path))
             {

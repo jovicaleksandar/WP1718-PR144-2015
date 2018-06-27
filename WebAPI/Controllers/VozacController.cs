@@ -62,7 +62,7 @@ namespace WebAPI.Controllers
                                 item.Lokacija.Adresa.UlicaBroj + '|' + item.Lokacija.Adresa.NaseljenoMesto + '|' +
                                 item.Lokacija.Adresa.PozivniBroj + '|' + item.Automobil.Vozac + '|' + item.Automobil.GodisteAutomobila + '|' +
                                 item.Automobil.BrojRegistarskeOznake + '|' + item.Automobil.BrojTaksiVozila + '|' + item.Automobil.Tip +
-                                Environment.NewLine;
+                                '|' + item.Nalog + Environment.NewLine;
 
                         string[] arrLine = File.ReadAllLines(path);
                         arrLine[item.Id] = line;
