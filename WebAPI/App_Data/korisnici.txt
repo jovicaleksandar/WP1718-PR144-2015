@@ -1,3 +1,5 @@
-0|user|sifra|User|Korisnik|Muskarac|9803129083|9032898013|user@gmail.com|Musterija|Normalno
-1|qwerty|sifra|Ime|Prezime|Muskarac|2133213121332|3132131|email@gmail.com|Musterija|Normalno
+0|user|sifra|User|Korisnik|Muskarac|3890129802138903|893218921|user@gmail.com|Musterija|Normalno
+1|qwerty|sifra|FirstName|LastName|Zena|2133213121332|3132131|email@gmail.com|Musterija|Normalno
 2|korisnik|sifra|Ime|Prezime|Muskarac|2913809018329|90321890|korisnik@gmail.com|Musterija|Normalno
+3|noviUser|sifra|Novi|User|Muskarac|2318931231213|8921398032190|noviUser@gmail.com|Musterija|Normalno
+4|newUser|sifra|New|User|Muskarac|1293802938102|8931098312|new@gmail.com|Musterija|Normalno

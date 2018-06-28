@@ -9,9 +9,15 @@
 8|26-Jun-18 12:29:55|123|312|321|213|213|Kombi|user||||||admin1|vozacNS|0||01-Jan-01 00:00:00||0|Prihvacena|
 9|26-Jun-18 18:15:59|45.24244957124195|19.83606514585358|Bulevar cara Lazara 47| Novi Sad 21000||Kombi|user||||||admin1|vozacPetrovaradin|0||01-Jan-01 00:00:00||0|Prihvacena|
 10|26-Jun-18 18:17:46|45.243597807551694|19.819928976419988|Bulevar Evrope 17| Novi Sad 406018|21000|Kombi|user||||||||0||01-Jan-01 00:00:00||0|Kreirana_Na_Cekanju|
-11|26-Jun-18 18:54:31|45.26179640759174|19.813666375089497|Kornelija Stankovića 23| Novi Sad|21000|Kombi|user||||||||0||01-Jan-01 00:00:00||0|Kreirana_Na_Cekanju|
+11|26-Jun-18 18:54:31|45.26179640759174|19.813666375089497|Kornelija Stankovića 23| Novi Sad|21000|Kombi|user||||||||0|Neuspesno|28-Jun-18 00:07:38|drajverDrajver|9|Neuspesna|
 12|27-Jun-18 00:04:25|45.12619198456965|19.22443768849041|Karađorđeva 26| Šid 22240|21000|Kombi|user||||||||0||01-Jan-01 00:00:00||0|Kreirana_Na_Cekanju|
 13|27-Jun-18 00:34:06|45.86062161623151|16.115952822094414|Aleja Mira 8| 10360|21000|Kombi|user|321|321|132|321|321||zgVozac|32||01-Jan-01 00:00:00||0|Obradjena|
-14|27-Jun-18 11:54:23|45.241210658669345|19.830743643168034|Bulevar cara Lazara 75| Novi Sad 21000|21000|Kombi|user1214||||||||0||01-Jan-01 00:00:00||0|Kreirana_Na_Cekanju|
+14|27-Jun-18 11:54:23|45.241210658669345|19.830743643168034|Bulevar cara Lazara 75| Novi Sad 21000|21000|Kombi|user1214|44.32132121312|21.23321321213|Nova Ulica|Novi Sad|21000|admin1|drajverDrajver|2102101||01-Jan-01 00:00:00||0|Obradjena|
 15|27-Jun-18 11:58:01|45|20|Nepoznata|Nepoznato|921380|Automobil|||||||admin2|driver|0||01-Jan-01 00:00:00||0|Prihvacena|
 16|27-Jun-18 17:31:34|45.243023692297726|19.83812508237702|Bulevar cara Lazara 25| Novi Sad 21000|21000|Kombi|qwerty|213|312|213|123|132||vozac|132||01-Jan-01 00:00:00||0|Uspesna|
+17|27-Jun-18 23:09:57|45.242419354183546|19.83061489713532|Hopovska 2| Novi Sad 403655|21000|Kombi|qwerty||||||||0||01-Jan-01 00:00:00||0|Kreirana_Na_Cekanju|
+18|27-Jun-18 23:24:57|45.243779105900224|19.86533341062409|Ribnjak donji put| Sremska Kamenica|21000|Automobil|qwerty||||||||0||01-Jan-01 00:00:00||0|Kreirana_Na_Cekanju|
+19|27-Jun-18 23:27:20|45.24287260837189|19.821988912943425|Braće Lučić 21| Novi Sad|21000|Automobil|qwerty||||||||0||01-Jan-01 00:00:00||0|Kreirana_Na_Cekanju|
+20|27-Jun-18 23:31:57|45.24190566173202|19.833275648478093|Bulevar cara Lazara 72| Novi Sad 21000|21000|Automobil|qwerty||||||||0|Ne treba ipak|27-Jun-18 23:32:37|qwerty|10|Otkazana|
+21|27-Jun-18 23:33:52|44.84489498|20.48911919|Nepoznata|Novi Sad|21000|Automobil|||||||admin3|vozacRuma|0||01-Jan-01 00:00:00||0|Prihvacena|
+22|28-Jun-18 00:35:46|45.242238051495704|19.838640066507878|Bulevar cara Lazara 31| Novi Sad 21000|21000|Automobil|user||||||||0||01-Jan-01 00:00:00||0|Kreirana_Na_Cekanju|

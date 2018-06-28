@@ -1,3 +1,3 @@
-0|admin1|sifra1214|Thierry|Henry|Muskarac|121493224138|0643298721|henry@gmail.com|Dispecer|Normalno
+0|admin1|sifra1214|Thierry|Henry|Muskarac|89732139821|064321389712|henry@gmail.com|Dispecer|Normalno
 1|admin2|sifra1312|Zinedine|Zidane|Muskarac|121493224138|0643298721|zidane@gmail.com|Dispecer|Normalno
-2|admin3|sifra1243|Jane|Doe|Zena|312980120|0643123128721|jane@gmail.com|Dispecer|Normalno
+2|admin3|sifra1243|Jane|Doe|Zena|912398098089089012|0643123128721|jane@gmail.com|Dispecer|Normalno

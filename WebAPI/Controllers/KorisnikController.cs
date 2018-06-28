@@ -28,8 +28,8 @@ namespace WebAPI.Controllers
             Dispeceri dispeceri = HttpContext.Current.Application["dispeceri"] as Dispeceri;
             Korisnici users = HttpContext.Current.Application["korisnici"] as Korisnici;
 
-            if (user.Role == Uloga.Musterija && user.KorisnickoIme == korisnik.KorisnickoIme)
-            {
+            //if (user.Role == Uloga.Musterija && user.KorisnickoIme == korisnik.KorisnickoIme)
+            //{
                 foreach (var item in users.korisnici)
                 {
                     if (korisnik.KorisnickoIme == item.KorisnickoIme)
@@ -47,9 +47,9 @@ namespace WebAPI.Controllers
                         path = HostingEnvironment.MapPath(path);
 
                         //users.korisnici.Add(korisnik);
-                        string line = korisnik.Id.ToString() + '|' + korisnik.KorisnickoIme + '|' + korisnik.Lozinka + '|' + korisnik.Ime + '|' +
-                        korisnik.Prezime + '|' + korisnik.Gender + '|' + korisnik.JMBG + '|' + korisnik.Telefon + '|' +
-                                korisnik.Email + '|' + korisnik.Role + '|' + korisnik.Nalog + Environment.NewLine;
+                        string line = item.Id.ToString() + '|' + item.KorisnickoIme + '|' + item.Lozinka + '|' + item.Ime + '|' +
+                        item.Prezime + '|' + item.Gender + '|' + item.JMBG + '|' + item.Telefon + '|' +
+                                item.Email + '|' + item.Role + '|' + item.Nalog + Environment.NewLine;
 
                         string[] arrLine = File.ReadAllLines(path);
                         arrLine[item.Id] = line;
@@ -63,10 +63,10 @@ namespace WebAPI.Controllers
                         return korisnik;
                     }
                 }
-            }
+            //}
 
-            if (user.Role == Uloga.Dispecer && user.KorisnickoIme == korisnik.KorisnickoIme)
-            {
+            //if (user.Role == Uloga.Dispecer && user.KorisnickoIme == korisnik.KorisnickoIme)
+            //{
                 foreach (var item in dispeceri.dispecers)
                 {
                     if (korisnik.KorisnickoIme == item.KorisnickoIme)
@@ -85,9 +85,9 @@ namespace WebAPI.Controllers
                         path = HostingEnvironment.MapPath(path);
 
                         //dispeceri.dispecers.Add(korisnik as Dispecer);
-                        string line = korisnik.Id.ToString() + '|' + korisnik.KorisnickoIme + '|' + korisnik.Lozinka + '|' + korisnik.Ime + '|' +
-                        korisnik.Prezime + '|' + korisnik.Gender + '|' + korisnik.JMBG + '|' + korisnik.Telefon + '|' +
-                                korisnik.Email + '|' + korisnik.Role + '|' + korisnik.Nalog + Environment.NewLine;
+                        string line = item.Id.ToString() + '|' + item.KorisnickoIme + '|' + item.Lozinka + '|' + item.Ime + '|' +
+                        item.Prezime + '|' + item.Gender + '|' + item.JMBG + '|' + item.Telefon + '|' +
+                                item.Email + '|' + item.Role + '|' + item.Nalog + Environment.NewLine;
 
                         string[] arrLine = File.ReadAllLines(path);
                         arrLine[item.Id] = line;
@@ -101,7 +101,7 @@ namespace WebAPI.Controllers
                         return korisnik;
                     }
                 }
-            }
+            //}
 
             return null;
         }

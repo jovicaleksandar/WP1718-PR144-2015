@@ -882,11 +882,19 @@ $(document).ready(function () {
         //$('#txtCoordinateYNovaVoznja').val(location.lng());
 
         var type;
-        if ($('#carTypeVozac').is(':checked')) {
-            type = $('#carTypeVozac').val();
+        if ($('#carTypeNovaVoznja').is(':checked')) {
+            type = $('#carTypeNovaVoznja').val();
         }
         else {
-            type = $('#miniVanTypeVozac').val();
+            type = $('#miniVanTypeNovaVoznja').val();
+        }
+
+        var type;
+        if ($('#carTypeNovaVoznja').is(':checked')) {
+            type = $('#carTypeNovaVoznja').val();
+        }
+        else {
+            type = $('#miniVanTypeNovaVoznja').val();
         }
 
         let adresa = {
@@ -2643,7 +2651,7 @@ $(document).ready(function () {
                                         };
 
                                         $.ajax({
-                                            url: '/api/status/PutVoznjaNeuspesno/' + index,
+                                            url: '/api/status/PutVoznjaNeuspesno/' + id,
                                             type: 'PUT',
                                             data: JSON.stringify(komentar),
                                             contentType: 'application/json; charset=utf-8',
